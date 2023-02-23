@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
-  <span>Angular 13 MatTable CRUD Example</span>
+  <span>Operaciones Kosmódromo</span>
   <span class="spacer"></span>
-  Reload data:
+  Recargar datos:
   <button mat-icon-button (click)="refresh()">
     <mat-icon>refresh</mat-icon>
   </button>
@@ -11,7 +11,7 @@
 
   <div class="form">
     <mat-form-field floatPlaceholder="never" color="accent">
-      <input matInput #filter placeholder="Filter issues">
+      <input matInput #filter placeholder="Filtrar datos">
     </mat-form-field>
   </div>
 
@@ -22,32 +22,32 @@
 
     <!-- ID Column -->
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Caja</mat-header-cell>
       <mat-cell *matCellDef="let row" >{{row.id}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.title}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="state">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>State</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Estado</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.state}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="url">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Url</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Categoría</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.url}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="created_at">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Created at</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de creación</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.created_at}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="updated_at">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Updated at</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Última Modificación</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.updated_at}}</mat-cell>
     </ng-container>
 

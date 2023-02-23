@@ -5,7 +5,8 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 
 @Injectable()
 export class DataService {
-  private readonly API_URL = 'https://api.github.com/repos/angular/angular/issues';
+  //private readonly API_URL = 'https://api.github.com/repos/angular/angular/issues';
+  private readonly API_URL = './assets/datosEjemplo.json';
 
   dataChange: BehaviorSubject<Issue[]> = new BehaviorSubject<Issue[]>([]);
   // Temporarily stores data from dialogs
