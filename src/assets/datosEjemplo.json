@@ -1,15 +1,146 @@
 [
   {
-    "id": 1,
-    "categoria": "Vegetales variados (en conserva o en seco)",
-    "descripcion": "Caja llena de cosas",
-    "pesoUnitario": 35,
-    "cantidad": 10,
-    "created_at": "26/04/2023",
-    "updated_at": "27/04/2023",
-    "destinatario1": "destinatario1",
-    "destinatario2": "destinatario2",
-    "destinatario3": "destinatario3",
-    "observaciones": "observaciones"
+      "cantidad": 10,
+      "pesounitario": 0.021,
+      "descripcion": "Animalito",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 3,
+      "pesounitario": 0.07,
+      "descripcion": "Muñecos South Park",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 1,
+      "pesounitario": 0.01,
+      "descripcion": "Silbato",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 1,
+      "pesounitario": 0.045,
+      "descripcion": "Estrella de mar",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 2,
+      "pesounitario": 0.06,
+      "descripcion": "Pelotas",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 1,
+      "pesounitario": 0.04,
+      "descripcion": "Arañas",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 1,
+      "pesounitario": 0.185,
+      "descripcion": "Plastilina",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 1,
+      "pesounitario": 0.23,
+      "descripcion": "Acrílico",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 1,
+      "pesounitario": 0.06,
+      "descripcion": "Poker",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 1,
+      "pesounitario": 0.05,
+      "descripcion": "Trompo",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 1,
+      "pesounitario": 0.025,
+      "descripcion": "Patineta mini",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 1,
+      "pesounitario": 0.08,
+      "descripcion": "Parchis",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 1,
+      "pesounitario": 0.14,
+      "descripcion": "Peppa Juega y Colorea",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 2,
+      "pesounitario": 0.2525,
+      "descripcion": "Canicas decorativas",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 1,
+      "pesounitario": 0.51,
+      "descripcion": "Piedras decorativas",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 1,
+      "pesounitario": 0.47,
+      "descripcion": "Pasta para modelar",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 2,
+      "pesounitario": 0.055,
+      "descripcion": "Imanes nevera",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 1,
+      "pesounitario": 0.015,
+      "descripcion": "Llavero",
+      "categoria": "Juguetes"
+  },
+  {
+      "cantidad": 1,
+      "pesounitario": 0.035,
+      "descripcion": "Goma para pelo",
+      "categoria": "Elementos de aseo y limpieza"
+  },
+  {
+      "cantidad": 2,
+      "pesounitario": 0.0075,
+      "descripcion": "Felpa de pelo",
+      "categoria": "Elementos de aseo y limpieza"
+  },
+  {
+      "cantidad": 6,
+      "pesounitario": 0.004166666667,
+      "descripcion": "Estampas",
+      "categoria": "Elementos religiosos"
+  },
+  {
+      "cantidad": 2,
+      "pesounitario": 0.125,
+      "descripcion": "Chocolates Peppa Calendario",
+      "categoria": "Otros ítems de comida"
+  },
+  {
+      "cantidad": 52,
+      "pesounitario": 0.025,
+      "descripcion": "Turrones mini",
+      "categoria": "Otros ítems de comida"
+  },
+  {
+      "cantidad": 20,
+      "pesounitario": 0.27925,
+      "descripcion": "Turrones tamaño normal",
+      "categoria": "Otros ítems de comida"
   }
 ]

@@ -7,12 +7,23 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 export class DataService {
   //private readonly API_URL = 'https://api.github.com/repos/angular/angular/issues';
   private readonly API_URL = './assets/datosEjemplo.json';
+  private readonly API_URdatosComboBoxes = './assets/datosComboBoxes.json';
 
   dataChange: BehaviorSubject<Issue[]> = new BehaviorSubject<Issue[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
 
   constructor (private httpClient: HttpClient) {}
+
+  getDatosComboBoxes(): any {
+    this.httpClient.get<any>(this.API_URdatosComboBoxes).subscribe(data => {
+        return data;
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
+  }
+
 
   get data(): Issue[] {
     return this.dataChange.value;

@@ -1,4 +1,11 @@
 /* Structure */
+
+.mat-toolbar {
+  background: url('assets/airplanebgr.jpg') no-repeat center;
+  background-size: cover;
+  color: #fff;
+}
+
 .table-container {
   display: flex;
   flex-direction: column;
@@ -7,8 +14,15 @@
   overflow: auto;
 }
 
-.export-container {
+.new-item-container {
   text-align: right;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.export-container {
+  text-align: left;
   margin-left: 20px;
   margin-bottom: 20px;
   margin-right: 20px;

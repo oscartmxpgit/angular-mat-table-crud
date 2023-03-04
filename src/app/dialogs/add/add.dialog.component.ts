@@ -1,8 +1,9 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {Component, Inject} from '@angular/core';
-import {DataService} from '../../services/data.service';
-import {FormControl, Validators} from '@angular/forms';
-import {Issue} from '../../models/issue';
+import { Component, Inject } from '@angular/core';
+import { DataService } from '../../services/data.service';
+import { FormControl, Validators } from '@angular/forms';
+import { Issue } from '../../models/issue';
+import { comboData } from '../../models/datosComboBoxes';
 
 @Component({
   selector: 'app-add.dialog',
@@ -11,9 +12,11 @@ import {Issue} from '../../models/issue';
 })
 
 export class AddDialogComponent {
+  comboData = comboData;
+  //datosComboBoxes.ts
   constructor(public dialogRef: MatDialogRef<AddDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Issue,
-              public dataService: DataService) { }
+    @Inject(MAT_DIALOG_DATA) public data: Issue,
+    public dataService: DataService) { }
 
   formControl = new FormControl('', [
     Validators.required
@@ -27,7 +30,7 @@ export class AddDialogComponent {
   }
 
   submit() {
-  // empty stuff
+    // empty stuff
   }
 
   onNoClick(): void {

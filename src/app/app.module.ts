@@ -19,6 +19,7 @@ import {DeleteDialogComponent} from './dialogs/delete/delete.dialog.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { TranslateModule } from '@ngx-translate/core';
         FormsModule,
         MatButtonModule,
         MatInputModule,
+        MatSelectModule,
         MatIconModule,
         MatSortModule,
         MatTableModule,
