@@ -21,7 +21,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 
 export class AppComponent implements OnInit {
-  displayedColumns = ['id', 'descripcion', 'state', 'url', 'created_at', 'updated_at', 'actions'];
+  displayedColumns = ['id', 'descripcion', 'pesoUnitario', 'url', 'created_at', 'updated_at', 'actions'];
   exampleDatabase: DataService | null;
   dataSource: ExampleDataSource | null;
   index: number;
@@ -76,13 +76,13 @@ export class AppComponent implements OnInit {
     });
   }
 
-  startEdit(i: number, id: number, descripcion: string, state: string, url: string, created_at: string, updated_at: string) {
+  startEdit(i: number, id: number, descripcion: string, pesoUnitario: string, url: string, created_at: string, updated_at: string) {
     this.id = id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     console.log(this.index);
     const dialogRef = this.dialog.open(EditDialogComponent, {
-      data: { id: id, descripcion: descripcion, state: state, url: url, created_at: created_at, updated_at: updated_at }
+      data: { id: id, descripcion: descripcion, pesoUnitario: pesoUnitario, url: url, created_at: created_at, updated_at: updated_at }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -97,11 +97,11 @@ export class AppComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, descripcion: string, state: string, url: string) {
+  deleteItem(i: number, id: number, descripcion: string, pesoUnitario: string, url: string) {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { id: id, descripcion: descripcion, state: state, url: url }
+      data: { id: id, descripcion: descripcion, pesoUnitario: pesoUnitario, url: url }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -225,7 +225,7 @@ export class ExampleDataSource extends DataSource<Issue> {
       switch (this._sort.active) {
         case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
         case 'descripcion': [propertyA, propertyB] = [a.descripcion, b.descripcion]; break;
-        case 'state': [propertyA, propertyB] = [a.state, b.state]; break;
+        case 'pesoUnitario': [propertyA, propertyB] = [a.pesoUnitario, b.pesoUnitario]; break;
         case 'url': [propertyA, propertyB] = [a.url, b.url]; break;
         case 'created_at': [propertyA, propertyB] = [a.created_at, b.created_at]; break;
         case 'updated_at': [propertyA, propertyB] = [a.updated_at, b.updated_at]; break;

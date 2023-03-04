@@ -33,7 +33,7 @@
       "labels": [
 
       ],
-      "state": "Enviado",
+      "pesoUnitario": "25",
       "locked": false,
       "assignee": null,
       "assignees": [
@@ -140,7 +140,7 @@
           "description": "Alert the caretaker performing the merge to check the PR for an out of normal action needed or note"
         }
       ],
-      "state": "Enviado",
+      "pesoUnitario": "25",
       "locked": false,
       "assignee": null,
       "assignees": [
@@ -177,7 +177,7 @@
         },
         "open_issues": 1248,
         "closed_issues": 10576,
-        "state": "En preparación",
+        "pesoUnitario": "En preparación",
         "created_at": "2018-01-18T16:52:20Z",
         "updated_at": "2023-02-23T17:50:09Z",
         "due_on": null,
@@ -248,7 +248,7 @@
       "labels": [
 
       ],
-      "state": "Enviado",
+      "pesoUnitario": "25",
       "locked": false,
       "assignee": null,
       "assignees": [
