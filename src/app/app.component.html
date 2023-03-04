@@ -14,7 +14,12 @@
       <input matInput #filter placeholder="Filtrar datos">
     </mat-form-field>
   </div>
+
   <div class="export-container">
+    <button mat-raised-button color="primary" (click)="addNew()">
+      Crear Nuevo Elemento
+      <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+    </button>
     <button mat-raised-button color="primary" (click)="ExportTOExcel()">Exportar a Excel</button>
   </div>
 
@@ -29,9 +34,9 @@
         <td mat-cell *matCellDef="let row">{{row.id}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="title">
+      <ng-container matColumnDef="descripcion">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</th>
-        <td mat-cell *matCellDef="let row"> {{row.title}}</td>
+        <td mat-cell *matCellDef="let row"> {{row.descripcion}}</td>
       </ng-container>
 
       <ng-container matColumnDef="state">
@@ -62,17 +67,16 @@
             <button mat-icon-button color="primary" (click)="addNew()">
               <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
             </button>
-            <div class="tooltip">I am a tooltip!</div>
           </div>
         </th>
 
         <td mat-cell *matCellDef="let row; let i=index;">
           <button mat-icon-button color="accent"
-            (click)="startEdit(i, row.id, row.title, row.state, row.url, row.created_at, row.updated_at)">
+            (click)="startEdit(i, row.id, row.descripcion, row.state, row.url, row.created_at, row.updated_at)">
             <mat-icon aria-label="Edit">edit</mat-icon>
           </button>
 
-          <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.title, row.state, row.url)">
+          <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.descripcion, row.state, row.url)">
             <mat-icon aria-label="Delete">delete</mat-icon>
           </button>
         </td>

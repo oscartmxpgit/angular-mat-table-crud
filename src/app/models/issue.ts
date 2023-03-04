@@ -1,6 +1,6 @@
 export class Issue {
   id: number;
-  title: string;
+  descripcion: string;
   state: string;
   url: string;
   created_at: string;

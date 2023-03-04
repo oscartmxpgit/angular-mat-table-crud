@@ -9,7 +9,7 @@
       "id": 1597310593,
       "node_id": "PR_kwDOAXExC85KoWcE",
       "number": 49186,
-      "title": "Caja llena de vegetales",
+      "descripcion": "Caja llena de vegetales",
       "user": {
         "login": "mlc-mlapis",
         "id": 5693835,
@@ -81,7 +81,7 @@
       "id": 1597276977,
       "node_id": "PR_kwDOAXExC85KoPGt",
       "number": 49185,
-      "title": "Conjunto de elementos",
+      "descripcion": "Conjunto de elementos",
       "user": {
         "login": "Michael-Ziluck",
         "id": 10745543,
@@ -153,7 +153,7 @@
         "id": 3045967,
         "node_id": "MDk6TWlsZXN0b25lMzA0NTk2Nw==",
         "number": 82,
-        "title": "Backlog",
+        "descripcion": "Backlog",
         "description": "Milestone for triaged issues that have not yet been scheduled for resolution.",
         "creator": {
           "login": "IgorMinar",
@@ -224,7 +224,7 @@
       "id": 1597269357,
       "node_id": "PR_kwDOAXExC85KoNeh",
       "number": 49184,
-      "title": "Vino eucarístico para misas",
+      "descripcion": "Vino eucarístico para misas",
       "user": {
         "login": "devversion",
         "id": 4987015,
