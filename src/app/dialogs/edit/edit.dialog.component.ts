@@ -2,6 +2,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject} from '@angular/core';
 import {DataService} from '../../services/data.service';
 import {FormControl, Validators} from '@angular/forms';
+import { comboData } from '../../models/datosComboBoxes';
 
 @Component({
   selector: 'app-baza.dialog',
@@ -9,7 +10,7 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['../../dialogs/edit/edit.dialog.css']
 })
 export class EditDialogComponent {
-
+  comboData = comboData;
   constructor(public dialogRef: MatDialogRef<EditDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService) { }
 

@@ -9,6 +9,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -20,17 +21,22 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatSelectModule } from '@angular/material/select';
-
+import { TableContentComponent } from './table-content/table-content.component';
+import { MatCardModule } from '@angular/material/card';
+import { ResetDialogComponent } from './dialogs/reset-dialog/reset-dialog.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         AddDialogComponent,
         EditDialogComponent,
-        DeleteDialogComponent
+        DeleteDialogComponent,
+        TableContentComponent,
+        ResetDialogComponent,
     ],
     imports: [
         BrowserModule,
+        MatCardModule,
         BrowserAnimationsModule,
         HttpClientModule,
         MatDialogModule,
@@ -39,6 +45,7 @@ import { MatSelectModule } from '@angular/material/select';
         MatInputModule,
         MatSelectModule,
         MatIconModule,
+        MatMenuModule,
         MatSortModule,
         MatTableModule,
         MatToolbarModule,

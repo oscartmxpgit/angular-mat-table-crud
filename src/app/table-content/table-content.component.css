@@ -1,0 +1,168 @@
+/* Structure */
+
+.mat-toolbar {
+    background: url('assets/airplanebgr.jpg') no-repeat center;
+    background-size: cover;
+    color: #fff;
+  }
+
+  .table-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    min-width: 300px;
+    overflow: auto;
+  }
+
+  .new-item-container {
+    text-align: right;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+  }
+
+  .export-container {
+    text-align: left;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+  }
+
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Toolbar */
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  /* Filter */
+  .form {
+    min-height: 56px;
+    max-height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 8px 24px 0;
+    font-size: 20px;
+    justify-content: space-between;
+    border-bottom: 1px solid transparent;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    flex-grow: 1;
+    margin-top: 8px;
+  }
+
+  /* Mat table */
+  .no-results {
+    display: flex;
+    justify-content: center;
+    padding: 14px;
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .mat-cell:nth-child(1),
+  .mat-header-cell:nth-child(1){
+    flex: 0 0 6%;
+  }
+
+  .mat-cell:nth-child(2),
+  .mat-header-cell:nth-child(2){
+    flex: 0 0 30%;
+  }
+
+  .mat-cell:nth-child(3),
+  .mat-header-cell:nth-child(3){
+    flex: 0 0 6%;
+  }
+
+  .mat-cell:nth-child(7),
+  .mat-header-cell:nth-child(7){
+    flex: 0 0 7%;
+  }
+
+  .wrapper {
+    -webkit-transform: translateZ(0); /* webkit flicker fix */
+    -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+  }
+
+  .wrapper .tooltip {
+    background: #1496bb;
+    bottom: 100%;
+    color: #fff;
+    display: block;
+    left: -55px;
+    margin-bottom: 5px;
+    opacity: 0;
+    padding: 10px;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+      transform: translateY(100px);
+      transition: all 2.5s ease-out;
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  }
+
+  /* This bridges the gap so you can mouse into the tooltip without it disappearing */
+  .wrapper .tooltip:before {
+    bottom: -20px;
+    content: " ";
+    display: block;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  .wrapper .tooltip:after {
+    border-left: solid transparent 10px;
+    border-right: solid transparent 10px;
+    border-top: solid #1496bb 10px;
+    bottom: -10px;
+    content: " ";
+    height: 0;
+    left: 50%;
+    margin-left: -13px;
+    position: absolute;
+    width: 0;
+  }
+
+  .wrapper:hover .tooltip {
+    opacity: 1;
+    pointer-events: auto;
+      transform: translateY(0px);
+  }
+
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    min-width: 300px;
+  }
+
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }
+
+  .no-mobile-label {
+    display: none;
+  }
+
+  @media(min-width: 600px) {
+    .no-mobile-label {
+      width: 80px;
+      display: inline-block;
+    }
+
+    .mat-row {
+      flex-direction: column;
+      align-items: start;
+      padding: 8px 24px;
+    }
+  }
