@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -21,12 +21,22 @@ import { ResetDialogComponent } from '../dialogs/reset-dialog/reset-dialog.compo
   styleUrls: ['./table-content.component.css']
 })
 export class TableContentComponent implements OnInit {
-  @Input() indiceCajaSel: {};
   displayedColumns = ['id', 'descripcion', 'categoria', 'cantidad', 'pesoUnitario', 'peso', 'actions'];
   exampleDatabase: DataService | null;
   dataSource: ExampleDataSource | null;
   index: number;
   id: number;
+
+  private _indiceCajaSel: string;
+
+  @Input() set indiceCajaSel(value: string) {
+     this._indiceCajaSel = value + 1;
+     this.loadData();
+  }
+
+  get indiceCajaSel(): string {
+      return this._indiceCajaSel;
+  }
 
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
@@ -137,7 +147,7 @@ export class TableContentComponent implements OnInit {
 
   public loadData() {
     this.exampleDatabase = new DataService(this.httpClient);
-    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
+    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, this.indiceCajaSel);
     fromEvent(this.filter.nativeElement, 'keyup')
       // .debounceTime(150)
       // .distinctUntilChanged()
@@ -146,7 +156,6 @@ export class TableContentComponent implements OnInit {
           return;
         }
         this.dataSource.filter = this.filter.nativeElement.value;
-        //this.dataSource.filterCaja = this.indiceCajaSel;
       });
   }
 }
@@ -162,16 +171,14 @@ export class ExampleDataSource extends DataSource<Issue> {
     this._filterChange.next(filter);
   }
 
-  set filterCaja(filter: string) {
-    this._filterChange.next(filter);
-  }
-
   filteredData: Issue[] = [];
   renderedData: Issue[] = [];
 
   constructor(public _exampleDatabase: DataService,
     public _paginator: MatPaginator,
-    public _sort: MatSort) {
+    public _sort: MatSort,
+    public indiceCajaSel: string
+    ) {
     super();
     // Reset to the first page when the user changes the filter.
     this._filterChange.subscribe(() => this._paginator.pageIndex = 0);
@@ -184,10 +191,10 @@ export class ExampleDataSource extends DataSource<Issue> {
       this._exampleDatabase.dataChange,
       this._sort.sortChange,
       this._filterChange,
-      this._paginator.page
+      this._paginator.page,
     ];
 
-    this._exampleDatabase.getAllIssues();
+    this._exampleDatabase.getAllIssues(this.indiceCajaSel);
 
 
     return merge(...displayDataChanges).pipe(map(() => {

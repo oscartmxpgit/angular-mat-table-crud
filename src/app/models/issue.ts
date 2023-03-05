@@ -1,4 +1,5 @@
 export class Issue {
+  cajaId: number;
   id: number;
   descripcion: string;
   pesoUnitario: number;

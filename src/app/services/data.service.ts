@@ -34,9 +34,10 @@ export class DataService {
   }
 
   /** CRUD METHODS */
-  getAllIssues(): void {
+  getAllIssues(indiceCajaSel: string): void {
     this.httpClient.get<Issue[]>(this.API_URL).subscribe(data => {
-        this.dataChange.next(data);
+        this.dataChange.next(data.filter(caja=> caja.cajaId === +indiceCajaSel)
+        );
       },
       (error: HttpErrorResponse) => {
       console.log (error.name + ' ' + error.message);

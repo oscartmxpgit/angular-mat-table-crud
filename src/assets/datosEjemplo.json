@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "caja": 1,
+        "cajaId": 1,
         "cantidad": 10,
         "pesoUnitario": 0.021,
         "descripcion": "Animalito",
@@ -9,7 +9,7 @@
     },
     {
         "id": 2,
-        "caja": 1,
+        "cajaId": 1,
         "cantidad": 3,
         "pesoUnitario": 0.07,
         "descripcion": "Muñecos South Park",
@@ -17,7 +17,7 @@
     },
     {
         "id": 3,
-        "caja": 1,
+        "cajaId": 1,
         "cantidad": 1,
         "pesoUnitario": 0.01,
         "descripcion": "Silbato",
@@ -25,147 +25,147 @@
     },
     {
         "cantidad": 1,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.045,
         "descripcion": "Estrella de mar",
         "categoria": "Juguetes"
     },
     {
         "cantidad": 2,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.06,
         "descripcion": "Pelotas",
         "categoria": "Juguetes"
     },
     {
         "cantidad": 1,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.04,
         "descripcion": "Arañas",
         "categoria": "Juguetes"
     },
     {
         "cantidad": 1,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.185,
         "descripcion": "Plastilina",
         "categoria": "Juguetes"
     },
     {
         "cantidad": 1,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.23,
         "descripcion": "Acrílico",
         "categoria": "Juguetes"
     },
     {
         "cantidad": 1,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.06,
         "descripcion": "Poker",
         "categoria": "Juguetes"
     },
     {
         "cantidad": 1,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.05,
         "descripcion": "Trompo",
         "categoria": "Juguetes"
     },
     {
         "cantidad": 1,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.025,
         "descripcion": "Patineta mini",
         "categoria": "Juguetes"
     },
     {
         "cantidad": 1,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.08,
         "descripcion": "Parchis",
         "categoria": "Juguetes"
     },
     {
         "cantidad": 1,
-        "caja": 3,
+        "cajaId": 3,
         "pesoUnitario": 0.14,
         "descripcion": "Peppa Juega y Colorea",
         "categoria": "Juguetes"
     },
     {
         "cantidad": 2,
-        "caja": 2,
+        "cajaId": 2,
         "pesoUnitario": 0.2525,
         "descripcion": "Canicas decorativas",
         "categoria": "Juguetes"
     },
     {
         "cantidad": 1,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.51,
         "descripcion": "Piedras decorativas",
         "categoria": "Juguetes"
     },
     {
         "cantidad": 1,
-        "caja": 2,
+        "cajaId": 2,
         "pesoUnitario": 0.47,
         "descripcion": "Pasta para modelar",
         "categoria": "Juguetes"
     },
     {
         "cantidad": 2,
-        "caja": 2,
+        "cajaId": 2,
         "pesoUnitario": 0.055,
         "descripcion": "Imanes nevera",
         "categoria": "Juguetes"
     },
     {
         "cantidad": 1,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.015,
         "descripcion": "Llavero",
         "categoria": "Juguetes"
     },
     {
         "cantidad": 1,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.035,
         "descripcion": "Goma para pelo",
         "categoria": "Elementos de aseo y limpieza"
     },
     {
         "cantidad": 2,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.0075,
         "descripcion": "Felpa de pelo",
         "categoria": "Elementos de aseo y limpieza"
     },
     {
         "cantidad": 6,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.004166666667,
         "descripcion": "Estampas",
         "categoria": "Elementos religiosos"
     },
     {
         "cantidad": 2,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.125,
         "descripcion": "Chocolates Peppa Calendario",
         "categoria": "Otros ítems de comida"
     },
     {
         "cantidad": 52,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.025,
         "descripcion": "Turrones mini",
         "categoria": "Otros ítems de comida"
     },
     {
         "cantidad": 20,
-        "caja": 1,
+        "cajaId": 1,
         "pesoUnitario": 0.27925,
         "descripcion": "Turrones tamaño normal",
         "categoria": "Otros ítems de comida"
