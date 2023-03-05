@@ -1,12 +1,5 @@
-<mat-toolbar color="primary">
-  <span>Operaciones Kosmódromo</span>
-  <span class="spacer"></span>
-  <button mat-icon-button (click)="refresh()">
-    <mat-icon>refresh</mat-icon>
-  </button>
-</mat-toolbar>
-
 <div class="container mat-elevation-z8">
+  {{ indiceCajaSel == null ? 'Data not received!' : indiceCajaSel }}
 
   <div class="form">
     <mat-form-field floatPlaceholder="never" color="accent">

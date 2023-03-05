@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { ResetDialogComponent } from '../dialogs/reset-dialog/reset-dialog.component';
 
 @Component({
   selector: 'app-caja-boxes',
@@ -10,40 +13,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./caja-boxes.component.scss']
 })
 export class CajaBoxesComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, public dialog: MatDialog) { }
 
   obs: any = [];
 
-  displayedColumns: string[] = ['caja_id', 'cantidad_elementos', 'star'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
-  abrirCaja(){
+  refresh() {
+    //this.loadData();
+    const dialogRef = this.dialog.open(ResetDialogComponent, {
+    })
+  }
+
+  tabs = ['Caja 1'];
+  selected = new FormControl(0);
+
+  addTab() {
+    this.tabs.push('Caja ' + (this.tabs.length + 1));
+    this.selected.setValue(this.tabs.length - 1);
+  }
+
+  removeTab(index: number) {
+    this.tabs.splice(index, 1);
+  }
+
+  abrirCaja() {
     this.router.navigateByUrl('/tablecaja');
   }
-
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
 }
-
-export interface PeriodicElement {
-  caja_id: string;
-  cantidad_elementos: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { caja_id: '1', cantidad_elementos: '23' },
-  { caja_id: '2', cantidad_elementos: '53' },
-];

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -21,6 +21,7 @@ import { ResetDialogComponent } from '../dialogs/reset-dialog/reset-dialog.compo
   styleUrls: ['./table-content.component.css']
 })
 export class TableContentComponent implements OnInit {
+  @Input() indiceCajaSel: {};
   displayedColumns = ['id', 'descripcion', 'categoria', 'cantidad', 'pesoUnitario', 'peso', 'actions'];
   exampleDatabase: DataService | null;
   dataSource: ExampleDataSource | null;
@@ -42,24 +43,16 @@ export class TableContentComponent implements OnInit {
   @ViewChild('TABLE') table: ElementRef;
 
   ExportTOExcel() {
-    console.log(this.table)
-    console.log(this.table.nativeElement)
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.utils.book_append_sheet(wb, ws, 'Caja');
 
     /* save to file */
-    XLSX.writeFile(wb, 'SheetJS.xlsx');
+    XLSX.writeFile(wb, 'MisCajas.xlsx');
 
   }
   ngOnInit() {
     this.loadData();
-  }
-
-  refresh() {
-    //this.loadData();
-    const dialogRef = this.dialog.open(ResetDialogComponent, {
-    })
   }
 
   addNew() {
@@ -153,6 +146,7 @@ export class TableContentComponent implements OnInit {
           return;
         }
         this.dataSource.filter = this.filter.nativeElement.value;
+        //this.dataSource.filterCaja = this.indiceCajaSel;
       });
   }
 }
@@ -165,6 +159,10 @@ export class ExampleDataSource extends DataSource<Issue> {
   }
 
   set filter(filter: string) {
+    this._filterChange.next(filter);
+  }
+
+  set filterCaja(filter: string) {
     this._filterChange.next(filter);
   }
 

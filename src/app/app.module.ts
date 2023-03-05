@@ -22,6 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatSelectModule } from '@angular/material/select';
 import { TableContentComponent } from './table-content/table-content.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ResetDialogComponent } from './dialogs/reset-dialog/reset-dialog.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CajaBoxesComponent } from './caja-boxes/caja-boxes.component';
@@ -53,6 +54,7 @@ import { CajaBoxesComponent } from './caja-boxes/caja-boxes.component';
         MatTableModule,
         MatToolbarModule,
         MatPaginatorModule,
+        MatTabsModule,
         ReactiveFormsModule,
         TranslateModule.forRoot(),
     ],
