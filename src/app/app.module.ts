@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,6 +23,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { TableContentComponent } from './table-content/table-content.component';
 import { MatCardModule } from '@angular/material/card';
 import { ResetDialogComponent } from './dialogs/reset-dialog/reset-dialog.component';
+import { AppRoutingModule } from './app-routing.module';
+import { CajaBoxesComponent } from './caja-boxes/caja-boxes.component';
 
 @NgModule({
     declarations: [
@@ -33,9 +34,11 @@ import { ResetDialogComponent } from './dialogs/reset-dialog/reset-dialog.compon
         DeleteDialogComponent,
         TableContentComponent,
         ResetDialogComponent,
+        CajaBoxesComponent,
     ],
     imports: [
         BrowserModule,
+        AppRoutingModule,
         MatCardModule,
         BrowserAnimationsModule,
         HttpClientModule,

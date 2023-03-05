@@ -1,0 +1,47 @@
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+  </mat-form-field>
+  <a routerLink="tablecaja">Abrir caja</a>
+
+  <div class="example-container mat-elevation-z8">
+    <div class="example-table-container">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="caja_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> CajaId </th>
+          <td mat-cell *matCellDef="let element" class='m-card-title' test data-label='CajaId'> <a
+              href='javascript:alert("Abrir la CajaId");'>{{element.caja_id}}</a></td>
+        </ng-container>
+
+        <ng-container matColumnDef="cantidad_elementos">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad de elementos </th>
+          <td mat-cell *matCellDef="let element" class='m-card-sub-title' data-label='Cantidad de elementos'>
+            {{element.cantidad_elementos}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="star">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <mat-paginator [pageSizeOptions]="[10, 20, 30]"></mat-paginator>
+  </div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item onclick="abrirCaja()">
+      <mat-icon>open_in_new</mat-icon>
+      <span>Abrir la caja</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>delete</mat-icon>
+      <span>Eliminar caja</span>
+    </button>
+  </mat-menu>
