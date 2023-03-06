@@ -1,6 +1,4 @@
 <div class="container mat-elevation-z8">
-  {{ indiceCajaSel == null ? 'Data not received!' : indiceCajaSel }}
-
   <div class="form">
     <mat-form-field floatPlaceholder="never" color="accent">
       <input matInput #filter placeholder="Filtrar datos">
@@ -19,9 +17,9 @@
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
 
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
-        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      <ng-container matColumnDef="cajaId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Caja</th>
+        <td mat-cell *matCellDef="let row">{{row.cajaId}}</td>
       </ng-container>
 
       <ng-container matColumnDef="descripcion">
@@ -78,12 +76,12 @@
 
         <td mat-cell *matCellDef="let row; let i=index;">
           <button mat-icon-button color="accent"
-            (click)="startEdit(i, row.id, row.descripcion, row.pesoUnitario, row.categoria, row.created_at, row.updated_at)">
+            (click)="startEdit(i, row.cajaId, row.descripcion, row.pesoUnitario, row.categoria, row.created_at, row.updated_at)">
             <mat-icon aria-label="Edit">edit</mat-icon>
           </button>
 
           <button mat-icon-button color="accent"
-            (click)="deleteItem(i, row.id, row.descripcion, row.pesoUnitario, row.categoria)">
+            (click)="deleteItem(i, row.cajaId, row.descripcion, row.pesoUnitario, row.categoria)">
             <mat-icon aria-label="Delete">delete</mat-icon>
           </button>
         </td>

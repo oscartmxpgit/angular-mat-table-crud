@@ -56,48 +56,85 @@ export class DataService {
   deleteIssue (id: number): void {
     console.log(id);
   }
+
+  ///
+
+  favorites = new Array();
+
+  store(){
+    console.log("store")
+    this.favorites.push({code: "abc", description: "Australian broacasting corp."});
+    this.favorites.push({code: "anz", description: "anz bank"});
+    this.favorites.push({code: "cba", description: "cba bank"})
+
+    var stringToStore = JSON.stringify(this.favorites);
+    ProChartStorage.setItem("test.local.favorites", stringToStore);
+  }
+
+  get(){
+    var fromStorage = ProChartStorage.getItem("test.local.favorites");
+    var objectsFromStorage = JSON.parse(fromStorage)
+    console.log(objectsFromStorage)
+  }
+
+  getById(valueToFind : string){
+    var fromStorage = ProChartStorage.getItem("test.local.favorites");
+    var objectsFromStorage = JSON.parse(fromStorage)
+    console.log(objectsFromStorage);
+
+    var toFind = objectsFromStorage.filter(function( obj ) {
+      return obj.code == valueToFind;
+    });
+
+    console.log(toFind);
+  }
+
+  removeById(valueToFind){
+    var fromStorage = ProChartStorage.getItem("test.local.favorites");
+    var objectsFromStorage = JSON.parse(fromStorage)
+    console.log(objectsFromStorage);
+
+    var toFind = objectsFromStorage.filter(function( obj ) {
+      return obj.code == valueToFind;
+    });
+
+    // find the index of the item to delete
+    var index = objectsFromStorage.findIndex(x => x.code===valueToFind);
+
+    if(index>=0){
+      objectsFromStorage.splice(index, 1);
+      var stringToStore = JSON.stringify(objectsFromStorage);
+      ProChartStorage.setItem("test.local.favorites", stringToStore);
+    }
+
+  }
+
 }
 
+var ProChartStorage = {
 
+  getItem: function (key) {
+      return localStorage.getItem(key);
+  },
 
-/* REAL LIFE CRUD Methods I've used in my projects. ToasterService uses Material Toasts for displaying messages:
+  setItem: function (key, value) {
+     console.log("prochart setItem")
+     localStorage.setItem(key, value);
+  },
 
-    // ADD, POST METHOD
-    addItem(kanbanItem: KanbanItem): void {
-    this.httpClient.post(this.API_URL, kanbanItem).subscribe(data => {
-      this.dialogData = kanbanItem;
-      this.toasterService.showToaster('Successfully added', 3000);
-      },
-      (err: HttpErrorResponse) => {
-      this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
-    });
-   }
+  removeItem: function (key) {
+      return localStorage.removeItem(key);
+  },
 
-    // UPDATE, PUT METHOD
-     updateItem(kanbanItem: KanbanItem): void {
-    this.httpClient.put(this.API_URL + kanbanItem.id, kanbanItem).subscribe(data => {
-        this.dialogData = kanbanItem;
-        this.toasterService.showToaster('Successfully edited', 3000);
-      },
-      (err: HttpErrorResponse) => {
-        this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
+  clear: function () {
+      var keys = new Array();
+      for (var i = 0, len = localStorage.length; i < len; i++) {
+          var key = localStorage.key(i);
+          if (key.indexOf("prochart") != -1 || key.indexOf("ProChart") != -1)
+              keys.push(key);
       }
-    );
+      for (var i = 0; i < keys.length; i++)
+          localStorage.removeItem(keys[i]);
   }
 
-  // DELETE METHOD
-  deleteItem(id: number): void {
-    this.httpClient.delete(this.API_URL + id).subscribe(data => {
-      console.log(data['']);
-        this.toasterService.showToaster('Successfully deleted', 3000);
-      },
-      (err: HttpErrorResponse) => {
-        this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
-      }
-    );
-  }
-*/
-
-
-
-
+}

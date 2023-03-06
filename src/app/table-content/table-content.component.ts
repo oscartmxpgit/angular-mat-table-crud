@@ -21,11 +21,11 @@ import { ResetDialogComponent } from '../dialogs/reset-dialog/reset-dialog.compo
   styleUrls: ['./table-content.component.css']
 })
 export class TableContentComponent implements OnInit {
-  displayedColumns = ['id', 'descripcion', 'categoria', 'cantidad', 'pesoUnitario', 'peso', 'actions'];
+  displayedColumns = ['cajaId', 'descripcion', 'categoria', 'cantidad', 'pesoUnitario', 'peso', 'actions'];
   exampleDatabase: DataService | null;
   dataSource: ExampleDataSource | null;
   index: number;
-  id: number;
+  cajaId: number;
 
   private _indiceCajaSel: string;
 
@@ -67,7 +67,7 @@ export class TableContentComponent implements OnInit {
 
   addNew() {
     const dialogRef = this.dialog.open(AddDialogComponent, {
-      data: { issue: Issue }
+      data: { cajaId: this.indiceCajaSel, issue: Issue },width: '60%'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -75,24 +75,26 @@ export class TableContentComponent implements OnInit {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
         this.exampleDatabase.dataChange.value.push(this.dataService.getDialogData());
+        this.loadData();
         this.refreshTable();
       }
     });
   }
 
-  startEdit(i: number, id: number, descripcion: string, cantidad:number, pesoUnitario: number, categoria: string) {
-    this.id = id;
+  startEdit(i: number, cajaId: number, descripcion: string, cantidad:number, pesoUnitario: number, categoria: string) {
+    this.cajaId = cajaId;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     console.log(this.index);
     const dialogRef = this.dialog.open(EditDialogComponent, {
-      data: { id: id, descripcion: descripcion, cantidad:cantidad, pesoUnitario: pesoUnitario, categoria: categoria}
+      data: { cajaId: cajaId, descripcion: descripcion, cantidad:cantidad, pesoUnitario: pesoUnitario, categoria: categoria,
+        },width: '60%'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.cajaId === this.cajaId);
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
         // And lastly refresh table
@@ -101,16 +103,16 @@ export class TableContentComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, descripcion: string, cantidad:number, pesoUnitario: number, categoria: string) {
+  deleteItem(i: number, cajaId: number, descripcion: string, cantidad:number, pesoUnitario: number, categoria: string) {
     this.index = i;
-    this.id = id;
+    this.cajaId = cajaId;
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { id: id, descripcion: descripcion, cantidad:cantidad, pesoUnitario: pesoUnitario, categoria: categoria }
+      data: { cajaId: cajaId, descripcion: descripcion, cantidad:cantidad, pesoUnitario: pesoUnitario, categoria: categoria }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.cajaId === this.cajaId);
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
@@ -200,7 +202,7 @@ export class ExampleDataSource extends DataSource<Issue> {
     return merge(...displayDataChanges).pipe(map(() => {
       // Filter data
       this.filteredData = this._exampleDatabase.data.slice().filter((issue: Issue) => {
-        const searchStr = (issue.id + issue.descripcion + issue.categoria).toLowerCase();
+        const searchStr = (issue.cajaId + issue.descripcion + issue.categoria).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 
@@ -229,7 +231,7 @@ export class ExampleDataSource extends DataSource<Issue> {
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
+        case 'cajaId': [propertyA, propertyB] = [a.cajaId, b.cajaId]; break;
         case 'descripcion': [propertyA, propertyB] = [a.descripcion, b.descripcion]; break;
         case 'cantidad': [propertyA, propertyB] = [a.cantidad, b.cantidad]; break;
         case 'pesoUnitario': [propertyA, propertyB] = [a.pesoUnitario, b.pesoUnitario]; break;

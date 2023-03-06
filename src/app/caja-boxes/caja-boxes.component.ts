@@ -32,9 +32,11 @@ export class CajaBoxesComponent implements OnInit {
 
   tabs = ['Caja 1'];
   selected = new FormControl(0);
+  currCajaId = 1;
 
   addTab() {
-    this.tabs.push('Caja ' + (this.tabs.length + 1));
+    this.currCajaId += 1;
+    this.tabs.push('Caja ' + (this.currCajaId));
     this.selected.setValue(this.tabs.length - 1);
   }
 

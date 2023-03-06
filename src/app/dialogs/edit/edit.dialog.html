@@ -1,11 +1,11 @@
 <div class="container">
-  <h3 mat-dialog-title>Issue id: {{data.id}}</h3>
+  <h3 mat-dialog-title>Caja id: {{data.cajaId}}</h3>
 
   <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Caja" [(ngModel)]="data.id" name="id" required>
+        <input matInput #input class="form-control" readonly="true" placeholder="Caja" [(ngModel)]="data.cajaId" name="cajaId" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
@@ -13,7 +13,7 @@
     <!--Textarea for demo purposes-->
     <div class="form">
       <mat-form-field color="accent">
-        <textarea matInput #input class="form-control" placeholder="Descripción" [(ngModel)]="data.title" name="title"
+        <textarea matInput #input class="form-control" placeholder="Descripción" [(ngModel)]="data.descripcion" name="descripcion"
           required></textarea>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
@@ -36,18 +36,6 @@
           <mat-option *ngFor="let item of comboData.categorias" [value]="item['categoria']"> {{ item.categoria }}
           </mat-option>
         </mat-select></mat-form-field>
-    </div>
-
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput placeholder="Fecha de creación" [(ngModel)]="data.created_at" name="created_at">
-      </mat-form-field>
-    </div>
-
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput placeholder="Última Modificación" [(ngModel)]="data.updated_at" name="updated_at">
-      </mat-form-field>
     </div>
 
     <div mat-dialog-actions>

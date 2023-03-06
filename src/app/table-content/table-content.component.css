@@ -1,11 +1,3 @@
-/* Structure */
-
-.mat-toolbar {
-    background: url('assets/airplanebgr.jpg') no-repeat center;
-    background-size: cover;
-    color: #fff;
-  }
-
   .table-container {
     display: flex;
     flex-direction: column;
@@ -32,11 +24,6 @@
   .container {
     display: flex;
     flex-direction: column;
-  }
-
-  /* Toolbar */
-  .spacer {
-    flex: 1 1 auto;
   }
 
   /* Filter */
