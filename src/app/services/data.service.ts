@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
-import {Issue} from '../models/issue';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { Issue } from '../models/issue';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class DataService {
@@ -13,14 +13,14 @@ export class DataService {
   // Temporarily stores data from dialogs
   dialogData: any;
 
-  constructor (private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getDatosComboBoxes(): any {
     this.httpClient.get<any>(this.API_URdatosComboBoxes).subscribe(data => {
-        return data;
-      },
+      return data;
+    },
       (error: HttpErrorResponse) => {
-      console.log (error.name + ' ' + error.message);
+        console.log(error.name + ' ' + error.message);
       });
   }
 
@@ -33,27 +33,39 @@ export class DataService {
     return this.dialogData;
   }
 
+  getUltimaCaja(): any {
+    this.httpClient.get<Issue[]>(this.API_URL).subscribe(data => {
+      console.log("Math.max(...data.map(o => o.cajaId))")
+      console.log(Math.max(...data.map(o => o.cajaId)))
+      return Math.max(...data.map(o => o.cajaId));
+    },
+      (error: HttpErrorResponse) => {
+        console.log(error.name + ' ' + error.message);
+      });
+  }
+
+
   /** CRUD METHODS */
   getAllIssues(indiceCajaSel: string): void {
     this.httpClient.get<Issue[]>(this.API_URL).subscribe(data => {
-        this.dataChange.next(data.filter(caja=> caja.cajaId === +indiceCajaSel)
-        );
-      },
+      this.dataChange.next(data.filter(caja => caja.cajaId === +indiceCajaSel)
+      );
+    },
       (error: HttpErrorResponse) => {
-      console.log (error.name + ' ' + error.message);
+        console.log(error.name + ' ' + error.message);
       });
   }
 
   // DEMO ONLY, you can find working methods below
-  addIssue (issue: Issue): void {
+  addIssue(issue: Issue): void {
     this.dialogData = issue;
   }
 
-  updateIssue (issue: Issue): void {
+  updateIssue(issue: Issue): void {
     this.dialogData = issue;
   }
 
-  deleteIssue (id: number): void {
+  deleteIssue(id: number): void {
     console.log(id);
   }
 
@@ -61,47 +73,47 @@ export class DataService {
 
   favorites = new Array();
 
-  store(){
+  store() {
     console.log("store")
-    this.favorites.push({code: "abc", description: "Australian broacasting corp."});
-    this.favorites.push({code: "anz", description: "anz bank"});
-    this.favorites.push({code: "cba", description: "cba bank"})
+    this.favorites.push({ code: "abc", description: "Australian broacasting corp." });
+    this.favorites.push({ code: "anz", description: "anz bank" });
+    this.favorites.push({ code: "cba", description: "cba bank" })
 
     var stringToStore = JSON.stringify(this.favorites);
     ProChartStorage.setItem("test.local.favorites", stringToStore);
   }
 
-  get(){
+  get() {
     var fromStorage = ProChartStorage.getItem("test.local.favorites");
     var objectsFromStorage = JSON.parse(fromStorage)
     console.log(objectsFromStorage)
   }
 
-  getById(valueToFind : string){
+  getById(valueToFind: string) {
     var fromStorage = ProChartStorage.getItem("test.local.favorites");
     var objectsFromStorage = JSON.parse(fromStorage)
     console.log(objectsFromStorage);
 
-    var toFind = objectsFromStorage.filter(function( obj ) {
+    var toFind = objectsFromStorage.filter(function (obj) {
       return obj.code == valueToFind;
     });
 
     console.log(toFind);
   }
 
-  removeById(valueToFind){
+  removeById(valueToFind) {
     var fromStorage = ProChartStorage.getItem("test.local.favorites");
     var objectsFromStorage = JSON.parse(fromStorage)
     console.log(objectsFromStorage);
 
-    var toFind = objectsFromStorage.filter(function( obj ) {
+    var toFind = objectsFromStorage.filter(function (obj) {
       return obj.code == valueToFind;
     });
 
     // find the index of the item to delete
-    var index = objectsFromStorage.findIndex(x => x.code===valueToFind);
+    var index = objectsFromStorage.findIndex(x => x.code === valueToFind);
 
-    if(index>=0){
+    if (index >= 0) {
       objectsFromStorage.splice(index, 1);
       var stringToStore = JSON.stringify(objectsFromStorage);
       ProChartStorage.setItem("test.local.favorites", stringToStore);
@@ -114,27 +126,27 @@ export class DataService {
 var ProChartStorage = {
 
   getItem: function (key) {
-      return localStorage.getItem(key);
+    return localStorage.getItem(key);
   },
 
   setItem: function (key, value) {
-     console.log("prochart setItem")
-     localStorage.setItem(key, value);
+    console.log("prochart setItem")
+    localStorage.setItem(key, value);
   },
 
   removeItem: function (key) {
-      return localStorage.removeItem(key);
+    return localStorage.removeItem(key);
   },
 
   clear: function () {
-      var keys = new Array();
-      for (var i = 0, len = localStorage.length; i < len; i++) {
-          var key = localStorage.key(i);
-          if (key.indexOf("prochart") != -1 || key.indexOf("ProChart") != -1)
-              keys.push(key);
-      }
-      for (var i = 0; i < keys.length; i++)
-          localStorage.removeItem(keys[i]);
+    var keys = new Array();
+    for (var i = 0, len = localStorage.length; i < len; i++) {
+      var key = localStorage.key(i);
+      if (key.indexOf("prochart") != -1 || key.indexOf("ProChart") != -1)
+        keys.push(key);
+    }
+    for (var i = 0; i < keys.length; i++)
+      localStorage.removeItem(keys[i]);
   }
 
 }

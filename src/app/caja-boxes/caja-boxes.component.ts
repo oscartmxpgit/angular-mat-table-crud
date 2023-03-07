@@ -26,8 +26,10 @@ export class CajaBoxesComponent implements OnInit {
 
   refresh() {
     //this.loadData();
-    const dialogRef = this.dialog.open(ResetDialogComponent, {
-    })
+    if(confirm("¿Estás seguro de eliminar todos los elementos? ")) {
+      window.location.reload();
+    }
+
   }
 
   tabs = ['Caja 1'];

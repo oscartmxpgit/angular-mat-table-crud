@@ -10,11 +10,10 @@
       </mat-form-field>
     </div>
 
-    <!--Textarea for demo purposes-->
     <div class="form">
       <mat-form-field color="accent">
-        <textarea matInput #input class="form-control" placeholder="Descripción" [(ngModel)]="data.descripcion"
-          name="descripcion" required></textarea>
+        <input type="text" matInput #input class="form-control" placeholder="Descripción" [(ngModel)]="data.descripcion"
+          name="descripcion" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
@@ -33,7 +32,6 @@
         <input type="number" matInput #inputstate class="form-control" placeholder="Peso Unitario" [(ngModel)]="data.pesoUnitario"
           name="pesoUnitario" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
       </mat-form-field>
     </div>
 
@@ -42,7 +40,6 @@
         <input type="number" matInput #inputstate class="form-control" placeholder="Cantidad" [(ngModel)]="data.cantidad"
           name="cantidad" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
       </mat-form-field>
     </div>
 

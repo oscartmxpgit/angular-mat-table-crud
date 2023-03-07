@@ -10,11 +10,10 @@
       </mat-form-field>
     </div>
 
-    <!--Textarea for demo purposes-->
     <div class="form">
       <mat-form-field color="accent">
-        <textarea matInput class="form-control" placeholder="Descripción" [(ngModel)]="data.descripcion" name="descripcion"
-          required></textarea>
+        <input type="text" matInput class="form-control" placeholder="Descripción" [(ngModel)]="data.descripcion" name="descripcion"
+          required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>

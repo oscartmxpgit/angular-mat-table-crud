@@ -1,11 +1,13 @@
-
-<mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-  <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
-    <app-table-content [indiceCajaSel]="index"></app-table-content>
-  </mat-tab>
-  <mat-tab disabled>
-    <ng-template mat-tab-label>
-      <button mat-raised-button (click)="addTab()">+</button>
-    </ng-template>
-  </mat-tab>
-</mat-tab-group>
+<div class="container">
+  <button (click)="refresh()">reload all</button>
+  <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+    <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+      <app-table-content [indiceCajaSel]="index"></app-table-content>
+    </mat-tab>
+    <mat-tab disabled>
+      <ng-template mat-tab-label>
+        <button mat-raised-button (click)="addTab()">+</button>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div>

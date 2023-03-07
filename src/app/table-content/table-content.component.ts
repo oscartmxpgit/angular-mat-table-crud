@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -60,8 +60,19 @@ export class TableContentComponent implements OnInit {
     XLSX.writeFile(wb, 'MisCajas.xlsx');
 
   }
+
+  maxCaja : any;
   ngOnInit() {
     this.loadData();
+    this.httpClient.get<Issue[]>('./assets/datosEjemplo.json').subscribe(data => {
+      console.log("Math.max(...data.map(o => o.cajaId))")
+      console.log(Math.max(...data.map(o => o.cajaId)))
+      this.maxCaja = Math.max(...data.map(o => o.cajaId));
+    },
+      (error: HttpErrorResponse) => {
+        console.log(error.name + ' ' + error.message);
+      });
+
   }
 
   addNew() {
