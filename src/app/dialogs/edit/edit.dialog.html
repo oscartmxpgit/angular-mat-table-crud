@@ -5,7 +5,7 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput #input class="form-control" readonly="true" placeholder="Caja" [(ngModel)]="data.cajaId" name="cajaId" required>
+        <input matInput class="form-control" readonly="true" placeholder="Caja" [(ngModel)]="data.cajaId" name="cajaId" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
@@ -13,19 +13,9 @@
     <!--Textarea for demo purposes-->
     <div class="form">
       <mat-form-field color="accent">
-        <textarea matInput #input class="form-control" placeholder="Descripción" [(ngModel)]="data.descripcion" name="descripcion"
+        <textarea matInput class="form-control" placeholder="Descripción" [(ngModel)]="data.descripcion" name="descripcion"
           required></textarea>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-    </div>
-
-    <!--Contains mat-hint for characters count and has maxLengt set-->
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #inputstate class="form-control" placeholder="Peso Unitario" [(ngModel)]="data.pesoUnitario"
-          name="pesoUnitario" maxlength="10" required>
-        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
       </mat-form-field>
     </div>
 
@@ -36,6 +26,22 @@
           <mat-option *ngFor="let item of comboData.categorias" [value]="item['categoria']"> {{ item.categoria }}
           </mat-option>
         </mat-select></mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput class="form-control" placeholder="Peso Unitario" [(ngModel)]="data.pesoUnitario"
+          name="pesoUnitario" type="number" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input type="number" matInput class="form-control" placeholder="Cantidad" [(ngModel)]="data.cantidad"
+          name="cantidad" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
     </div>
 
     <div mat-dialog-actions>

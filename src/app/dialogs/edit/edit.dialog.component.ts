@@ -20,7 +20,7 @@ export class EditDialogComponent {
   ]);
 
   getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Required field' :
+    return this.formControl.hasError('required') ? 'Campo requerido' :
       this.formControl.hasError('email') ? 'Not a valid email' :
         '';
   }

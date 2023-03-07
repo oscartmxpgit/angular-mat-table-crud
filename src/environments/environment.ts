@@ -4,5 +4,12 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  //googleSheetsApiKey: 'AIzaSyD-Nkv-g1682kKdauukFPmOCNaQk0wP540',
+  googleSheetsApiKey: 'AIzaSyAvqWemL3ZgyGK0EHvOh25EvX_WKah91J8',
+  characters: {
+    //spreadsheetId: '1gSc_7WCmt-HuSLX01-Ev58VsiFuhbpYVo8krbPCvvqA',
+    spreadsheetId: '1Izn-Yhce09XRRNnPYLKTJ4SpbMrJRTVe2N_z53kP-1s',
+    worksheetName: 'Characters',
+  },
 };

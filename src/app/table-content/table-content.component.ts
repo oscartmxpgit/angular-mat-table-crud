@@ -13,7 +13,6 @@ import { AddDialogComponent } from '../dialogs/add/add.dialog.component';
 import { Issue } from '../models/issue';
 import { DeleteDialogComponent } from '../dialogs/delete/delete.dialog.component';
 import { EditDialogComponent } from '../dialogs/edit/edit.dialog.component';
-import { ResetDialogComponent } from '../dialogs/reset-dialog/reset-dialog.component';
 
 @Component({
   selector: 'app-table-content',
@@ -21,7 +20,7 @@ import { ResetDialogComponent } from '../dialogs/reset-dialog/reset-dialog.compo
   styleUrls: ['./table-content.component.css']
 })
 export class TableContentComponent implements OnInit {
-  displayedColumns = ['cajaId', 'descripcion', 'categoria', 'cantidad', 'pesoUnitario', 'peso', 'actions'];
+  displayedColumns = ['cajaId', 'descripcion', 'categoria', 'pesoUnitario', 'cantidad', 'peso', 'actions'];
   exampleDatabase: DataService | null;
   dataSource: ExampleDataSource | null;
   index: number;
@@ -30,12 +29,12 @@ export class TableContentComponent implements OnInit {
   private _indiceCajaSel: string;
 
   @Input() set indiceCajaSel(value: string) {
-     this._indiceCajaSel = value + 1;
-     this.loadData();
+    this._indiceCajaSel = value + 1;
+    this.loadData();
   }
 
   get indiceCajaSel(): string {
-      return this._indiceCajaSel;
+    return this._indiceCajaSel;
   }
 
   constructor(public httpClient: HttpClient,
@@ -67,7 +66,7 @@ export class TableContentComponent implements OnInit {
 
   addNew() {
     const dialogRef = this.dialog.open(AddDialogComponent, {
-      data: { cajaId: this.indiceCajaSel, issue: Issue },width: '60%'
+      data: { cajaId: this.indiceCajaSel, issue: Issue }, width: '85%'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -75,20 +74,20 @@ export class TableContentComponent implements OnInit {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
         this.exampleDatabase.dataChange.value.push(this.dataService.getDialogData());
-        this.loadData();
         this.refreshTable();
       }
     });
   }
 
-  startEdit(i: number, cajaId: number, descripcion: string, cantidad:number, pesoUnitario: number, categoria: string) {
+  startEdit(i: number, cajaId: number, descripcion: string, categoria: string, pesoUnitario: number, cantidad: number) {
     this.cajaId = cajaId;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     console.log(this.index);
     const dialogRef = this.dialog.open(EditDialogComponent, {
-      data: { cajaId: cajaId, descripcion: descripcion, cantidad:cantidad, pesoUnitario: pesoUnitario, categoria: categoria,
-        },width: '60%'
+      data: {
+        cajaId: cajaId, descripcion: descripcion, categoria: categoria, pesoUnitario: pesoUnitario, cantidad: cantidad,
+      }, width: '85%'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -103,11 +102,11 @@ export class TableContentComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, cajaId: number, descripcion: string, cantidad:number, pesoUnitario: number, categoria: string) {
+  deleteItem(i: number, cajaId: number, descripcion: string, cantidad: number, pesoUnitario: number, categoria: string) {
     this.index = i;
     this.cajaId = cajaId;
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { cajaId: cajaId, descripcion: descripcion, cantidad:cantidad, pesoUnitario: pesoUnitario, categoria: categoria }
+      data: { cajaId: cajaId, descripcion: descripcion, cantidad: cantidad, pesoUnitario: pesoUnitario, categoria: categoria }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -180,7 +179,7 @@ export class ExampleDataSource extends DataSource<Issue> {
     public _paginator: MatPaginator,
     public _sort: MatSort,
     public indiceCajaSel: string
-    ) {
+  ) {
     super();
     // Reset to the first page when the user changes the filter.
     this._filterChange.subscribe(() => this._paginator.pageIndex = 0);
@@ -233,9 +232,9 @@ export class ExampleDataSource extends DataSource<Issue> {
       switch (this._sort.active) {
         case 'cajaId': [propertyA, propertyB] = [a.cajaId, b.cajaId]; break;
         case 'descripcion': [propertyA, propertyB] = [a.descripcion, b.descripcion]; break;
-        case 'cantidad': [propertyA, propertyB] = [a.cantidad, b.cantidad]; break;
-        case 'pesoUnitario': [propertyA, propertyB] = [a.pesoUnitario, b.pesoUnitario]; break;
         case 'categoria': [propertyA, propertyB] = [a.categoria, b.categoria]; break;
+        case 'pesoUnitario': [propertyA, propertyB] = [a.pesoUnitario, b.pesoUnitario]; break;
+        case 'cantidad': [propertyA, propertyB] = [a.cantidad, b.cantidad]; break;
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

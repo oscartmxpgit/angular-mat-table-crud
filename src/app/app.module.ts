@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { API_KEY, GoogleSheetsDbService } from 'ng-google-sheets-db';
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -26,6 +27,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ResetDialogComponent } from './dialogs/reset-dialog/reset-dialog.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CajaBoxesComponent } from './caja-boxes/caja-boxes.component';
+import { HomeComponent } from './home/home.component';
+import { environment } from 'environments/environment';
 
 @NgModule({
     declarations: [
@@ -36,6 +39,7 @@ import { CajaBoxesComponent } from './caja-boxes/caja-boxes.component';
         TableContentComponent,
         ResetDialogComponent,
         CajaBoxesComponent,
+        HomeComponent,
     ],
     imports: [
         BrowserModule,
@@ -59,7 +63,12 @@ import { CajaBoxesComponent } from './caja-boxes/caja-boxes.component';
         TranslateModule.forRoot(),
     ],
     providers: [
-        DataService
+        DataService,
+        {
+            provide: API_KEY,
+            useValue: environment.googleSheetsApiKey,
+          },
+          GoogleSheetsDbService
     ],
     bootstrap: [AppComponent]
 })
