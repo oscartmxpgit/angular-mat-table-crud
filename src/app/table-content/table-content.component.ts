@@ -62,7 +62,7 @@ export class TableContentComponent implements OnInit {
   }
 
   saveData(){
-    CajasStorage.setItem("hola" + this.maxCaja);
+    CajasStorage.setItem(JSON.stringify(this.cajasDatabase.dataChange.value));
   }
 
   maxCaja : any;
@@ -75,7 +75,7 @@ export class TableContentComponent implements OnInit {
 
   addNew() {
     const dialogRef = this.dialog.open(AddDialogComponent, {
-      data: { cajaId: this.indiceCajaSel, issue: Issue }, width: '85%', panelClass: 'dialogcontainer'
+      data: { cajaId: this.indiceCajaSel, issue: Issue }, width: '85%', panelClass: 'custom-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -96,7 +96,7 @@ export class TableContentComponent implements OnInit {
     const dialogRef = this.dialog.open(EditDialogComponent, {
       data: {
         cajaId: cajaId, descripcion: descripcion, categoria: categoria, pesoUnitario: pesoUnitario, cantidad: cantidad,
-      }, width: '85%'
+      }, width: '85%', panelClass: 'custom-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe(result => {
