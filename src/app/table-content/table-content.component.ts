@@ -61,6 +61,10 @@ export class TableContentComponent implements OnInit {
 
   }
 
+  saveData(){
+    CajasStorage.setItem("hola");
+  }
+
   maxCaja : any;
   ngOnInit() {
     this.dataService.getNumCajas();
@@ -225,4 +229,20 @@ export class CajasDataSource extends DataSource<Issue> {
       return (valueA < valueB ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1);
     });
   }
+}
+
+var CajasStorage = {
+
+  getItem: function (key) {
+    return localStorage.getItem("CajasValues");
+  },
+
+  setItem: function (value) {
+    localStorage.setItem("CajasValues", value);
+  },
+
+  removeItem: function (key) {
+    return localStorage.removeItem("CajasValues");
+  }
+
 }
