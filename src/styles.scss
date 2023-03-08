@@ -20,3 +20,17 @@ body {
   margin: 0;
 }
 
+.small-form-control{
+  max-width: 110px;
+}
+
+.dialogcontainer .mat-dialog-container {
+  width: '85%';
+}
+
+/* here the rules for windows between 500px and 900px */
+@media (min-width: 500px) and (max-width: 900px) {
+  .dialogcontainer {
+    width: '75%';
+  }
+}

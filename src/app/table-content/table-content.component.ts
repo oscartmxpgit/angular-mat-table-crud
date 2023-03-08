@@ -62,18 +62,20 @@ export class TableContentComponent implements OnInit {
   }
 
   saveData(){
-    CajasStorage.setItem("hola");
+    CajasStorage.setItem("hola" + this.maxCaja);
   }
 
   maxCaja : any;
   ngOnInit() {
     this.dataService.getNumCajas();
     this.maxCaja = this.dataService.numCajas;
+    console.log("data")
+    console.log(this.maxCaja)
   }
 
   addNew() {
     const dialogRef = this.dialog.open(AddDialogComponent, {
-      data: { cajaId: this.indiceCajaSel, issue: Issue }, width: '85%'
+      data: { cajaId: this.indiceCajaSel, issue: Issue }, width: '85%', panelClass: 'dialogcontainer'
     });
 
     dialogRef.afterClosed().subscribe(result => {

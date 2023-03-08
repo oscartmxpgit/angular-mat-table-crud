@@ -11,14 +11,10 @@ import { comboData } from '../../models/datosComboBoxes';
 })
 export class EditDialogComponent {
   comboData = comboData;
-  form: FormGroup = new FormGroup({});
 
   constructor(public dialogRef: MatDialogRef<EditDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService,
               private fb: FormBuilder) {
-                this.form = fb.group({
-                  cantidad: ['1', [Validators.required, Validators.pattern("^[0-9]*$")]]
-                })
               }
 
   formControl = new FormControl('', [
