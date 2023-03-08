@@ -64,6 +64,7 @@ export class TableContentComponent implements OnInit {
   maxCaja : any;
   ngOnInit() {
     this.dataService.getNumCajas();
+    this.maxCaja = this.dataService.numCajas;
   }
 
   addNew() {

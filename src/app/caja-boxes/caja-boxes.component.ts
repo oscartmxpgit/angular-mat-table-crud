@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -5,6 +6,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { DataService } from 'app/services/data.service';
+import { TableContentComponent } from 'app/table-content/table-content.component';
 import { ResetDialogComponent } from '../dialogs/reset-dialog/reset-dialog.component';
 
 @Component({
@@ -13,16 +16,28 @@ import { ResetDialogComponent } from '../dialogs/reset-dialog/reset-dialog.compo
   styleUrls: ['./caja-boxes.component.scss']
 })
 export class CajaBoxesComponent implements OnInit {
-  constructor(private router: Router, public dialog: MatDialog) { }
-
+  constructor(private router: Router, public dialog: MatDialog, public dataService: DataService, public httpClient: HttpClient,) { }
   obs: any = [];
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  maxCaja = 0;
+  cajasDatabase: DataService | null;
+
   ngOnInit() {
+    console.log(this.maxCaja);
+    for (let index = 0; index < 3; index++) {
+      this.tabs.push('Caja ' + (index + 1))
+    }
   }
+
+  showStatus($event){
+    console.log($event);
+    this.maxCaja=$event;
+  }
+
 
   refresh() {
     //this.loadData();
@@ -32,7 +47,7 @@ export class CajaBoxesComponent implements OnInit {
 
   }
 
-  tabs = ['Caja 1'];
+  tabs = [];
   selected = new FormControl(0);
   currCajaId = 1;
 

@@ -56,7 +56,7 @@ export class DataService {
       });
   }
 
-  getAllIssues(indiceCajaSel: string): void {
+  getAllIssues(): void {
     this.httpClient.get<Issue[]>(this.API_URL).subscribe(data => {
       this.dataChange.next(data);
     },
