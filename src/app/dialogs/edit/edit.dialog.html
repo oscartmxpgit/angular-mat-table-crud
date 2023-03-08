@@ -1,7 +1,7 @@
 <div class="container">
   <h3 mat-dialog-title>Caja id: {{data.cajaId}}</h3>
 
-  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+  <form class="mat-dialog-content" (ngSubmit)="submit" [formGroup]="form"  #formControl="ngForm">
 
     <div class="form">
       <mat-form-field color="accent">
@@ -12,7 +12,7 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input type="text" matInput class="form-control" placeholder="Descripción" [(ngModel)]="data.descripcion" name="descripcion"
+        <input matInput class="form-control" placeholder="Descripción" [(ngModel)]="data.descripcion" name="descripcion"
           required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
@@ -30,14 +30,14 @@
     <div class="form">
       <mat-form-field color="accent">
         <input matInput class="form-control" placeholder="Peso Unitario" [(ngModel)]="data.pesoUnitario"
-          name="pesoUnitario" type="number" required>
+          name="pesoUnitario" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent">
-        <input type="number" matInput class="form-control" placeholder="Cantidad" [(ngModel)]="data.cantidad"
+        <input matInput class="form-control" placeholder="Cantidad" [(ngModel)]="data.cantidad"
           name="cantidad" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
