@@ -36,6 +36,8 @@ export class DataService {
   }
 
   getNumCajas(): any {
+    const data = CajasStorage.getItem();
+
     this.httpClient.get<Issue[]>(this.API_URL).subscribe(data => {
       this.numCajas = Math.max(...data.map(o => o.cajaId));
     },
@@ -80,3 +82,18 @@ export class DataService {
 
 }
 
+var CajasStorage = {
+
+  getItem: function () {
+    return localStorage.getItem("CajasValues");
+  },
+
+  setItem: function (value) {
+    localStorage.setItem("CajasValues", value);
+  },
+
+  removeItem: function (key) {
+    return localStorage.removeItem("CajasValues");
+  }
+
+}
