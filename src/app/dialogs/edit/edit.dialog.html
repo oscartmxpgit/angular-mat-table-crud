@@ -21,7 +21,7 @@
     <div class="form">
       <mat-form-field color="accent">
         <mat-label>Elige una categoría</mat-label>
-        <mat-select [(ngModel)]="data.categoria">
+        <mat-select required [(ngModel)]="data.categoria">
           <mat-option *ngFor="let item of comboData.categorias" [value]="item['categoria']"> {{ item.categoria }}
           </mat-option>
         </mat-select></mat-form-field>
@@ -29,7 +29,7 @@
 
     <div class="form">
       <mat-form-field color="accent" class="small-form-control">
-        <input matInput placeholder="Peso Unitario" [(ngModel)]="data.pesoUnitario"
+        <input onlyNumber matInput placeholder="Peso Unitario" [(ngModel)]="data.pesoUnitario"
           name="pesoUnitario" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
@@ -37,14 +37,14 @@
       &nbsp;&nbsp;
 
       <mat-form-field color="accent" class="small-form-control">
-        <input matInput placeholder="Cantidad" [(ngModel)]="data.cantidad"
+        <input onlyNumber matInput placeholder="Cantidad" [(ngModel)]="data.cantidad"
           name="cantidad" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+      <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
         (click)="stopEdit()"><mat-icon>save</mat-icon>Guardar</button>
       <button mat-button style="margin-bottom: 20px;" (click)="onNoClick()" tabindex="-1"><mat-icon>cancel</mat-icon>Cancelar</button>
     </div>

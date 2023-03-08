@@ -29,6 +29,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CajaBoxesComponent } from './caja-boxes/caja-boxes.component';
 import { HomeComponent } from './home/home.component';
 import { environment } from 'environments/environment';
+import { OnlyNumberDirective } from './directives/only-number.directive';
 
 @NgModule({
     declarations: [
@@ -40,6 +41,7 @@ import { environment } from 'environments/environment';
         ResetDialogComponent,
         CajaBoxesComponent,
         HomeComponent,
+        OnlyNumberDirective,
     ],
     imports: [
         BrowserModule,
