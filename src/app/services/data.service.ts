@@ -12,6 +12,8 @@ export class DataService {
   dataChange: BehaviorSubject<Issue[]> = new BehaviorSubject<Issue[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
+  cajasData: any;
+  numCajas: number;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -33,11 +35,9 @@ export class DataService {
     return this.dialogData;
   }
 
-  getUltimaCaja(): any {
+  getNumCajas(): any {
     this.httpClient.get<Issue[]>(this.API_URL).subscribe(data => {
-      console.log("Math.max(...data.map(o => o.cajaId))")
-      console.log(Math.max(...data.map(o => o.cajaId)))
-      return Math.max(...data.map(o => o.cajaId));
+      this.numCajas = Math.max(...data.map(o => o.cajaId));
     },
       (error: HttpErrorResponse) => {
         console.log(error.name + ' ' + error.message);
@@ -46,10 +46,19 @@ export class DataService {
 
 
   /** CRUD METHODS */
-  getAllIssues(indiceCajaSel: string): void {
+  getIssuesPorCaja(indiceCajaSel: string): void {
     this.httpClient.get<Issue[]>(this.API_URL).subscribe(data => {
       this.dataChange.next(data.filter(caja => caja.cajaId === +indiceCajaSel)
       );
+    },
+      (error: HttpErrorResponse) => {
+        console.log(error.name + ' ' + error.message);
+      });
+  }
+
+  getAllIssues(indiceCajaSel: string): void {
+    this.httpClient.get<Issue[]>(this.API_URL).subscribe(data => {
+      this.dataChange.next(data);
     },
       (error: HttpErrorResponse) => {
         console.log(error.name + ' ' + error.message);

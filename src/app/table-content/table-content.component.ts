@@ -21,8 +21,8 @@ import { EditDialogComponent } from '../dialogs/edit/edit.dialog.component';
 })
 export class TableContentComponent implements OnInit {
   displayedColumns = ['cajaId', 'descripcion', 'categoria', 'pesoUnitario', 'cantidad', 'peso', 'actions'];
-  exampleDatabase: DataService | null;
-  dataSource: ExampleDataSource | null;
+  cajasDatabase: DataService | null;
+  dataSource: CajasDataSource | null;
   index: number;
   cajaId: number;
 
@@ -63,16 +63,7 @@ export class TableContentComponent implements OnInit {
 
   maxCaja : any;
   ngOnInit() {
-    this.loadData();
-    this.httpClient.get<Issue[]>('./assets/datosEjemplo.json').subscribe(data => {
-      console.log("Math.max(...data.map(o => o.cajaId))")
-      console.log(Math.max(...data.map(o => o.cajaId)))
-      this.maxCaja = Math.max(...data.map(o => o.cajaId));
-    },
-      (error: HttpErrorResponse) => {
-        console.log(error.name + ' ' + error.message);
-      });
-
+    this.dataService.getNumCajas();
   }
 
   addNew() {
@@ -84,7 +75,7 @@ export class TableContentComponent implements OnInit {
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
-        this.exampleDatabase.dataChange.value.push(this.dataService.getDialogData());
+        this.cajasDatabase.dataChange.value.push(this.dataService.getDialogData());
         this.refreshTable();
       }
     });
@@ -104,9 +95,9 @@ export class TableContentComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.cajaId === this.cajaId);
+        const foundIndex = this.cajasDatabase.dataChange.value.findIndex(x => x.cajaId === this.cajaId);
         // Then you update that record using data from dialogData (values you enetered)
-        this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
+        this.cajasDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
         // And lastly refresh table
         this.refreshTable();
       }
@@ -122,14 +113,13 @@ export class TableContentComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.cajaId === this.cajaId);
+        const foundIndex = this.cajasDatabase.dataChange.value.findIndex(x => x.cajaId === this.cajaId);
         // for delete we use splice in order to remove single object from DataService
-        this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+        this.cajasDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
       }
     });
   }
-
 
   private refreshTable() {
     // Refreshing table using paginator
@@ -138,28 +128,9 @@ export class TableContentComponent implements OnInit {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
-
-  /*   // If you don't need a filter or a pagination this can be simplified, you just use code from else block
-    // OLD METHOD:
-    // if there's a paginator active we're using it for refresh
-    if (this.dataSource._paginator.hasNextPage()) {
-      this.dataSource._paginator.nextPage();
-      this.dataSource._paginator.previousPage();
-      // in case we're on last page this if will tick
-    } else if (this.dataSource._paginator.hasPreviousPage()) {
-      this.dataSource._paginator.previousPage();
-      this.dataSource._paginator.nextPage();
-      // in all other cases including active filter we do it like this
-    } else {
-      this.dataSource.filter = '';
-      this.dataSource.filter = this.filter.nativeElement.value;
-    }*/
-
-
-
   public loadData() {
-    this.exampleDatabase = new DataService(this.httpClient);
-    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, this.indiceCajaSel);
+    this.cajasDatabase = new DataService(this.httpClient);
+    this.dataSource = new CajasDataSource(this.cajasDatabase, this.paginator, this.sort, this.indiceCajaSel);
     fromEvent(this.filter.nativeElement, 'keyup')
       // .debounceTime(150)
       // .distinctUntilChanged()
@@ -172,7 +143,7 @@ export class TableContentComponent implements OnInit {
   }
 }
 
-export class ExampleDataSource extends DataSource<Issue> {
+export class CajasDataSource extends DataSource<Issue> {
   _filterChange = new BehaviorSubject('');
 
   get filter(): string {
@@ -186,7 +157,7 @@ export class ExampleDataSource extends DataSource<Issue> {
   filteredData: Issue[] = [];
   renderedData: Issue[] = [];
 
-  constructor(public _exampleDatabase: DataService,
+  constructor(public _cajasDatabase: DataService,
     public _paginator: MatPaginator,
     public _sort: MatSort,
     public indiceCajaSel: string
@@ -200,18 +171,17 @@ export class ExampleDataSource extends DataSource<Issue> {
   connect(): Observable<Issue[]> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
-      this._exampleDatabase.dataChange,
+      this._cajasDatabase.dataChange,
       this._sort.sortChange,
       this._filterChange,
       this._paginator.page,
     ];
 
-    this._exampleDatabase.getAllIssues(this.indiceCajaSel);
-
+    this._cajasDatabase.getIssuesPorCaja(this.indiceCajaSel);
 
     return merge(...displayDataChanges).pipe(map(() => {
       // Filter data
-      this.filteredData = this._exampleDatabase.data.slice().filter((issue: Issue) => {
+      this.filteredData = this._cajasDatabase.data.slice().filter((issue: Issue) => {
         const searchStr = (issue.cajaId + issue.descripcion + issue.categoria).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });

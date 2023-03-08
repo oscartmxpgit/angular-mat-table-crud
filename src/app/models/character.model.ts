@@ -1,16 +1,16 @@
 export const characterAttributesMapping = {
     id: 'ID',
-    name: 'Name',
-    email: 'Email Address',
+    name: 'Tópico',
+    email: 'Correo electrónico',
     contact: {
-      _prefix: 'Contact ',
-      street: 'Street',
-      streetNumber: 'Street Number',
-      zip: 'ZIP',
-      city: 'City'
+      _prefix: 'Contacto ',
+      street: 'Calle',
+      streetNumber: 'Número',
+      zip: 'CP',
+      city: 'Ciudad'
     },
     skills: {
-      _prefix: 'Skill ',
+      _prefix: 'Accion ',
       _listField: true
     }
   };

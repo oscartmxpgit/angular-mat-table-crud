@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.characters$ = this.googleSheetsDbService.getActive<Character>(
-      environment.characters.spreadsheetId, environment.characters.worksheetName, characterAttributesMapping, 'Active');
+      environment.characters.spreadsheetId, environment.characters.worksheetName, characterAttributesMapping, 'Activo');
   }
 
 }
