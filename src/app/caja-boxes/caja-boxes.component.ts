@@ -27,17 +27,12 @@ export class CajaBoxesComponent implements OnInit {
   cajasDatabase: DataService | null;
 
   ngOnInit() {
-    console.log(this.maxCaja);
-    for (let index = 0; index < 3; index++) {
+    this.dataService.getNumCajas();
+    this.maxCaja = this.dataService.numCajas;
+    for (let index = 0; index < this.maxCaja; index++) {
       this.tabs.push('Caja ' + (index + 1))
     }
   }
-
-  showStatus($event){
-    console.log($event);
-    this.maxCaja=$event;
-  }
-
 
   refresh() {
     //this.loadData();
@@ -49,11 +44,10 @@ export class CajaBoxesComponent implements OnInit {
 
   tabs = [];
   selected = new FormControl(0);
-  currCajaId = 1;
 
   addTab() {
-    this.currCajaId += 1;
-    this.tabs.push('Caja ' + (this.currCajaId));
+    this.maxCaja += 1;
+    this.tabs.push('Caja ' + (this.maxCaja));
     this.selected.setValue(this.tabs.length - 1);
   }
 

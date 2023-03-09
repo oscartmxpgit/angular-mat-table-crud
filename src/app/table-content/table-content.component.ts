@@ -61,10 +61,6 @@ export class TableContentComponent implements OnInit {
 
   }
 
-  saveData(){
-    CajasStorage.setItem(JSON.stringify(this.cajasDatabase.dataChange.value));
-  }
-
   maxCaja : any;
   ngOnInit() {
     this.dataService.getNumCajas();
@@ -83,19 +79,19 @@ export class TableContentComponent implements OnInit {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
         this.cajasDatabase.dataChange.value.push(this.dataService.getDialogData());
+        this.loadData();
         this.refreshTable();
       }
     });
   }
 
-  startEdit(i: number, cajaId: number, descripcion: string, categoria: string, pesoUnitario: number, cantidad: number) {
+  startEdit(i: number, id: number, cajaId: number, descripcion: string, categoria: string, pesoUnitario: number, cantidad: number) {
     this.cajaId = cajaId;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
-    console.log(this.index);
     const dialogRef = this.dialog.open(EditDialogComponent, {
       data: {
-        cajaId: cajaId, descripcion: descripcion, categoria: categoria, pesoUnitario: pesoUnitario, cantidad: cantidad,
+        id: id, cajaId: cajaId, descripcion: descripcion, categoria: categoria, pesoUnitario: pesoUnitario, cantidad: cantidad,
       }, width: '85%', panelClass: 'custom-dialog-container'
     });
 
@@ -106,16 +102,17 @@ export class TableContentComponent implements OnInit {
         // Then you update that record using data from dialogData (values you enetered)
         this.cajasDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
         // And lastly refresh table
+        this.loadData();
         this.refreshTable();
       }
     });
   }
 
-  deleteItem(i: number, cajaId: number, descripcion: string, cantidad: number, pesoUnitario: number, categoria: string) {
+  deleteItem(i: number, id: number, cajaId: number, descripcion: string, cantidad: number, pesoUnitario: number, categoria: string) {
     this.index = i;
     this.cajaId = cajaId;
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { cajaId: cajaId, descripcion: descripcion, cantidad: cantidad, pesoUnitario: pesoUnitario, categoria: categoria }
+      data: { id:id, cajaId: cajaId, descripcion: descripcion, cantidad: cantidad, pesoUnitario: pesoUnitario, categoria: categoria }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -123,6 +120,7 @@ export class TableContentComponent implements OnInit {
         const foundIndex = this.cajasDatabase.dataChange.value.findIndex(x => x.cajaId === this.cajaId);
         // for delete we use splice in order to remove single object from DataService
         this.cajasDatabase.dataChange.value.splice(foundIndex, 1);
+        this.loadData();
         this.refreshTable();
       }
     });
