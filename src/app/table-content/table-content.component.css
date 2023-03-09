@@ -137,6 +137,50 @@
   max-height: 500px;
 }
 
+table {
+  width: 100%;
+}
+
+th.mat-header-cell, th.mat-cell {
+  text-align: center !important;
+  justify-content: center !important;
+}
+.mat-header {
+  flex: 0 0 5%;
+  text-align: center !important;
+  justify-content: center !important;
+}
+.mat-column-cajaId {
+  flex: 0 0 1%;
+  text-align: center !important;
+  justify-content: center !important;
+}
+.mat-column-categoria {
+  flex: 0 0 50%;
+  text-align: center !important;
+  justify-content: center !important;
+}
+.mat-column-descripcion {
+  flex: 0 0 50%;
+  text-align: center !important;
+  justify-content: center !important;
+}
+.mat-column-cantidad {
+  flex: 0 0 50%;
+  text-align: center !important;
+  justify-content: center !important;
+}
+.mat-column-pesoUnitario {
+  flex: 0 0 50%;
+  text-align: center !important;
+  justify-content: center !important;
+}
+.mat-column-peso {
+  flex: 0 0 50%;
+  text-align: center !important;
+  justify-content: center !important;
+}
+
 .no-mobile-label {
   display: none;
 }
