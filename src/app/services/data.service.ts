@@ -93,13 +93,14 @@ export class DataService {
 
       worksheet.columns = [
         { header: 'Id', key: 'id', width: 10 },
-        { header: 'Cantidad', key: 'cantidad', width: 32, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
-        { header: 'Peso Unitario', key: 'pesoUnitario', width: 5, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
+        { header: 'Cantidad', key: 'cantidad', width: 5, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
+        { header: 'Peso Unitario', key: 'pesoUnitario', width: 15, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
+        { header: 'Peso', key: 'peso', width: 5, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
         { header: 'Descripción', key: 'descripcion', width: 50, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
         { header: 'Categoría', key: 'categoria', width: 40, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
       ];
       datosHoja.forEach(element => {
-        worksheet.addRow({ id: element.id, cantidad: element.cantidad, pesoUnitario: element.pesoUnitario, descripcion: element.descripcion, categoria: element.categoria });
+        worksheet.addRow({ id: element.id, cantidad: element.cantidad, pesoUnitario: element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria });
       });
     }
 
