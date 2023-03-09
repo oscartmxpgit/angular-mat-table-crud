@@ -29,6 +29,7 @@ export class CajaBoxesComponent implements OnInit {
   ngOnInit() {
     this.dataService.getNumCajas();
     this.maxCaja = this.dataService.numCajas;
+
     for (let index = 0; index < this.maxCaja; index++) {
       this.tabs.push('Caja ' + (index + 1))
     }

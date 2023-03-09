@@ -42,10 +42,10 @@ export class DataService {
     }
     else {
       const arrObj = this.cajasJsonStrToObjArray();
-      if(arrObj.entries.length>0){
+      if (arrObj.length > 0) {
         this.numCajas = Math.max(...arrObj.map(o => o.cajaId));
       }
-      else{
+      else {
         this.numCajas = 1;
       }
     }
@@ -144,7 +144,7 @@ export class DataService {
     this.persistArray(filtObj);
   }
 
-  deleteAll(){
+  deleteAll() {
     CajasStorage.removeItem();
   }
 
