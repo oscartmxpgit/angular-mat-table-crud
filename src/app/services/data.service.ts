@@ -37,8 +37,14 @@ export class DataService {
   }
 
   getNumCajas(): any {
-    const arrObj = this.cajasJsonStrToObjArray();
-    this.numCajas = Math.max(...arrObj.map(o => o.cajaId));
+    if (CajasStorage.getItem() === null) {
+      this.numCajas = 1;
+    }
+    else {
+      const arrObj = this.cajasJsonStrToObjArray();
+      this.numCajas = Math.max(...arrObj.map(o => o.cajaId));
+    }
+
   }
 
   cajasJsonStrToObjArray(): Issue[] {
@@ -89,7 +95,7 @@ export class DataService {
         { header: 'Categoría', key: 'categoria', width: 40, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
       ];
       datosHoja.forEach(element => {
-        worksheet.addRow({ id: element.id, cantidad: element.cantidad, pesoUnitario: element.pesoUnitario, descripcion: element.descripcion, categoria: element.categoria});
+        worksheet.addRow({ id: element.id, cantidad: element.cantidad, pesoUnitario: element.pesoUnitario, descripcion: element.descripcion, categoria: element.categoria });
       });
     }
 
