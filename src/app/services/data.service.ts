@@ -144,6 +144,10 @@ export class DataService {
     this.persistArray(filtObj);
   }
 
+  deleteAll(){
+    CajasStorage.removeItem();
+  }
+
   persistArray(arrObj) {
     const strObj = JSON.stringify(arrObj);
     CajasStorage.setItem(strObj);
@@ -161,7 +165,7 @@ var CajasStorage = {
     localStorage.setItem("CajasValues", value);
   },
 
-  removeItem: function (key) {
+  removeItem: function () {
     return localStorage.removeItem("CajasValues");
   }
 
