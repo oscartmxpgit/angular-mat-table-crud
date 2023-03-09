@@ -197,3 +197,23 @@ th.mat-header-cell, th.mat-cell {
     padding: 8px 24px;
   }
 }
+
+.no-mobile-buttons {
+  display: none;
+}
+
+@media(min-width: 600px) {
+  .no-mobile-buttons {
+    display: inline-block;
+  }
+}
+
+.mobile-buttons {
+  display: none;
+}
+
+@media(max-width: 600px) {
+  .mobile-buttons {
+    display: inline-block;
+  }
+}

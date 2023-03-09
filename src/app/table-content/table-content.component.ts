@@ -53,12 +53,18 @@ export class TableContentComponent implements OnInit {
 
   ExportTOExcel() {
     const dialogRef = this.dialog.open(DatosUsuarioComponent, {
-      data: { }, width: '85%', panelClass: 'custom-dialog-container'
+      data: {}, width: '85%', panelClass: 'custom-dialog-container'
     });
-
   }
 
-  maxCaja : any;
+  DeleteAll() {
+    if(confirm("¿Seguro que desea eliminar todo?")) {
+      this.dataService.deleteAll();
+      this.loadData();
+    }
+  }
+
+  maxCaja: any;
   ngOnInit() {
     this.dataService.getNumCajas();
     this.maxCaja = this.dataService.numCajas;
@@ -107,7 +113,7 @@ export class TableContentComponent implements OnInit {
     this.index = i;
     this.cajaId = cajaId;
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { id:id, cajaId: cajaId, descripcion: descripcion, cantidad: cantidad, pesoUnitario: pesoUnitario, categoria: categoria }
+      data: { id: id, cajaId: cajaId, descripcion: descripcion, cantidad: cantidad, pesoUnitario: pesoUnitario, categoria: categoria }
     });
 
     dialogRef.afterClosed().subscribe(result => {
