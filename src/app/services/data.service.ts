@@ -117,8 +117,12 @@ export class DataService {
 
 
   addIssue(issue: Issue): void {
+    let maxId = 0;
     const arrObj = this.cajasJsonStrToObjArray();
-    const maxId = Math.max(...arrObj.map(o => o.id));
+    if (CajasStorage.getItem() != null) {
+      maxId = Math.max(...arrObj.map(o => o.id));
+    }
+
     issue.id = maxId + 1;
     arrObj.push(issue);
     this.persistArray(arrObj);
