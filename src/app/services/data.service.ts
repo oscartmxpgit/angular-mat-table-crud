@@ -42,9 +42,13 @@ export class DataService {
     }
     else {
       const arrObj = this.cajasJsonStrToObjArray();
-      this.numCajas = Math.max(...arrObj.map(o => o.cajaId));
+      if(arrObj.entries.length>0){
+        this.numCajas = Math.max(...arrObj.map(o => o.cajaId));
+      }
+      else{
+        this.numCajas = 1;
+      }
     }
-
   }
 
   cajasJsonStrToObjArray(): Issue[] {
@@ -101,7 +105,7 @@ export class DataService {
 
     const now = new Date();
 
-    let fileName = "datos_cajas_" + nombreUsuario + "_" + now.toISOString() + ".xlsx";
+    let fileName = "H61_" + nombreUsuario + "_" + now.toISOString() + ".xlsx";
     const excelBuffer: any = workbook.xlsx.writeBuffer();
     workbook.xlsx.writeBuffer()
       .then(function (buffer) {
