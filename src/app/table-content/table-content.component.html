@@ -1,30 +1,36 @@
 <div class="mat-elevation-z8">
   <div class="mobile-buttons">
-    <button mat-button [matMenuTriggerFor]="menu">Acciones</button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="addNew()">Nuevo item
-        <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-      </button>
-      <button mat-menu-item (click)="ExportTOExcel()">Exportar a Excel
-        <mat-icon>arrow_drop_down_circle</mat-icon>
-      </button>
-      <button mat-menu-item (click)="DeleteAll()">Eliminar todo
-        <mat-icon>delete_forever</mat-icon>
-      </button>
-    </mat-menu>
-  </div>
-
-  <div class="no-mobile-buttons">
     <br />
-    <button mat-raised-button color="secondary" (click)="addNew()">Nuevo item
+    <button mat-raised-button color="secondary" title="Añadir nuevo elemento" (click)="addNew()">
       <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
     </button>
     &nbsp;
-    <button mat-raised-button color="secondary" (click)="ExportTOExcel()">Exportar a Excel
+    <button mat-raised-button color="secondary" title="Exportar lista a Excel" (click)="ExportTOExcel()">
       <mat-icon>arrow_drop_down_circle</mat-icon>
     </button>
     &nbsp;
-    <button mat-raised-button color="secondary" (click)="DeleteAll()">Eliminar todo
+    <button mat-raised-button color="secondary" title="Eliminar todos los elementos" (click)="DeleteAll()" >
+      <mat-icon>delete_forever</mat-icon>
+    </button>
+  </div>
+  <div class="form">
+    <mat-form-field floatPlaceholder="never" color="accent">
+      <input matInput #filter placeholder="Filtrar datos">
+    </mat-form-field>
+  </div>
+
+
+  <div class="no-mobile-buttons">
+    <br />
+    <button mat-raised-button color="secondary" title="Añadir nuevo elemento" (click)="addNew()">Nuevo item
+      <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+    </button>
+    &nbsp;
+    <button mat-raised-button color="secondary" title="Exportar lista a Excel" (click)="ExportTOExcel()">Exportar a Excel
+      <mat-icon>arrow_drop_down_circle</mat-icon>
+    </button>
+    &nbsp;
+    <button mat-raised-button color="secondary" title="Eliminar todos los elementos" (click)="DeleteAll()">Eliminar todo
       <mat-icon>delete_forever</mat-icon>
     </button>
   </div>

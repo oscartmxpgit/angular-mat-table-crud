@@ -20,7 +20,7 @@ import { DatosUsuarioComponent } from 'app/dialogs/datos-usuario/datos-usuario.c
   styleUrls: ['./table-content.component.css']
 })
 export class TableContentComponent implements OnInit {
-  displayedColumns = ['cajaId', 'descripcion', 'categoria', 'pesoUnitario', 'cantidad', 'peso', 'actions'];
+  displayedColumns = ['cajaId', 'cantidad', 'pesoUnitario', 'peso', 'descripcion', 'categoria', 'actions'];
   cajasDatabase: DataService | null;
   dataSource: CajasDataSource | null;
   index: number;
