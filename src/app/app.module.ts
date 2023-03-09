@@ -30,6 +30,7 @@ import { CajaBoxesComponent } from './caja-boxes/caja-boxes.component';
 import { HomeComponent } from './home/home.component';
 import { environment } from 'environments/environment';
 import { OnlyNumberDirective } from './directives/only-number.directive';
+import { DatosUsuarioComponent } from './dialogs/datos-usuario/datos-usuario.component';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import { OnlyNumberDirective } from './directives/only-number.directive';
         CajaBoxesComponent,
         HomeComponent,
         OnlyNumberDirective,
+        DatosUsuarioComponent,
     ],
     imports: [
         BrowserModule,

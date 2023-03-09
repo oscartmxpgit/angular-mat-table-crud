@@ -6,13 +6,13 @@ import { MatSort } from '@angular/material/sort';
 import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import * as XLSX from 'xlsx';
 import { TranslateService } from '@ngx-translate/core';
 import { DataService } from '../services/data.service';
 import { AddDialogComponent } from '../dialogs/add/add.dialog.component';
 import { Issue } from '../models/issue';
 import { DeleteDialogComponent } from '../dialogs/delete/delete.dialog.component';
 import { EditDialogComponent } from '../dialogs/edit/edit.dialog.component';
+import { DatosUsuarioComponent } from 'app/dialogs/datos-usuario/datos-usuario.component';
 
 @Component({
   selector: 'app-table-content',
@@ -52,12 +52,9 @@ export class TableContentComponent implements OnInit {
   @ViewChild('TABLE') table: ElementRef;
 
   ExportTOExcel() {
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Caja');
-
-    /* save to file */
-    XLSX.writeFile(wb, 'MisCajas.xlsx');
+    const dialogRef = this.dialog.open(DatosUsuarioComponent, {
+      data: { }, width: '85%', panelClass: 'custom-dialog-container'
+    });
 
   }
 
@@ -65,8 +62,6 @@ export class TableContentComponent implements OnInit {
   ngOnInit() {
     this.dataService.getNumCajas();
     this.maxCaja = this.dataService.numCajas;
-    console.log("data")
-    console.log(this.maxCaja)
   }
 
   addNew() {
@@ -116,10 +111,10 @@ export class TableContentComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 1) {
+      if (result === 1) {/*
         const foundIndex = this.cajasDatabase.dataChange.value.findIndex(x => x.cajaId === this.cajaId);
         // for delete we use splice in order to remove single object from DataService
-        this.cajasDatabase.dataChange.value.splice(foundIndex, 1);
+        this.cajasDatabase.dataChange.value.splice(foundIndex, 1); */
         this.loadData();
         this.refreshTable();
       }
@@ -229,20 +224,4 @@ export class CajasDataSource extends DataSource<Issue> {
       return (valueA < valueB ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1);
     });
   }
-}
-
-var CajasStorage = {
-
-  getItem: function (key) {
-    return localStorage.getItem("CajasValues");
-  },
-
-  setItem: function (value) {
-    localStorage.setItem("CajasValues", value);
-  },
-
-  removeItem: function (key) {
-    return localStorage.removeItem("CajasValues");
-  }
-
 }
