@@ -49,7 +49,7 @@ export const comboData = {
         "categoria": "Otros"
       }
     ],
-    detinatario1: [
+    destinatario1: [
       {
         "destinatario": "Conferencia Obispos Católicos de Cuba"
       }

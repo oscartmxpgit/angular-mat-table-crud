@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { comboData } from 'app/models/datosComboBoxes';
 import { DataService } from 'app/services/data.service';
 
 @Component({
@@ -12,7 +13,10 @@ export class DatosUsuarioComponent implements OnInit {
 
   constructor(public dataService: DataService, public dialogRef: MatDialogRef<DatosUsuarioComponent>,) { }
 
+  pesocaja: 0;
   nombreUsuario: "";
+  destinatario3: "";
+  observaciones: "";
 
   formControl = new FormControl('', [
     Validators.required
@@ -39,7 +43,7 @@ export class DatosUsuarioComponent implements OnInit {
   }
 
   public confirmExport(): void {
-    this.dataService.exportToExcel(this.nombreUsuario);
+    this.dataService.exportToExcel(this.nombreUsuario, this.pesocaja, "Conferencia Obispos Católicos de Cuba", "P. Charles Monagal (Diocésis de La Habana)", this.destinatario3, this.observaciones);
   }
 
 
