@@ -4,6 +4,7 @@ import { Issue } from '../models/issue';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import * as Excel from "exceljs/dist/exceljs.min.js";
 import * as FileSaver from 'file-saver';
+import { configSpreadSheet } from 'assets/config';
 
 @Injectable()
 export class DataService {
@@ -66,14 +67,12 @@ export class DataService {
     this.dataChange.next(arrObj.filter(caja => caja.cajaId === +indiceCajaSel));
   }
 
-  exportToExcel(nombreUsuario): void {
+  exportToExcel(nombreUsuario, pesocaja, destinatario1, destinatario2, destinatario3, observaciones): void {
     var options = {
       filename: 'MisCajas.xlsx',
       useStyles: true,
       useSharedStrings: true
     };
-
-
 
     // workbook.creator = 'Me';
     // workbook.lastModifiedBy = 'Her';
@@ -86,27 +85,41 @@ export class DataService {
 
     const arrObj = this.cajasJsonStrToObjArray();
 
+    var worksheet = workbook.addWorksheet('Palet', { properties: { tabColor: { argb: '000000' } } });
     for (let index = 1; index <= this.numCajas; index++) {
-      var worksheet = workbook.addWorksheet('Caja ' + index, { properties: { tabColor: { argb: '000000' } } });
-
       const datosHoja = arrObj.filter(caja => caja.cajaId === index);
 
       worksheet.columns = [
-        { header: 'Id', key: 'id', width: 10 },
-        { header: 'Cantidad', key: 'cantidad', width: 5, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
-        { header: 'Peso Unitario', key: 'pesoUnitario', width: 15, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
-        { header: 'Peso', key: 'peso', width: 5, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
-        { header: 'Descripción', key: 'descripcion', width: 50, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
-        { header: 'Categoría', key: 'categoria', width: 40, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
+        { header: 'CAJA Nº', key: 'caja', width: 10, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
+        { header: 'PESO CAJA', key: 'pesocaja', width: 10 },
+        { header: 'CANTIDAD', key: 'cantidad', width: 10, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
+        { header: 'PESO UNITARIO (KGS)', key: 'pesoUnitario', width: 15, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
+        { header: 'PESO (KGS)', key: 'peso', width: 10, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
+        { header: 'DESCRIPCIÓN', key: 'descripcion', width: 50, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
+        { header: 'CATEGORÍA', key: 'categoria', width: 40, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
+        { header: 'DESTINATARIO 1', key: 'destinatario1', width: 40, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
+        { header: 'DESTINATARIO 2', key: 'destinatario2', width: 40, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
+        { header: 'DESTINATARIO 3', key: 'destinatario3', width: 40, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
+        { header: 'OBSERVACIONES', key: 'observaciones', width: 40, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
       ];
+      for (let index = 0; index < datosHoja.length; index++) {
+        const element = datosHoja[index];
+        if (index==0){
+          worksheet.addRow({ caja: element.cajaId, pesocaja:pesocaja, cantidad: element.cantidad, pesoUnitario: element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria,destinatario1: destinatario1,destinatario2: destinatario2,destinatario3: destinatario3,observaciones: observaciones});
+        }
+        else{
+          worksheet.addRow({ caja: element.cajaId, cantidad: element.cantidad, pesoUnitario: element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria });
+        }
+      }
       datosHoja.forEach(element => {
-        worksheet.addRow({ id: element.id, cantidad: element.cantidad, pesoUnitario: element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria });
       });
+      worksheet.addRow();
+
     }
 
     const now = new Date();
 
-    let fileName = "H61_" + nombreUsuario + "_" + now.toISOString() + ".xlsx";
+    let fileName = configSpreadSheet.operacion  + "_" + nombreUsuario + "_" + now.toISOString() + ".xlsx";
     const excelBuffer: any = workbook.xlsx.writeBuffer();
     workbook.xlsx.writeBuffer()
       .then(function (buffer) {
