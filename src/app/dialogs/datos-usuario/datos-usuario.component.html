@@ -36,10 +36,10 @@
         </div>
 
         <div *ngIf="this.pesodiff>0" style="color: red;">
-            Diferencia entre el peso introducido y la suma de los pesos de los artículos en la lista: {{pesodiff | number : '1.2-2'}} Kgs.
+            Peso introducido: {{pesoLotesUsr}} Kgs. Peso calculado: {{pesoCajaCalculado}} Kgs. Diferencia (abs): {{pesodiff | number : '1.2-2'}} Kgs.
         </div>
 
-        <div *ngIf="this.pesodiff>3" style="color: red;">
+        <div *ngIf="this.pesodiff>2" style="color: red;">
             El peso diferencia es demasiado grande. Revise que los datos estén introducidos en Kgs
         </div>
 
