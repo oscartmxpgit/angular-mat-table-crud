@@ -16,7 +16,11 @@ export class DatosUsuarioComponent implements OnInit {
   pesocaja: 0;
   nombreUsuario: "";
   destinatario3: "";
+  contactoDestinatario3: "";
   observaciones: "";
+
+  pesodiff=0;
+  mensajeErrForm: "";
 
   formControl = new FormControl('', [
     Validators.required
@@ -43,7 +47,13 @@ export class DatosUsuarioComponent implements OnInit {
   }
 
   public confirmExport(): void {
-    this.dataService.exportToExcel(this.nombreUsuario, this.pesocaja, "Conferencia Obispos Católicos de Cuba", "P. Charles Monagal (Diocésis de La Habana)", this.destinatario3, this.observaciones);
+    const pesoCajaCalculado= this.dataService.pesoCajas();
+    this.pesodiff= Math.abs(this.pesocaja - pesoCajaCalculado);
+    if ( this.pesodiff <= 1 )
+    {
+      this.dataService.exportToExcel(this.nombreUsuario + " " + this.contactoDestinatario3, this.pesocaja, this.destinatario3, this.observaciones);
+      this.dialogRef.close();
+    }
   }
 
 
