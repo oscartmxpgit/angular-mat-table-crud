@@ -1,4 +1,5 @@
 export class Issue {
+  lote: number;
   cajaId: number;
   id: number;
   descripcion: string;

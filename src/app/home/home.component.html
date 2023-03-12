@@ -1,7 +1,6 @@
 
 <section class="example">
   <div class="container">
-    <a routerLink="cajaBoxes">Mis cajas</a>
     <h3>Avisos del Kosmódromo</h3>
     <div *ngIf="characters$ | async as characters; else loading">
       <div *ngFor="let character of characters" class="character-card">
@@ -56,6 +55,8 @@
         </div>
       </div>
     </ng-template>
+    <button type="button" routerLink="cajaBoxes" class="btn btn-primary" style="float: right;">Mis cajas</button>
+
   </div>
 </section>
 

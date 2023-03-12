@@ -67,7 +67,7 @@ export class DataService {
     this.dataChange.next(arrObj.filter(caja => caja.cajaId === +indiceCajaSel));
   }
 
-  exportToExcel(nombreUsuario, pesocaja, destinatario3, observaciones): void {
+  exportToExcel(nombreUsuario, pesoLotesUsr, destinatario3, observacionesExcel): void {
     var options = {
       filename: 'MisCajas.xlsx',
       useStyles: true,
@@ -93,18 +93,27 @@ export class DataService {
     worksheet.mergeCells('A2', 'C2');
     worksheet.mergeCells('A3', 'C3');
     worksheet.mergeCells('A4', 'C4');
+    worksheet.mergeCells('A5', 'C5');
+    worksheet.mergeCells('A6', 'C6');
 
     worksheet.mergeCells('D1', 'F1');
     worksheet.mergeCells('D2', 'F2');
     worksheet.mergeCells('D3', 'F3');
     worksheet.mergeCells('D4', 'F4');
+    worksheet.mergeCells('D5', 'F5');
+    worksheet.mergeCells('D6', 'F6');
 
     worksheet.getCell('A1').value = 'Operación:';
     worksheet.getCell('A2').value = 'Fecha de operación:';
-    worksheet.getCell('A3').value = 'Observaciones:';
+    worksheet.getCell('A3').value = 'Remitente:';
+    worksheet.getCell('A4').value = 'Peso total (usuario):';
+    worksheet.getCell('A5').value = 'Observaciones:';
 
     worksheet.getCell('D1').value = configSpreadSheet.operacionNombreCompleto;
     worksheet.getCell('D2').value = now.toISOString();
+    worksheet.getCell('D3').value = nombreUsuario;
+    worksheet.getCell('D4').value = pesoLotesUsr;
+    worksheet.getCell('D5').value = observacionesExcel;
 
 
     /*Column headers*/
@@ -132,10 +141,10 @@ export class DataService {
       for (let index = 0; index < datosHoja.length; index++) {
         const element = datosHoja[index];
         if (index == 0) {
-          worksheet.addRow({ caja: element.cajaId, pesocaja: this.pesoCajaIndividual(element.cajaId), cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria, destinatario1: configSpreadSheet.destinatario1, destinatario2: configSpreadSheet.destinatario2, destinatario3: destinatario3, observaciones: observaciones });
+          worksheet.addRow({ caja: element.cajaId, pesocaja: this.pesoCajaIndividual(element.cajaId), cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria, destinatario1: configSpreadSheet.destinatario1, destinatario2: configSpreadSheet.destinatario2, destinatario3: destinatario3, observaciones: element.observaciones });
         }
         else {
-          worksheet.addRow({ cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria });
+          worksheet.addRow({ cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria, observaciones: element.observaciones });
         }
       }
       datosHoja.forEach(element => {

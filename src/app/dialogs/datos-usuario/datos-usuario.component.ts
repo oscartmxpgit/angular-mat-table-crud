@@ -13,7 +13,7 @@ export class DatosUsuarioComponent implements OnInit {
 
   constructor(public dataService: DataService, public dialogRef: MatDialogRef<DatosUsuarioComponent>,) { }
 
-  pesocaja: 0;
+  pesoLotesUsr: 0;
   nombreUsuario: "";
   destinatario3: "";
   observaciones: "";
@@ -47,10 +47,10 @@ export class DatosUsuarioComponent implements OnInit {
 
   public confirmExport(): void {
     const pesoCajaCalculado= this.dataService.pesoCajas();
-    this.pesodiff= Math.abs(this.pesocaja - pesoCajaCalculado);
+    this.pesodiff= Math.abs(this.pesoLotesUsr - pesoCajaCalculado);
     if ( this.pesodiff <= 1 )
     {
-      this.dataService.exportToExcel(this.nombreUsuario, this.pesocaja, this.destinatario3, this.observaciones);
+      this.dataService.exportToExcel(this.nombreUsuario, this.pesoLotesUsr, this.destinatario3, this.observaciones);
       this.dialogRef.close();
     }
   }
