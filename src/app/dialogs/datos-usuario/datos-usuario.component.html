@@ -13,13 +13,8 @@
 
         <div class="form">
             <mat-form-field color="accent">
-                <input matInput #input class="form-control" placeholder="Destinatario" [(ngModel)]="destinatario3"
+                <input matInput #input class="form-control" placeholder="Nombre, apellidos y telef. Destinatario" [(ngModel)]="destinatario3"
                     name="destinatario3" required>
-                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>
-            <mat-form-field color="accent">
-                <input matInput #input class="form-control" placeholder="Contacto Destinatario" [(ngModel)]="contactoDestinatario3"
-                    name="contactoDestinatario3" required>
                 <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>

@@ -64,7 +64,7 @@
 
       <ng-container matColumnDef="pesoUnitario">
         <th mat-header-cell *matHeaderCellDef>
-          <span class="no-mobile-label">Peso Un</span>
+          <span class="no-mobile-label">Peso Un. (Kgs)</span>
         </th>
         <td mat-cell *matCellDef="let row">
           <span class="no-mobile-label">{{row.pesoUnitario | number : '1.2-2'}}</span>
@@ -73,7 +73,7 @@
 
       <ng-container matColumnDef="peso">
         <th mat-header-cell *matHeaderCellDef>
-          <span class="no-mobile-label">Peso</span>
+          <span class="no-mobile-label">Peso (Kgs)</span>
         </th>
         <td mat-cell *matCellDef="let row">
           <span class="no-mobile-label">{{row.pesoUnitario * row.cantidad | number : '1.2-2'}}</span>

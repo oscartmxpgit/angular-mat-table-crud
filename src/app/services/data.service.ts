@@ -105,10 +105,10 @@ export class DataService {
       for (let index = 0; index < datosHoja.length; index++) {
         const element = datosHoja[index];
         if (index==0){
-          worksheet.addRow({ caja: element.cajaId, pesocaja:pesocaja, cantidad: element.cantidad, pesoUnitario: element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria,destinatario1: configSpreadSheet.destinatario1,destinatario2: configSpreadSheet.destinatario2,destinatario3: destinatario3,observaciones: observaciones});
+          worksheet.addRow({ caja: element.cajaId, pesocaja:this.pesoCadaCajas(element.cajaId), cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria,destinatario1: configSpreadSheet.destinatario1,destinatario2: configSpreadSheet.destinatario2,destinatario3: destinatario3,observaciones: observaciones});
         }
         else{
-          worksheet.addRow({ caja: element.cajaId, cantidad: element.cantidad, pesoUnitario: element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria });
+          worksheet.addRow({ cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria });
         }
       }
       datosHoja.forEach(element => {
@@ -127,6 +127,19 @@ export class DataService {
         const data: Blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
         FileSaver.saveAs(data, fileName);
       });
+  }
+
+  pesoCadaCajas(cajaId: number): number {
+    let peso = 0;
+    const arrObj = this.cajasJsonStrToObjArray();
+    if (CajasStorage.getItem() != null) {
+      arrObj.forEach(element => {
+        if (element.cajaId == cajaId){
+          peso +=  element.pesoUnitario * element.cantidad;
+        }
+      });
+   }
+   return peso;
   }
 
 

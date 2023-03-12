@@ -29,7 +29,7 @@
 
     <div class="form">
       <mat-form-field color="accent" class="small-form-control">
-        <input onlyNumber matInput class="form-control" placeholder="Peso Unitario" [(ngModel)]="data.pesoUnitario"
+        <input onlyNumber matInput class="form-control" placeholder="Peso Unitario (Kgs)" [(ngModel)]="data.pesoUnitario"
           name="pesoUnitario" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
