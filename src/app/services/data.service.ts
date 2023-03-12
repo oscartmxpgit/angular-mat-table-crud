@@ -86,28 +86,55 @@ export class DataService {
     const arrObj = this.cajasJsonStrToObjArray();
 
     var worksheet = workbook.addWorksheet('Cajas', { properties: { tabColor: { argb: '000000' } } });
+
+    const now = new Date();
+    /*TITLE*/
+    worksheet.mergeCells('A1', 'C1');
+    worksheet.mergeCells('A2', 'C2');
+    worksheet.mergeCells('A3', 'C3');
+    worksheet.mergeCells('A4', 'C4');
+
+    worksheet.mergeCells('D1', 'F1');
+    worksheet.mergeCells('D2', 'F2');
+    worksheet.mergeCells('D3', 'F3');
+    worksheet.mergeCells('D4', 'F4');
+
+    worksheet.getCell('A1').value = 'Operación:';
+    worksheet.getCell('A2').value = 'Fecha de operación:';
+    worksheet.getCell('A3').value = 'Observaciones:';
+
+    worksheet.getCell('D1').value = configSpreadSheet.operacionNombreCompleto;
+    worksheet.getCell('D2').value = now.toISOString();
+
+
+    /*Column headers*/
+    worksheet.getRow(5).values = ['CAJA Nº', 'PESO CAJA (Kgs)', 'CANTIDAD', 'PESO UNITARIO (Kgs)', 'PESO (Kgs)', 'DESCRIPCIÓN', 'CATEGORÍA', 'DESTINATARIO 1', 'DESTINATARIO 2', 'DESTINATARIO 3', 'OBSERVACIONES'];
+
+    /*Define your column keys because this is what you use to insert your data according to your columns, they're column A, B, C, D respectively being idClient, Name, Tel, and Adresse.
+    So, it's pretty straight forward */
+    worksheet.columns = [
+      { key: 'caja', width: 10 },
+      { key: 'pesocaja', width: 10 },
+      { key: 'cantidad', width: 10 },
+      { key: 'pesoUnitario', width: 10 },
+      { key: 'peso', width: 10 },
+      { key: 'descripcion', width: 20 },
+      { key: 'categoria', width: 20 },
+      { key: 'destinatario1', width: 30 },
+      { key: 'destinatario2', width: 30 },
+      { key: 'destinatario3', width: 30 },
+      { key: 'observaciones', width: 40 },
+    ];
+
     for (let index = 1; index <= this.numCajas; index++) {
       const datosHoja = arrObj.filter(caja => caja.cajaId === index);
 
-      worksheet.columns = [
-        { header: 'CAJA Nº', key: 'caja', width: 10, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
-        { header: 'PESO CAJA', key: 'pesocaja', width: 10 },
-        { header: 'CANTIDAD', key: 'cantidad', width: 10, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
-        { header: 'PESO UNITARIO (KGS)', key: 'pesoUnitario', width: 15, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
-        { header: 'PESO (KGS)', key: 'peso', width: 10, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
-        { header: 'DESCRIPCIÓN', key: 'descripcion', width: 50, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
-        { header: 'CATEGORÍA', key: 'categoria', width: 40, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
-        { header: 'DESTINATARIO 1', key: 'destinatario1', width: 40, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
-        { header: 'DESTINATARIO 2', key: 'destinatario2', width: 40, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
-        { header: 'DESTINATARIO 3', key: 'destinatario3', width: 40, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
-        { header: 'OBSERVACIONES', key: 'observaciones', width: 40, style: { font: { name: 'Arial', color: { argb: '000000' } } } },
-      ];
       for (let index = 0; index < datosHoja.length; index++) {
         const element = datosHoja[index];
-        if (index==0){
-          worksheet.addRow({ caja: element.cajaId, pesocaja:this.pesoCajaIndividual(element.cajaId), cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria,destinatario1: configSpreadSheet.destinatario1,destinatario2: configSpreadSheet.destinatario2,destinatario3: destinatario3,observaciones: observaciones});
+        if (index == 0) {
+          worksheet.addRow({ caja: element.cajaId, pesocaja: this.pesoCajaIndividual(element.cajaId), cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria, destinatario1: configSpreadSheet.destinatario1, destinatario2: configSpreadSheet.destinatario2, destinatario3: destinatario3, observaciones: observaciones });
         }
-        else{
+        else {
           worksheet.addRow({ cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria });
         }
       }
@@ -117,9 +144,7 @@ export class DataService {
 
     }
 
-    const now = new Date();
-
-    let fileName = configSpreadSheet.operacion  + "_" + nombreUsuario + "_" + now.toISOString() + ".xlsx";
+    let fileName = configSpreadSheet.operacion + "_" + nombreUsuario + "_" + now.toISOString() + ".xlsx";
     const excelBuffer: any = workbook.xlsx.writeBuffer();
     workbook.xlsx.writeBuffer()
       .then(function (buffer) {
@@ -134,12 +159,12 @@ export class DataService {
     const arrObj = this.cajasJsonStrToObjArray();
     if (CajasStorage.getItem() != null) {
       arrObj.forEach(element => {
-        if (element.cajaId == cajaId){
-          peso +=  element.pesoUnitario * element.cantidad;
+        if (element.cajaId == cajaId) {
+          peso += element.pesoUnitario * element.cantidad;
         }
       });
-   }
-   return peso;
+    }
+    return peso;
   }
 
 
@@ -148,10 +173,10 @@ export class DataService {
     const arrObj = this.cajasJsonStrToObjArray();
     if (CajasStorage.getItem() != null) {
       arrObj.forEach(element => {
-        peso +=  element.pesoUnitario * element.cantidad;
+        peso += element.pesoUnitario * element.cantidad;
       });
-   }
-   return peso;
+    }
+    return peso;
   }
 
   addIssue(issue: Issue): void {
