@@ -41,6 +41,14 @@
       </mat-form-field>
     </div>
 
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Observaciones" [(ngModel)]="data.observaciones"
+          name="observaciones">
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
     <div mat-dialog-actions>
       <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
         (click)="confirmAdd()"><mat-icon>save</mat-icon>Guardar</button>

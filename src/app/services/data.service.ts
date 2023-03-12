@@ -85,7 +85,7 @@ export class DataService {
 
     const arrObj = this.cajasJsonStrToObjArray();
 
-    var worksheet = workbook.addWorksheet('Palet', { properties: { tabColor: { argb: '000000' } } });
+    var worksheet = workbook.addWorksheet('Cajas', { properties: { tabColor: { argb: '000000' } } });
     for (let index = 1; index <= this.numCajas; index++) {
       const datosHoja = arrObj.filter(caja => caja.cajaId === index);
 
@@ -105,7 +105,7 @@ export class DataService {
       for (let index = 0; index < datosHoja.length; index++) {
         const element = datosHoja[index];
         if (index==0){
-          worksheet.addRow({ caja: element.cajaId, pesocaja:this.pesoCadaCajas(element.cajaId), cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria,destinatario1: configSpreadSheet.destinatario1,destinatario2: configSpreadSheet.destinatario2,destinatario3: destinatario3,observaciones: observaciones});
+          worksheet.addRow({ caja: element.cajaId, pesocaja:this.pesoCajaIndividual(element.cajaId), cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria,destinatario1: configSpreadSheet.destinatario1,destinatario2: configSpreadSheet.destinatario2,destinatario3: destinatario3,observaciones: observaciones});
         }
         else{
           worksheet.addRow({ cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria });
@@ -129,7 +129,7 @@ export class DataService {
       });
   }
 
-  pesoCadaCajas(cajaId: number): number {
+  pesoCajaIndividual(cajaId: number): number {
     let peso = 0;
     const arrObj = this.cajasJsonStrToObjArray();
     if (CajasStorage.getItem() != null) {

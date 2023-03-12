@@ -86,13 +86,13 @@ export class TableContentComponent implements OnInit {
     });
   }
 
-  startEdit(i: number, id: number, cajaId: number, descripcion: string, categoria: string, pesoUnitario: number, cantidad: number) {
+  startEdit(i: number, id: number, cajaId: number, descripcion: string, categoria: string, pesoUnitario: number, cantidad: number, observaciones: string) {
     this.cajaId = cajaId;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     const dialogRef = this.dialog.open(EditDialogComponent, {
       data: {
-        id: id, cajaId: cajaId, descripcion: descripcion, categoria: categoria, pesoUnitario: pesoUnitario, cantidad: cantidad,
+        id: id, cajaId: cajaId, descripcion: descripcion, categoria: categoria, pesoUnitario: pesoUnitario, cantidad: cantidad, observaciones: observaciones,
       }, width: '85%', panelClass: 'custom-dialog-container'
     });
 
