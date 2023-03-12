@@ -11,11 +11,11 @@ import { TableContentComponent } from 'app/table-content/table-content.component
 import { ResetDialogComponent } from '../dialogs/reset-dialog/reset-dialog.component';
 
 @Component({
-  selector: 'app-caja-boxes',
-  templateUrl: './caja-boxes.component.html',
-  styleUrls: ['./caja-boxes.component.scss']
+  selector: 'app-lotes-boxes',
+  templateUrl: './lotes-boxes.component.html',
+  styleUrls: ['./lotes-boxes.component.scss']
 })
-export class CajaBoxesComponent implements OnInit {
+export class LotesBoxesComponent implements OnInit {
   constructor(private router: Router, public dialog: MatDialog, public dataService: DataService, public httpClient: HttpClient,) { }
   obs: any = [];
 
@@ -23,15 +23,15 @@ export class CajaBoxesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  maxCaja = 0;
-  cajasDatabase: DataService | null;
+  maxLote = 0;
+  lotesDatabase: DataService | null;
 
   ngOnInit() {
-    this.dataService.getNumCajas();
-    this.maxCaja = this.dataService.numCajas;
+    this.dataService.getNumLotes();
+    this.maxLote = this.dataService.numLotes;
 
-    for (let index = 0; index < this.maxCaja; index++) {
-      this.tabs.push('Caja ' + (index + 1))
+    for (let index = 0; index < this.maxLote; index++) {
+      this.tabs.push('Lote ' + (index + 1))
     }
   }
 
@@ -47,8 +47,8 @@ export class CajaBoxesComponent implements OnInit {
   selected = new FormControl(0);
 
   addTab() {
-    this.maxCaja += 1;
-    this.tabs.push('Caja ' + (this.maxCaja));
+    this.maxLote += 1;
+    this.tabs.push('Lote ' + (this.maxLote));
     this.selected.setValue(this.tabs.length - 1);
   }
 
@@ -56,7 +56,7 @@ export class CajaBoxesComponent implements OnInit {
     this.tabs.splice(index, 1);
   }
 
-  abrirCaja() {
-    this.router.navigateByUrl('/tablecaja');
+  abrirLote() {
+    this.router.navigateByUrl('/tablelote');
   }
 }

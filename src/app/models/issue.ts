@@ -1,5 +1,5 @@
 export class Issue {
-  lote: number;
+  loteId: number;
   cajaId: number;
   id: number;
   descripcion: string;

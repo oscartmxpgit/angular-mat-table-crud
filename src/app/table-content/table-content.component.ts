@@ -20,21 +20,21 @@ import { DatosUsuarioComponent } from 'app/dialogs/datos-usuario/datos-usuario.c
   styleUrls: ['./table-content.component.css']
 })
 export class TableContentComponent implements OnInit {
-  displayedColumns = ['cajaId', 'cantidad', 'pesoUnitario', 'peso', 'descripcion', 'categoria', 'actions'];
-  cajasDatabase: DataService | null;
-  dataSource: CajasDataSource | null;
+  displayedColumns = ['loteId', 'cantidad', 'pesoUnitario', 'peso', 'descripcion', 'categoria', 'actions'];
+  lotesDatabase: DataService | null;
+  dataSource: LotesDataSource | null;
   index: number;
-  cajaId: number;
+  loteId: number;
 
-  private _indiceCajaSel: string;
+  private _indiceLoteSel: string;
 
-  @Input() set indiceCajaSel(value: string) {
-    this._indiceCajaSel = value + 1;
+  @Input() set indiceLoteSel(value: string) {
+    this._indiceLoteSel = value + 1;
     this.loadData();
   }
 
-  get indiceCajaSel(): string {
-    return this._indiceCajaSel;
+  get indiceLoteSel(): string {
+    return this._indiceLoteSel;
   }
 
   constructor(public httpClient: HttpClient,
@@ -64,44 +64,44 @@ export class TableContentComponent implements OnInit {
     }
   }
 
-  maxCaja: any;
+  maxLote: any;
   ngOnInit() {
-    this.dataService.getNumCajas();
-    this.maxCaja = this.dataService.numCajas;
+    this.dataService.getNumLotes();
+    this.maxLote = this.dataService.numLotes;
   }
 
   addNew() {
     const dialogRef = this.dialog.open(AddDialogComponent, {
-      data: { cajaId: this.indiceCajaSel, issue: Issue }, width: '85%', panelClass: 'custom-dialog-container'
+      data: { loteId: this.indiceLoteSel, issue: Issue }, width: '85%', panelClass: 'custom-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
-        this.cajasDatabase.dataChange.value.push(this.dataService.getDialogData());
+        this.lotesDatabase.dataChange.value.push(this.dataService.getDialogData());
         this.loadData();
         this.refreshTable();
       }
     });
   }
 
-  startEdit(i: number, id: number, cajaId: number, descripcion: string, categoria: string, pesoUnitario: number, cantidad: number, observaciones: string) {
-    this.cajaId = cajaId;
+  startEdit(i: number, id: number, loteId: number, descripcion: string, categoria: string, pesoUnitario: number, cantidad: number, observaciones: string) {
+    this.loteId = loteId;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     const dialogRef = this.dialog.open(EditDialogComponent, {
       data: {
-        id: id, cajaId: cajaId, descripcion: descripcion, categoria: categoria, pesoUnitario: pesoUnitario, cantidad: cantidad, observaciones: observaciones,
+        id: id, loteId: loteId, descripcion: descripcion, categoria: categoria, pesoUnitario: pesoUnitario, cantidad: cantidad, observaciones: observaciones,
       }, width: '85%', panelClass: 'custom-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.cajasDatabase.dataChange.value.findIndex(x => x.cajaId === this.cajaId);
+        const foundIndex = this.lotesDatabase.dataChange.value.findIndex(x => x.loteId === this.loteId);
         // Then you update that record using data from dialogData (values you enetered)
-        this.cajasDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
+        this.lotesDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
         // And lastly refresh table
         this.loadData();
         this.refreshTable();
@@ -109,18 +109,18 @@ export class TableContentComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, cajaId: number, descripcion: string, cantidad: number, pesoUnitario: number, categoria: string) {
+  deleteItem(i: number, id: number, loteId: number, descripcion: string, cantidad: number, pesoUnitario: number, categoria: string) {
     this.index = i;
-    this.cajaId = cajaId;
+    this.loteId = loteId;
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { id: id, cajaId: cajaId, descripcion: descripcion, cantidad: cantidad, pesoUnitario: pesoUnitario, categoria: categoria }
+      data: { id: id, loteId: loteId, descripcion: descripcion, cantidad: cantidad, pesoUnitario: pesoUnitario, categoria: categoria }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {/*
-        const foundIndex = this.cajasDatabase.dataChange.value.findIndex(x => x.cajaId === this.cajaId);
+        const foundIndex = this.lotesDatabase.dataChange.value.findIndex(x => x.loteId === this.loteId);
         // for delete we use splice in order to remove single object from DataService
-        this.cajasDatabase.dataChange.value.splice(foundIndex, 1); */
+        this.lotesDatabase.dataChange.value.splice(foundIndex, 1); */
         this.loadData();
         this.refreshTable();
       }
@@ -135,8 +135,8 @@ export class TableContentComponent implements OnInit {
   }
 
   public loadData() {
-    this.cajasDatabase = new DataService(this.httpClient);
-    this.dataSource = new CajasDataSource(this.cajasDatabase, this.paginator, this.sort, this.indiceCajaSel);
+    this.lotesDatabase = new DataService(this.httpClient);
+    this.dataSource = new LotesDataSource(this.lotesDatabase, this.paginator, this.sort, this.indiceLoteSel);
     fromEvent(this.filter.nativeElement, 'keyup')
       // .debounceTime(150)
       // .distinctUntilChanged()
@@ -149,7 +149,7 @@ export class TableContentComponent implements OnInit {
   }
 }
 
-export class CajasDataSource extends DataSource<Issue> {
+export class LotesDataSource extends DataSource<Issue> {
   _filterChange = new BehaviorSubject('');
 
   get filter(): string {
@@ -163,10 +163,10 @@ export class CajasDataSource extends DataSource<Issue> {
   filteredData: Issue[] = [];
   renderedData: Issue[] = [];
 
-  constructor(public _cajasDatabase: DataService,
+  constructor(public _lotesDatabase: DataService,
     public _paginator: MatPaginator,
     public _sort: MatSort,
-    public indiceCajaSel: string
+    public indiceLoteSel: string
   ) {
     super();
     // Reset to the first page when the user changes the filter.
@@ -177,18 +177,18 @@ export class CajasDataSource extends DataSource<Issue> {
   connect(): Observable<Issue[]> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
-      this._cajasDatabase.dataChange,
+      this._lotesDatabase.dataChange,
       this._sort.sortChange,
       this._filterChange,
       this._paginator.page,
     ];
 
-    this._cajasDatabase.getIssuesPorCaja(this.indiceCajaSel);
+    this._lotesDatabase.getIssuesPorLote(this.indiceLoteSel);
 
     return merge(...displayDataChanges).pipe(map(() => {
       // Filter data
-      this.filteredData = this._cajasDatabase.data.slice().filter((issue: Issue) => {
-        const searchStr = (issue.cajaId + issue.descripcion + issue.categoria).toLowerCase();
+      this.filteredData = this._lotesDatabase.data.slice().filter((issue: Issue) => {
+        const searchStr = (issue.loteId + issue.descripcion + issue.categoria).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 
@@ -217,7 +217,7 @@ export class CajasDataSource extends DataSource<Issue> {
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        case 'cajaId': [propertyA, propertyB] = [a.cajaId, b.cajaId]; break;
+        case 'loteId': [propertyA, propertyB] = [a.loteId, b.loteId]; break;
         case 'descripcion': [propertyA, propertyB] = [a.descripcion, b.descripcion]; break;
         case 'categoria': [propertyA, propertyB] = [a.categoria, b.categoria]; break;
         case 'pesoUnitario': [propertyA, propertyB] = [a.pesoUnitario, b.pesoUnitario]; break;

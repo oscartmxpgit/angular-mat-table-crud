@@ -26,7 +26,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ResetDialogComponent } from './dialogs/reset-dialog/reset-dialog.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CajaBoxesComponent } from './caja-boxes/caja-boxes.component';
+import { LotesBoxesComponent } from './lotes-boxes/lotes-boxes.component';
 import { HomeComponent } from './home/home.component';
 import { environment } from 'environments/environment';
 import { OnlyNumberDirective } from './directives/only-number.directive';
@@ -40,7 +40,7 @@ import { DatosUsuarioComponent } from './dialogs/datos-usuario/datos-usuario.com
         DeleteDialogComponent,
         TableContentComponent,
         ResetDialogComponent,
-        CajaBoxesComponent,
+        LotesBoxesComponent,
         HomeComponent,
         OnlyNumberDirective,
         DatosUsuarioComponent,

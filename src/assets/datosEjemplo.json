@@ -1,6 +1,7 @@
 [
     {
         "id": 1,
+        "loteId": 2,
         "cajaId": 4,
         "cantidad": 10,
         "pesoUnitario": 0.021,
@@ -9,6 +10,7 @@
     },
     {
         "id": 2,
+        "loteId": 1,
         "cajaId": 1,
         "cantidad": 3,
         "pesoUnitario": 0.07,
@@ -17,6 +19,7 @@
     },
     {
         "id": 3,
+        "loteId": 2,
         "cajaId": 3,
         "cantidad": 1,
         "pesoUnitario": 0.01,
@@ -25,24 +28,27 @@
     },
     {
         "id": 4,
-        "cantidad": 1,
+        "loteId": 2,
         "cajaId": 3,
+        "cantidad": 1,
         "pesoUnitario": 0.045,
         "descripcion": "Estrella de mar",
         "categoria": "Juguetes"
     },
     {
         "id": 5,
-        "cantidad": 2,
+        "loteId": 1,
         "cajaId": 2,
+        "cantidad": 2,
         "pesoUnitario": 0.06,
         "descripcion": "Pelotas",
         "categoria": "Juguetes"
     },
     {
         "id": 6,
-        "cantidad": 1,
+        "loteId": 1,
         "cajaId": 1,
+        "cantidad": 1,
         "pesoUnitario": 0.04,
         "descripcion": "Arañas",
         "categoria": "Juguetes"

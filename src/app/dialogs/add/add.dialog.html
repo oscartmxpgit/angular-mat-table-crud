@@ -5,7 +5,7 @@
 
     <div class="form">
       <mat-form-field color="accent" [class.cdk-visually-hidden]="true">
-        <input matInput #input class="form-control" readonly="true" placeholder="Caja" [(ngModel)]="data.cajaId" name="cajaId" required>
+        <input matInput #input class="form-control" readonly="true" placeholder="Caja" [(ngModel)]="data.loteId" name="loteId" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
@@ -29,7 +29,7 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input style="width: 600px;" onlyNumber matInput placeholder="Peso Unitario (Kgs)" [(ngModel)]="data.pesoUnitario"
+        <input style="width: 50px;" onlyNumber matInput placeholder="Peso Unitario (Kgs)" [(ngModel)]="data.pesoUnitario"
           name="pesoUnitario" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>

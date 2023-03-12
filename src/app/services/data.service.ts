@@ -14,8 +14,8 @@ export class DataService {
   dataChange: BehaviorSubject<Issue[]> = new BehaviorSubject<Issue[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
-  cajasData: any;
-  numCajas: number;
+  lotesData: any;
+  numLotes: number;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -37,23 +37,23 @@ export class DataService {
     return this.dialogData;
   }
 
-  getNumCajas(): any {
-    if (CajasStorage.getItem() === null) {
-      this.numCajas = 1;
+  getNumLotes(): any {
+    if (LotesStorage.getItem() === null) {
+      this.numLotes = 1;
     }
     else {
-      const arrObj = this.cajasJsonStrToObjArray();
+      const arrObj = this.lotesJsonStrToObjArray();
       if (arrObj.length > 0) {
-        this.numCajas = Math.max(...arrObj.map(o => o.cajaId));
+        this.numLotes = Math.max(...arrObj.map(o => o.loteId));
       }
       else {
-        this.numCajas = 1;
+        this.numLotes = 1;
       }
     }
   }
 
-  cajasJsonStrToObjArray(): Issue[] {
-    const cajData = CajasStorage.getItem();
+  lotesJsonStrToObjArray(): Issue[] {
+    const cajData = LotesStorage.getItem();
     var obj = eval(cajData);
     var res = [];
     for (var i in obj)
@@ -62,14 +62,14 @@ export class DataService {
   }
 
   /** CRUD METHODS */
-  getIssuesPorCaja(indiceCajaSel: string): void {
-    const arrObj = this.cajasJsonStrToObjArray();
-    this.dataChange.next(arrObj.filter(caja => caja.cajaId === +indiceCajaSel));
+  getIssuesPorLote(indiceLoteSel: string): void {
+    const arrObj = this.lotesJsonStrToObjArray();
+    this.dataChange.next(arrObj.filter(lote => lote.loteId === +indiceLoteSel));
   }
 
   exportToExcel(nombreUsuario, pesoLotesUsr, destinatario3, observacionesExcel): void {
     var options = {
-      filename: 'MisCajas.xlsx',
+      filename: 'MisLotes.xlsx',
       useStyles: true,
       useSharedStrings: true
     };
@@ -83,9 +83,9 @@ export class DataService {
 
     let workbook = new Excel.Workbook(options);
 
-    const arrObj = this.cajasJsonStrToObjArray();
+    const arrObj = this.lotesJsonStrToObjArray();
 
-    var worksheet = workbook.addWorksheet('Cajas', { properties: { tabColor: { argb: '000000' } } });
+    var worksheet = workbook.addWorksheet('Lotes', { properties: { tabColor: { argb: '000000' } } });
 
     const now = new Date();
     /*TITLE*/
@@ -117,31 +117,31 @@ export class DataService {
 
 
     /*Column headers*/
-    worksheet.getRow(5).values = ['CAJA Nº', 'PESO CAJA (Kgs)', 'CANTIDAD', 'PESO UNITARIO (Kgs)', 'PESO (Kgs)', 'DESCRIPCIÓN', 'CATEGORÍA', 'DESTINATARIO 1', 'DESTINATARIO 2', 'DESTINATARIO 3', 'OBSERVACIONES'];
+    worksheet.getRow(8).values = ['CAJA Nº', 'PESO CAJA (Kgs)', 'CANTIDAD', 'PESO UNITARIO (Kgs)', 'PESO (Kgs)', 'DESCRIPCIÓN', 'CATEGORÍA', 'DESTINATARIO 1', 'DESTINATARIO 2', 'DESTINATARIO 3', 'OBSERVACIONES'];
 
     /*Define your column keys because this is what you use to insert your data according to your columns, they're column A, B, C, D respectively being idClient, Name, Tel, and Adresse.
     So, it's pretty straight forward */
     worksheet.columns = [
-      { key: 'caja', width: 10 },
-      { key: 'pesocaja', width: 10 },
-      { key: 'cantidad', width: 10 },
-      { key: 'pesoUnitario', width: 10 },
-      { key: 'peso', width: 10 },
-      { key: 'descripcion', width: 20 },
-      { key: 'categoria', width: 20 },
-      { key: 'destinatario1', width: 30 },
-      { key: 'destinatario2', width: 30 },
-      { key: 'destinatario3', width: 30 },
-      { key: 'observaciones', width: 40 },
+      { key: 'lote', width: 10, style: { font: { name: 'Arial Black', color: { argb: '808080' } } } },
+      { key: 'pesolote', width: 10, style: { font: { name: 'Arial Black', color: { argb: '808080' } } } },
+      { key: 'cantidad', width: 10, style: { font: { name: 'Arial Black', color: { argb: '808080' } } } },
+      { key: 'pesoUnitario', width: 10, style: { font: { name: 'Arial Black', color: { argb: '808080' } } } },
+      { key: 'peso', width: 10, style: { font: { name: 'Arial Black', color: { argb: '808080' } } } },
+      { key: 'descripcion', width: 20, style: { font: { name: 'Arial Black', color: { argb: '808080' } } } },
+      { key: 'categoria', width: 20, style: { font: { name: 'Arial Black', color: { argb: '808080' } } } },
+      { key: 'destinatario1', width: 30, style: { font: { name: 'Arial Black', color: { argb: '808080' } } } },
+      { key: 'destinatario2', width: 30, style: { font: { name: 'Arial Black', color: { argb: '808080' } } } },
+      { key: 'destinatario3', width: 30, style: { font: { name: 'Arial Black', color: { argb: '808080' } } } },
+      { key: 'observaciones', width: 40, style: { font: { name: 'Arial Black', color: { argb: '808080' } } } },
     ];
 
-    for (let index = 1; index <= this.numCajas; index++) {
-      const datosHoja = arrObj.filter(caja => caja.cajaId === index);
+    for (let index = 1; index <= this.numLotes; index++) {
+      const datosHoja = arrObj.filter(lote => lote.loteId === index);
 
       for (let index = 0; index < datosHoja.length; index++) {
         const element = datosHoja[index];
         if (index == 0) {
-          worksheet.addRow({ caja: element.cajaId, pesocaja: this.pesoCajaIndividual(element.cajaId), cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria, destinatario1: configSpreadSheet.destinatario1, destinatario2: configSpreadSheet.destinatario2, destinatario3: destinatario3, observaciones: element.observaciones });
+          worksheet.addRow({ lote: element.loteId, pesolote: this.pesoLoteIndividual(element.loteId), cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria, destinatario1: configSpreadSheet.destinatario1, destinatario2: configSpreadSheet.destinatario2, destinatario3: destinatario3, observaciones: element.observaciones });
         }
         else {
           worksheet.addRow({ cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria, observaciones: element.observaciones });
@@ -163,12 +163,12 @@ export class DataService {
       });
   }
 
-  pesoCajaIndividual(cajaId: number): number {
+  pesoLoteIndividual(loteId: number): number {
     let peso = 0;
-    const arrObj = this.cajasJsonStrToObjArray();
-    if (CajasStorage.getItem() != null) {
+    const arrObj = this.lotesJsonStrToObjArray();
+    if (LotesStorage.getItem() != null) {
       arrObj.forEach(element => {
-        if (element.cajaId == cajaId) {
+        if (element.loteId == loteId) {
           peso += element.pesoUnitario * element.cantidad;
         }
       });
@@ -177,10 +177,10 @@ export class DataService {
   }
 
 
-  pesoCajas(): number {
+  pesoLotes(): number {
     let peso = 0;
-    const arrObj = this.cajasJsonStrToObjArray();
-    if (CajasStorage.getItem() != null) {
+    const arrObj = this.lotesJsonStrToObjArray();
+    if (LotesStorage.getItem() != null) {
       arrObj.forEach(element => {
         peso += element.pesoUnitario * element.cantidad;
       });
@@ -190,8 +190,8 @@ export class DataService {
 
   addIssue(issue: Issue): void {
     let maxId = 0;
-    const arrObj = this.cajasJsonStrToObjArray();
-    if (CajasStorage.getItem() != null) {
+    const arrObj = this.lotesJsonStrToObjArray();
+    if (LotesStorage.getItem() != null) {
       maxId = Math.max(...arrObj.map(o => o.id));
     }
 
@@ -201,7 +201,7 @@ export class DataService {
   }
 
   updateIssue(issue: Issue): void {
-    let arrObj = this.cajasJsonStrToObjArray();
+    let arrObj = this.lotesJsonStrToObjArray();
 
     for (let index = 0; index < arrObj.length; index++) {
       const element = arrObj[index];
@@ -215,34 +215,34 @@ export class DataService {
 
   deleteIssue(id: number): void {
     console.log(id);
-    let arrObj = this.cajasJsonStrToObjArray();
+    let arrObj = this.lotesJsonStrToObjArray();
     const filtObj = arrObj.filter(obj => obj.id !== id);
     this.persistArray(filtObj);
   }
 
   deleteAll() {
-    CajasStorage.removeItem();
+    LotesStorage.removeItem();
   }
 
   persistArray(arrObj) {
     const strObj = JSON.stringify(arrObj);
-    CajasStorage.setItem(strObj);
+    LotesStorage.setItem(strObj);
   }
 
 }
 
-var CajasStorage = {
+var LotesStorage = {
 
   getItem: function () {
-    return localStorage.getItem("CajasValues");
+    return localStorage.getItem("LotesValues");
   },
 
   setItem: function (value) {
-    localStorage.setItem("CajasValues", value);
+    localStorage.setItem("LotesValues", value);
   },
 
   removeItem: function () {
-    return localStorage.removeItem("CajasValues");
+    return localStorage.removeItem("LotesValues");
   }
 
 }

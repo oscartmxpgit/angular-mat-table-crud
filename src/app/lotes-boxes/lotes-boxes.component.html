@@ -1,11 +1,11 @@
 <div class="container">
   <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
     <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
-      <app-table-content [indiceCajaSel]="index"></app-table-content>
+      <app-table-content [indiceLoteSel]="index"></app-table-content>
     </mat-tab>
     <mat-tab disabled>
       <ng-template mat-tab-label>
-        <button mat-flat-button style="border:none; padding:0;" title="Añadir nueva caja" (click)="addTab()">+</button>
+        <button mat-flat-button style="border:none; padding:0;" title="Añadir nuevo lote" (click)="addTab()">+</button>
       </ng-template>
     </mat-tab>
   </mat-tab-group>

@@ -46,7 +46,7 @@ export class DatosUsuarioComponent implements OnInit {
   }
 
   public confirmExport(): void {
-    const pesoCajaCalculado= this.dataService.pesoCajas();
+    const pesoCajaCalculado= this.dataService.pesoLotes();
     this.pesodiff= Math.abs(this.pesoLotesUsr - pesoCajaCalculado);
     if ( this.pesodiff <= 1 )
     {
