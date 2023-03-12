@@ -1,4 +1,25 @@
 <div class="container">
+  <mat-accordion>
+    <!-- #enddocregion basic-panel -->
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Panel de ayuda
+          </mat-panel-title>
+          <mat-panel-description>
+            <div *ngIf="panelOpenState">
+              Tocar para cerrar
+            </div>
+            <div *ngIf="!panelOpenState">
+              Tocar para abrir
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-help-texts></app-help-texts>
+      </mat-expansion-panel>
+    </mat-accordion>
+
   <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
     <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
       <app-table-content [indiceLoteSel]="index"></app-table-content>

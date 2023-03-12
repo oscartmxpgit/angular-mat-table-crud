@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { comboData } from 'app/models/datosComboBoxes';
 import { DataService } from 'app/services/data.service';
 
@@ -11,7 +11,7 @@ import { DataService } from 'app/services/data.service';
 })
 export class DatosUsuarioComponent implements OnInit {
 
-  constructor(public dataService: DataService, public dialogRef: MatDialogRef<DatosUsuarioComponent>,) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService, public dialogRef: MatDialogRef<DatosUsuarioComponent>,) { }
 
   pesoLotesUsr: 0;
   nombreUsuario: "";
@@ -46,11 +46,11 @@ export class DatosUsuarioComponent implements OnInit {
   }
 
   public confirmExport(): void {
-    const pesoCajaCalculado= this.dataService.pesoLotes();
+    const pesoCajaCalculado= this.dataService.pesoCajas(this.data.currentLote);
     this.pesodiff= Math.abs(this.pesoLotesUsr - pesoCajaCalculado);
     if ( this.pesodiff <= 1 )
     {
-      this.dataService.exportToExcel(this.nombreUsuario, this.pesoLotesUsr, this.destinatario3, this.observaciones);
+      this.dataService.exportToExcel(this.data.currentLote, this.nombreUsuario, this.pesoLotesUsr, this.destinatario3, this.observaciones);
       this.dialogRef.close();
     }
   }

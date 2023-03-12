@@ -31,6 +31,9 @@ import { HomeComponent } from './home/home.component';
 import { environment } from 'environments/environment';
 import { OnlyNumberDirective } from './directives/only-number.directive';
 import { DatosUsuarioComponent } from './dialogs/datos-usuario/datos-usuario.component';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { HelpTextsComponent } from './help-texts/help-texts.component';
 
 @NgModule({
     declarations: [
@@ -44,6 +47,7 @@ import { DatosUsuarioComponent } from './dialogs/datos-usuario/datos-usuario.com
         HomeComponent,
         OnlyNumberDirective,
         DatosUsuarioComponent,
+        HelpTextsComponent,
     ],
     imports: [
         BrowserModule,
@@ -54,6 +58,7 @@ import { DatosUsuarioComponent } from './dialogs/datos-usuario/datos-usuario.com
         MatDialogModule,
         FormsModule,
         MatButtonModule,
+        MatExpansionModule,
         MatInputModule,
         MatSelectModule,
         MatIconModule,

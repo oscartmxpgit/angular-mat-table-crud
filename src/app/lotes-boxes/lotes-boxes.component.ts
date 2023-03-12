@@ -18,7 +18,7 @@ import { ResetDialogComponent } from '../dialogs/reset-dialog/reset-dialog.compo
 export class LotesBoxesComponent implements OnInit {
   constructor(private router: Router, public dialog: MatDialog, public dataService: DataService, public httpClient: HttpClient,) { }
   obs: any = [];
-
+  panelOpenState = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

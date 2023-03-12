@@ -20,9 +20,9 @@ import { DatosUsuarioComponent } from 'app/dialogs/datos-usuario/datos-usuario.c
   styleUrls: ['./table-content.component.css']
 })
 export class TableContentComponent implements OnInit {
-  displayedColumns = ['loteId', 'cantidad', 'pesoUnitario', 'peso', 'descripcion', 'categoria', 'actions'];
+  displayedColumns = ['cajaId', 'cantidad', 'pesoUnitario', 'peso', 'descripcion', 'categoria', 'actions'];
   lotesDatabase: DataService | null;
-  dataSource: LotesDataSource | null;
+  dataSource: CajasDataSource | null;
   index: number;
   loteId: number;
 
@@ -53,7 +53,7 @@ export class TableContentComponent implements OnInit {
 
   ExportTOExcel() {
     const dialogRef = this.dialog.open(DatosUsuarioComponent, {
-      data: {}, width: '85%', panelClass: 'custom-dialog-container'
+      data: {currentLote: this.indiceLoteSel}, width: '85%', panelClass: 'custom-dialog-container'
     });
   }
 
@@ -86,13 +86,13 @@ export class TableContentComponent implements OnInit {
     });
   }
 
-  startEdit(i: number, id: number, loteId: number, descripcion: string, categoria: string, pesoUnitario: number, cantidad: number, observaciones: string) {
+  startEdit(i: number, id: number, loteId: number, cajaId: number, descripcion: string, categoria: string, pesoUnitario: number, cantidad: number, observaciones: string) {
     this.loteId = loteId;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     const dialogRef = this.dialog.open(EditDialogComponent, {
       data: {
-        id: id, loteId: loteId, descripcion: descripcion, categoria: categoria, pesoUnitario: pesoUnitario, cantidad: cantidad, observaciones: observaciones,
+        id: id, loteId: loteId, cajaId: cajaId, descripcion: descripcion, categoria: categoria, pesoUnitario: pesoUnitario, cantidad: cantidad, observaciones: observaciones,
       }, width: '85%', panelClass: 'custom-dialog-container'
     });
 
@@ -109,11 +109,11 @@ export class TableContentComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, loteId: number, descripcion: string, cantidad: number, pesoUnitario: number, categoria: string) {
+  deleteItem(i: number, id: number, loteId: number, cajaId: number, descripcion: string, cantidad: number, pesoUnitario: number, categoria: string) {
     this.index = i;
     this.loteId = loteId;
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { id: id, loteId: loteId, descripcion: descripcion, cantidad: cantidad, pesoUnitario: pesoUnitario, categoria: categoria }
+      data: { id: id, loteId: loteId, cajaId: cajaId, descripcion: descripcion, cantidad: cantidad, pesoUnitario: pesoUnitario, categoria: categoria }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -136,7 +136,7 @@ export class TableContentComponent implements OnInit {
 
   public loadData() {
     this.lotesDatabase = new DataService(this.httpClient);
-    this.dataSource = new LotesDataSource(this.lotesDatabase, this.paginator, this.sort, this.indiceLoteSel);
+    this.dataSource = new CajasDataSource(this.lotesDatabase, this.paginator, this.sort, this.indiceLoteSel);
     fromEvent(this.filter.nativeElement, 'keyup')
       // .debounceTime(150)
       // .distinctUntilChanged()
@@ -149,7 +149,7 @@ export class TableContentComponent implements OnInit {
   }
 }
 
-export class LotesDataSource extends DataSource<Issue> {
+export class CajasDataSource extends DataSource<Issue> {
   _filterChange = new BehaviorSubject('');
 
   get filter(): string {
