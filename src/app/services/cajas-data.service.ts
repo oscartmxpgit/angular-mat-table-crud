@@ -53,7 +53,10 @@ export class CajasDataService {
 
   deleteItem(loteId: number, cajaId: number) {
     let arrObj = this.cajasJsonStrToObjArray();
-    const filtObj = arrObj.filter(obj => {obj.loteId !== loteId && obj.cajaId !== cajaId});
+    //const filtObj = arrObj.filter(obj => {obj.loteId !== loteId && obj.cajaId !== cajaId});
+    let filtObj = arrObj.filter(function (currentElement) {
+      return currentElement.loteId !== loteId && currentElement.cajaId !== cajaId;
+    });
     this.persistArray(filtObj);
   }
 
