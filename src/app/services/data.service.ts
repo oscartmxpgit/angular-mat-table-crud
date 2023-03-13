@@ -120,7 +120,7 @@ export class DataService {
     worksheet.mergeCells('D1', 'F1');
     worksheet.mergeCells('D2', 'F2');
     worksheet.mergeCells('D3', 'F3');
-    worksheet.mergeCells('D4', 'F4');
+    //worksheet.mergeCells('D4', 'F4');
     worksheet.mergeCells('D5', 'F5');
     worksheet.mergeCells('D6', 'F6');
 
