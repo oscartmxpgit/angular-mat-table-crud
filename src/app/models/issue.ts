@@ -13,3 +13,10 @@ export class Issue {
   destinatario3?: string;
   observaciones?: string;
 }
+
+export class Caja {
+  loteId: number;
+  cajaId: number;
+  peso: number;
+  observaciones: string;
+}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Issue } from '../models/issue';
+import { Caja, Issue } from '../models/issue';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import * as Excel from "exceljs/dist/exceljs.min.js";
 import * as FileSaver from 'file-saver';
@@ -257,6 +257,12 @@ export class DataService {
 
   deleteAll() {
     CajasStorage.removeItem();
+  }
+
+  deleteLote(indiceLoteSel) {
+    let arrObj = this.cajasJsonStrToObjArray();
+    const filtObj = arrObj.filter(obj => obj.loteId !== indiceLoteSel);
+    this.persistArray(filtObj);
   }
 
   persistArray(arrObj) {

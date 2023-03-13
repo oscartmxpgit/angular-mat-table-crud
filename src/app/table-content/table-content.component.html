@@ -5,6 +5,10 @@
       <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
     </button>
     &nbsp;
+    <button mat-raised-button color="secondary" title="Establecer los pesos de las cajas" (click)="PesosCajas()">
+      <mat-icon aria-label="Example icon-button with a heart icon">how_to_vote</mat-icon>
+    </button>
+    &nbsp;
     <button mat-raised-button color="secondary" title="Exportar lista a Excel" (click)="ExportTOExcel()">
       <mat-icon>arrow_drop_down_circle</mat-icon>
     </button>
@@ -16,8 +20,12 @@
 
   <div class="no-mobile-buttons">
     <br />
-    <button mat-raised-button color="secondary" title="Añadir nuevo ítem" (click)="addNew()">Nuevo item
+    <button mat-raised-button color="secondary" title="Añadir nuevo ítem" (click)="addNew()">Nuevo ítem
       <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+    </button>
+    &nbsp;
+    <button mat-raised-button color="secondary" title="Establecer los pesos de las cajas" (click)="PesosCajas()">Pesos cajas
+      <mat-icon aria-label="Example icon-button with a heart icon">how_to_vote</mat-icon>
     </button>
     &nbsp;
     <button mat-raised-button color="secondary" title="Exportar lista a Excel" (click)="ExportTOExcel()">Exportar a
@@ -25,7 +33,7 @@
       <mat-icon>arrow_drop_down_circle</mat-icon>
     </button>
     &nbsp;
-    <button mat-raised-button color="secondary" title="Eliminar todos los ítems" (click)="DeleteAll()">Eliminar todo
+    <button mat-raised-button color="secondary" title="Eliminar todos los ítems" (click)="DeleteAll()">Eliminar todo el lote
       <mat-icon>delete_forever</mat-icon>
     </button>
   </div>

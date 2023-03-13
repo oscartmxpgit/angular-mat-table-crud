@@ -34,6 +34,7 @@ import { DatosUsuarioComponent } from './dialogs/datos-usuario/datos-usuario.com
 import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { HelpTextsComponent } from './help-texts/help-texts.component';
+import { PesosCajasComponent } from './dialogs/pesos-cajas/pesos-cajas.component';
 
 @NgModule({
     declarations: [
@@ -48,6 +49,7 @@ import { HelpTextsComponent } from './help-texts/help-texts.component';
         OnlyNumberDirective,
         DatosUsuarioComponent,
         HelpTextsComponent,
+        PesosCajasComponent,
     ],
     imports: [
         BrowserModule,

@@ -13,6 +13,7 @@ import { Issue } from '../models/issue';
 import { DeleteDialogComponent } from '../dialogs/delete/delete.dialog.component';
 import { EditDialogComponent } from '../dialogs/edit/edit.dialog.component';
 import { DatosUsuarioComponent } from 'app/dialogs/datos-usuario/datos-usuario.component';
+import { PesosCajasComponent } from 'app/dialogs/pesos-cajas/pesos-cajas.component';
 
 @Component({
   selector: 'app-table-content',
@@ -57,9 +58,15 @@ export class TableContentComponent implements OnInit {
     });
   }
 
+  PesosCajas() {
+    const dialogRef = this.dialog.open(PesosCajasComponent, {
+      data: {currentLote: this.indiceLoteSel}, width: '95%', panelClass: 'custom-dialog-container'
+    });
+  }
+
   DeleteAll() {
-    if(confirm("¿Seguro que desea eliminar todo?")) {
-      this.dataService.deleteAll();
+    if(confirm("¿Seguro que desea eliminar todo el lote?")) {
+      this.dataService.deleteLote(this.indiceLoteSel);
       this.loadData();
     }
   }
@@ -72,7 +79,7 @@ export class TableContentComponent implements OnInit {
 
   addNew() {
     const dialogRef = this.dialog.open(AddDialogComponent, {
-      data: { loteId: this.indiceLoteSel, issue: Issue }, width: '85%', panelClass: 'custom-dialog-container'
+      data: { loteId: this.indiceLoteSel, issue: Issue }, width: '95%', panelClass: 'custom-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -93,7 +100,7 @@ export class TableContentComponent implements OnInit {
     const dialogRef = this.dialog.open(EditDialogComponent, {
       data: {
         id: id, loteId: loteId, cajaId: cajaId, descripcion: descripcion, categoria: categoria, pesoUnitario: pesoUnitario, cantidad: cantidad, observaciones: observaciones,
-      }, width: '85%', panelClass: 'custom-dialog-container'
+      }, width: '95%', panelClass: 'custom-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe(result => {
