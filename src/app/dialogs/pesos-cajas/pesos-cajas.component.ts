@@ -60,7 +60,15 @@ formControl = new FormControl('', [
     // empty stuff
   }
 
+  deleteItem(loteId: number, cajaId: number){
+    this.cajasDataService.persistArray(this.cajasDatabase.dataChange.value);
+    this.cajasDataService.deleteItem(loteId, cajaId);
+    this.loadData();
+    this.refreshTable();
+  }
+
   AddNewRow() {
+    this.cajasDataService.persistArray(this.cajasDatabase.dataChange.value);
     const newCaja= new Caja();
     newCaja.cajaId = 1;
     newCaja.loteId = 1;
@@ -78,7 +86,7 @@ formControl = new FormControl('', [
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
-  displayedColumns = ['loteId', 'cajaId', 'peso', 'observaciones'];
+  displayedColumns = ['loteId', 'cajaId', 'peso', 'observaciones', 'actions'];
   dataSource: CajasDatosSource | null;
 
   applyFilter(filterValue: string) {
@@ -89,9 +97,10 @@ formControl = new FormControl('', [
 
   deleteAll(){
     this.cajasDataService.deleteAll();
+    this.dialogRef.close();
   }
 
-  guardar(){
+  cerrarGuardar(){
     this.cajasDataService.persistArray(this.cajasDatabase.dataChange.value);
     this.dialogRef.close();
   }

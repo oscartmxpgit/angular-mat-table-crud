@@ -10,9 +10,6 @@ export class CajasDataService {
 
   constructor() { }
 
-  establecerCajas(caja: Caja): void {
-
-  }
 
   get data(): Caja[] {
     return this.dataChange.value;
@@ -52,6 +49,12 @@ export class CajasDataService {
 
   deleteAll() {
     CajasDataStorage.removeItem();
+  }
+
+  deleteItem(loteId: number, cajaId: number) {
+    let arrObj = this.cajasJsonStrToObjArray();
+    const filtObj = arrObj.filter(obj => {obj.loteId !== loteId && obj.cajaId !== cajaId});
+    this.persistArray(filtObj);
   }
 
   persistArray(arrObj) {

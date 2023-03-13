@@ -134,6 +134,7 @@ export class DataService {
     worksheet.getCell('D2').value = now.toISOString();
     worksheet.getCell('D3').value = nombreUsuario;
     worksheet.getCell('D4').value = pesoCajasUsr;
+    worksheet.getCell('D4').style = { alignment: screenLeft };
     worksheet.getCell('D5').value = observacionesExcel;
 
 
@@ -249,7 +250,6 @@ export class DataService {
   }
 
   deleteIssue(id: number): void {
-    console.log(id);
     let arrObj = this.cajasJsonStrToObjArray();
     const filtObj = arrObj.filter(obj => obj.id !== id);
     this.persistArray(filtObj);

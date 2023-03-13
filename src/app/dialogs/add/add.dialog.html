@@ -12,7 +12,7 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input onlyNumber matInput class="form-control" placeholder="Caja" [(ngModel)]="data.cajaId" name="cajaId" required>
+        <input matInput class="form-control" placeholder="Caja" [(ngModel)]="data.cajaId" name="cajaId" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
