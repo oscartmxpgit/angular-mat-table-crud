@@ -60,12 +60,22 @@ formControl = new FormControl('', [
     // empty stuff
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  AddNewRow() {
+    const newCaja= new Caja();
+    newCaja.cajaId = 1;
+    newCaja.loteId = 1;
+    newCaja.peso = 0;
+    //this.cajasDatabase.dataChange.value.push(newCaja);
+    this.cajasDataService.addCaja(newCaja);
+    this.loadData();
+    this.refreshTable();
   }
 
-  public confirmPesos(): void {
-    this.cajasDataService.establecerCajas(this.data);
+  private refreshTable() {
+    // Refreshing table using paginator
+    // Thanks yeager-j for tips
+    // https://github.com/marinantonio/angular-mat-table-crud/issues/12
+    this.paginator._changePageSize(this.paginator.pageSize);
   }
 
   displayedColumns = ['loteId', 'cajaId', 'peso', 'observaciones'];
@@ -75,6 +85,15 @@ formControl = new FormControl('', [
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+
+  deleteAll(){
+    this.cajasDataService.deleteAll();
+  }
+
+  guardar(){
+    this.cajasDataService.persistArray(this.cajasDatabase.dataChange.value);
+    this.dialogRef.close();
   }
 }
 
@@ -111,12 +130,12 @@ export class CajasDatosSource extends DataSource<Caja> {
       this._paginator.page,
     ];
 
-    this._lotesDatabase.cajasJsonStrToObjArray();
+    this._lotesDatabase.getCajasData();
 
     return merge(...displayDataChanges).pipe(map(() => {
       // Filter data
-      this.filteredData = this._lotesDatabase.data.slice().filter((issue: Caja) => {
-        const searchStr = (issue.loteId + issue.cajaId + issue.peso + issue.observaciones).toLowerCase();
+      this.filteredData = this._lotesDatabase.data.slice().filter((caja: Caja) => {
+        const searchStr = (caja.loteId + caja.cajaId + caja.peso + caja.observaciones).toString().toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 

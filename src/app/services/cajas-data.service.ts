@@ -28,6 +28,22 @@ export class CajasDataService {
     return res;
   }
 
+  addCaja(caja: Caja): void {
+    const arrObj = this.cajasJsonStrToObjArray();
+
+    arrObj.push(caja);
+    this.persistArray(arrObj);
+  }
+
+  pesosCaja(currentLote: number): number {
+    const arrObj = this.cajasJsonStrToObjArray().filter(caja=>caja.loteId==currentLote);
+    let pesoTotal=0;
+    arrObj.forEach(element => {
+      pesoTotal+=+element.peso;
+    });
+    return pesoTotal;
+  }
+
   getCajasData(): void {
     const arrObj = this.cajasJsonStrToObjArray();
     this.dataChange.next(arrObj);

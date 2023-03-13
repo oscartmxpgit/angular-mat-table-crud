@@ -21,14 +21,6 @@
 
         <div class="form">
             <mat-form-field color="accent">
-                <input onlyNumber matInput #input class="form-control" placeholder="Peso total de las cajas (Kgs.)" [(ngModel)]="pesoLotesUsr"
-                    name="pesocaja" required>
-                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>
-        </div>
-
-        <div class="form">
-            <mat-form-field color="accent">
                 <input matInput #input class="form-control" placeholder="Observaciones del lote" [(ngModel)]="observaciones"
                     name="observaciones">
                 <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
@@ -36,11 +28,11 @@
         </div>
 
         <div *ngIf="this.pesodiff>0" style="color: red;">
-            Peso introducido: {{pesoLotesUsr}} Kgs. Peso calculado: {{pesoCajaCalculado}} Kgs. Diferencia (abs): {{pesodiff | number : '1.2-2'}} Kgs.
+            Peso introducido: {{pesoTotalCajasUsr}} Kgs. Peso calculado: {{pesoCajaCalculado}} Kgs. Diferencia (abs): {{pesodiff | number : '1.2-2'}} Kgs.
         </div>
 
         <div *ngIf="this.pesodiff>2" style="color: red;">
-            El peso diferencia es demasiado grande. Revise que los datos estén introducidos en Kgs
+            El peso diferencia es demasiado grande. Revise que los datos de pesos de las cajas estén introducidos en Kgs
         </div>
 
         <div mat-dialog-actions>
