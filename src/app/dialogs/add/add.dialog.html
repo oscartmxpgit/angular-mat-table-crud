@@ -1,7 +1,7 @@
 <div class="container">
 
   <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
-    <h3 mat-dialog-title>Nuevo elemento</h3>
+    <h3 mat-dialog-title>Nuevo ítem</h3>
 
     <div class="form">
       <mat-form-field color="accent" [class.cdk-visually-hidden]="true">
@@ -50,7 +50,7 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Observaciones" [(ngModel)]="data.observaciones"
+        <input matInput #input class="form-control" placeholder="Observaciones del ítem" [(ngModel)]="data.observaciones"
           name="observaciones">
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>

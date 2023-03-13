@@ -125,10 +125,10 @@ export class DataService {
     worksheet.mergeCells('D6', 'F6');
 
     worksheet.getCell('A1').value = 'Operación:';
-    worksheet.getCell('A2').value = 'Fecha de operación:';
+    worksheet.getCell('A2').value = 'Fecha de generación de Excel:';
     worksheet.getCell('A3').value = 'Remitente:';
     worksheet.getCell('A4').value = 'Peso total (usuario):';
-    worksheet.getCell('A5').value = 'Observaciones:';
+    worksheet.getCell('A5').value = 'Observaciones lote:';
 
     worksheet.getCell('D1').value = configSpreadSheet.operacionNombreCompleto;
     worksheet.getCell('D2').value = now.toISOString();
