@@ -1,16 +1,6 @@
 <div class="container">
     <h3 mat-dialog-title>Pesos cajas</h3>
     <div>
-        <div class="example-header">
-            <mat-form-field>
-                <input matInput #filter (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
-                <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value"
-                    (click)="filter.value=''; applyFilter('');">
-                    <mat-icon>close</mat-icon>
-                </button>
-            </mat-form-field>
-        </div>
-
         <button mat-raised-button color="secondary" title="Nuevo ítem" (click)="AddNewRow()">
             <mat-icon>add_box</mat-icon>
         </button>
@@ -28,7 +18,7 @@
                 <mat-header-cell *matHeaderCellDef> Lote </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                     <mat-form-field floatLabel="never">
-                        <input onlyNumber matInput placeholder="Lote" [value]="element.loteId"
+                        <input required onlyNumber matInput placeholder="Lote" [value]="element.loteId"
                             [(ngModel)]="element.loteId">
                     </mat-form-field>
                 </mat-cell>
@@ -37,7 +27,7 @@
                 <mat-header-cell *matHeaderCellDef> Caja </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                     <mat-form-field floatLabel="never">
-                        <input onlyNumber matInput placeholder="Caja" [value]="element.cajaId"
+                        <input required onlyNumber matInput placeholder="Caja" [value]="element.cajaId"
                             [(ngModel)]="element.cajaId">
                     </mat-form-field>
                 </mat-cell>
@@ -46,7 +36,7 @@
                 <mat-header-cell *matHeaderCellDef> Peso </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                     <mat-form-field floatLabel="never">
-                        <input onlyNumber matInput placeholder="Peso" [value]="element.peso" [(ngModel)]="element.peso">
+                        <input required onlyNumber matInput placeholder="Peso" [value]="element.peso" [(ngModel)]="element.peso">
                     </mat-form-field>
                 </mat-cell>
             </ng-container>

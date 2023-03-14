@@ -71,7 +71,7 @@ formControl = new FormControl('', [
     this.cajasDataService.persistArray(this.cajasDatabase.dataChange.value);
     const newCaja= new Caja();
     newCaja.cajaId = 0;
-    newCaja.loteId = 0;
+    newCaja.loteId = this.data.currentLote;
     newCaja.peso = 0;
     //this.cajasDatabase.dataChange.value.push(newCaja);
     this.cajasDataService.addCaja(newCaja);

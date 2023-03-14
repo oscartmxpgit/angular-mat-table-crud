@@ -120,7 +120,6 @@ export class DataService {
     worksheet.mergeCells('D1', 'F1');
     worksheet.mergeCells('D2', 'F2');
     worksheet.mergeCells('D3', 'F3');
-    //worksheet.mergeCells('D4', 'F4');
     worksheet.mergeCells('D5', 'F5');
     worksheet.mergeCells('D6', 'F6');
 
@@ -134,7 +133,6 @@ export class DataService {
     worksheet.getCell('D2').value = now.toISOString();
     worksheet.getCell('D3').value = nombreUsuario;
     worksheet.getCell('D4').value = pesoCajasUsr;
-    worksheet.getCell('D4').style = { alignment: screenLeft };
     worksheet.getCell('D5').value = observacionesExcel;
 
 
