@@ -121,13 +121,13 @@ export class DataService {
     worksheet.mergeCells('D2', 'F2');
     worksheet.mergeCells('D3', 'F3');
     worksheet.mergeCells('D5', 'F5');
-    worksheet.mergeCells('D6', 'F6');
 
     worksheet.getCell('A1').value = 'Operación:';
     worksheet.getCell('A2').value = 'Fecha de generación de Excel:';
     worksheet.getCell('A3').value = 'Remitente:';
     worksheet.getCell('A4').value = 'Peso total (usuario):';
     worksheet.getCell('A5').value = 'Observaciones lote:';
+    worksheet.getCell('A6').value = 'Pallet nº:';
 
     worksheet.getCell('D1').value = configSpreadSheet.operacionNombreCompleto;
     worksheet.getCell('D2').value = now.toISOString();
@@ -135,6 +135,8 @@ export class DataService {
     worksheet.getCell('D4').value = pesoCajasUsr;
     worksheet.getCell('D5').value = observacionesExcel;
 
+    worksheet.getCell('D4').alignment = { vertical: 'center', horizontal: 'left' };
+    worksheet.getCell('D6').alignment = { vertical: 'center', horizontal: 'left' };
 
     /*Column headers*/
     worksheet.getRow(8).values = ['CAJA Nº', 'PESO CAJA (Kgs)', 'CANTIDAD', 'PESO UNITARIO (Kgs)', 'PESO (Kgs)', 'DESCRIPCIÓN', 'CATEGORÍA', 'DESTINATARIO 1', 'DESTINATARIO 2', 'DESTINATARIO 3', 'OBSERVACIONES'];
