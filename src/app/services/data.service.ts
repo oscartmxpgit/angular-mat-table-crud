@@ -5,6 +5,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import * as Excel from "exceljs/dist/exceljs.min.js";
 import * as FileSaver from 'file-saver';
 import { configSpreadSheet } from 'assets/config';
+import { LotesDataService } from './lotes-data.service';
 
 @Injectable()
 export class DataService {
@@ -18,7 +19,7 @@ export class DataService {
   numLotes: number;
   numCajas: number;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, public lotesDataService: LotesDataService) { }
 
   getDatosComboBoxes(): any {
     this.httpClient.get<any>(this.API_URdatosComboBoxes).subscribe(data => {
@@ -38,7 +39,7 @@ export class DataService {
     return this.dialogData;
   }
 
-  getNumLotes(): any {
+  /* getNumLotes(): any {
     if (CajasStorage.getItem() === null) {
       this.numLotes = 1;
     }
@@ -51,7 +52,7 @@ export class DataService {
         this.numLotes = 1;
       }
     }
-  }
+  } */
 
   getNumCajas(): any {
     if (CajasStorage.getItem() === null) {
@@ -131,7 +132,7 @@ export class DataService {
 
     worksheet.getCell('D1').value = configSpreadSheet.operacionNombreCompleto;
     worksheet.getCell('D2').value = now.toISOString();
-    worksheet.getCell('D3').value = nombreUsuario;
+    worksheet.getCell('D3').value = this.lotesDataService.getRemitente(currentLote);
     worksheet.getCell('D4').value = pesoLote;
     worksheet.getCell('D5').value = observacionesExcel;
 
@@ -161,7 +162,7 @@ export class DataService {
       worksheet.getCell(key).style = { font: { name: 'Arial Black', color: { argb: '808080' } } };
     });
 
-    this.getNumLotes();
+    //this.getNumLotes();
     this.getNumCajas();
 
     const datosFiltradosLote = arrObj.filter(lote => lote.loteId === currentLote);

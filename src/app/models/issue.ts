@@ -20,3 +20,9 @@ export class Caja {
   peso: number;
   observaciones: string;
 }
+
+export class Lote {
+  loteId: number;
+  remitente: string;
+  observaciones: string;
+}

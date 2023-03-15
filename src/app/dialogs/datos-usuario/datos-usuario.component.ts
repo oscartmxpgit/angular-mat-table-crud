@@ -75,7 +75,7 @@ export class DatosUsuarioComponent implements OnInit {
       pesodiff = Math.abs(caja.peso - pesoCajaCalculado);
       if (pesodiff > 2) {
         pesoAcorde = false;
-        this.cajasConProb += "Caja" + caja.cajaId + ", diferencencia de peso: " + pesodiff + "Kgs. ";
+        this.cajasConProb += "Caja " + caja.cajaId + ", diferencencia de peso: " + pesodiff + "Kgs. ";
       }
     });
 

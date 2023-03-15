@@ -35,6 +35,7 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { HelpTextsComponent } from './help-texts/help-texts.component';
 import { PesosCajasComponent } from './dialogs/pesos-cajas/pesos-cajas.component';
+import { LoteInfoComponent } from './dialogs/lote-info/lote-info.component';
 
 @NgModule({
     declarations: [
@@ -50,6 +51,7 @@ import { PesosCajasComponent } from './dialogs/pesos-cajas/pesos-cajas.component
         DatosUsuarioComponent,
         HelpTextsComponent,
         PesosCajasComponent,
+        LoteInfoComponent,
     ],
     imports: [
         BrowserModule,

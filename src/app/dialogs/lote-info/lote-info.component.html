@@ -1,0 +1,29 @@
+<p>{{data.currentLote}}</p>
+
+<div class="container">
+
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+      <h3 mat-dialog-title>Nuevo Lote</h3>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <input readonly="" matInput class="form-control" readonly="true" placeholder="Lote" [(ngModel)]="data.loteId" name="loteId" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Descripción" name="descripcion" [(ngModel)]="data.descripcion"
+            required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div mat-dialog-actions>
+        <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+          (click)="stopEdit()"><mat-icon>save</mat-icon>Guardar</button>
+        <button mat-button style="margin-bottom: 20px;" (click)="onNoClick()" tabindex="-1"><mat-icon>cancel</mat-icon>Cancelar</button>
+      </div>
+    </form>
+  </div>

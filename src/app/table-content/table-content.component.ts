@@ -14,6 +14,7 @@ import { DeleteDialogComponent } from '../dialogs/delete/delete.dialog.component
 import { EditDialogComponent } from '../dialogs/edit/edit.dialog.component';
 import { DatosUsuarioComponent } from 'app/dialogs/datos-usuario/datos-usuario.component';
 import { PesosCajasComponent } from 'app/dialogs/pesos-cajas/pesos-cajas.component';
+import { LotesDataService } from 'app/services/lotes-data.service';
 
 @Component({
   selector: 'app-table-content',
@@ -41,6 +42,7 @@ export class TableContentComponent implements OnInit {
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
     private translate: TranslateService,
+    public lotesDataService: LotesDataService ,
     public dataService: DataService) {
     this.translate.setDefaultLang('es');
     const browserLang = translate.getBrowserLang();
@@ -52,20 +54,24 @@ export class TableContentComponent implements OnInit {
   @ViewChild('filter', { static: true }) filter: ElementRef;
   @ViewChild('TABLE') table: ElementRef;
 
+  getRemitenteLote(): string {
+    return this.lotesDataService.getRemitente(+this.indiceLoteSel);
+  }
+
   ExportTOExcel() {
     const dialogRef = this.dialog.open(DatosUsuarioComponent, {
-      data: {currentLote: this.indiceLoteSel}, width: '85%', panelClass: 'custom-dialog-container'
+      data: { currentLote: this.indiceLoteSel }, width: '85%', panelClass: 'custom-dialog-container'
     });
   }
 
   PesosCajas() {
     const dialogRef = this.dialog.open(PesosCajasComponent, {
-      data: {currentLote: this.indiceLoteSel}, width: '95%', panelClass: 'custom-dialog-container'
+      data: { currentLote: this.indiceLoteSel }, width: '95%', panelClass: 'custom-dialog-container'
     });
   }
 
   DeleteAll() {
-    if(confirm("¿Seguro que desea eliminar todo el lote?")) {
+    if (confirm("¿Seguro que desea eliminar todo el lote?")) {
       this.dataService.deleteLote(this.indiceLoteSel);
       this.loadData();
     }
@@ -73,8 +79,7 @@ export class TableContentComponent implements OnInit {
 
   maxLote: any;
   ngOnInit() {
-    this.dataService.getNumLotes();
-    this.maxLote = this.dataService.numLotes;
+    this.maxLote = this.lotesDataService.getNumLotes();
   }
 
   addNew() {
@@ -142,7 +147,7 @@ export class TableContentComponent implements OnInit {
   }
 
   public loadData() {
-    this.lotesDatabase = new DataService(this.httpClient);
+    this.lotesDatabase = new DataService(this.httpClient, this.lotesDataService);
     this.dataSource = new CajasDataSource(this.lotesDatabase, this.paginator, this.sort, this.indiceLoteSel);
     fromEvent(this.filter.nativeElement, 'keyup')
       // .debounceTime(150)
