@@ -1,6 +1,6 @@
 <div class="mat-elevation-z8">
   Lote: {{indiceLoteSel}}. Remitente: {{getRemitenteLote()}}
-  <br/>
+  <br />
   <div class="mobile-buttons">
     <br />
     <button mat-raised-button color="secondary" title="Añadir nuevo ítem" (click)="addNew()">
@@ -15,7 +15,7 @@
       <mat-icon>arrow_drop_down_circle</mat-icon>
     </button>
     &nbsp;
-    <button mat-raised-button color="secondary" title="Eliminar todos los ítems" (click)="DeleteAll()">
+    <button mat-raised-button color="secondary" title="Eliminar todos los ítems" (click)="deleteLote()">
       <mat-icon>delete_forever</mat-icon>
     </button>
   </div>
@@ -26,7 +26,8 @@
       <mat-icon>add</mat-icon>
     </button>
     &nbsp;
-    <button mat-raised-button color="secondary" title="Establecer los pesos de las cajas" (click)="PesosCajas()">Pesos cajas
+    <button mat-raised-button color="secondary" title="Establecer los pesos de las cajas" (click)="PesosCajas()">Pesos
+      cajas
       <mat-icon>how_to_vote</mat-icon>
     </button>
     &nbsp;
@@ -35,7 +36,7 @@
       <mat-icon>arrow_drop_down_circle</mat-icon>
     </button>
     &nbsp;
-    <button mat-raised-button color="secondary" title="Eliminar todos los ítems" (click)="DeleteAll()">Eliminar todo el lote
+    <button mat-raised-button color="secondary" title="Eliminar todos los ítems" (click)="deleteLote()">Eliminar lote
       <mat-icon>delete_forever</mat-icon>
     </button>
   </div>

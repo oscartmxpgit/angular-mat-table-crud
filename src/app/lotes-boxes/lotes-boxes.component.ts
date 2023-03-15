@@ -58,7 +58,7 @@ export class LotesBoxesComponent implements OnInit {
       if (result === 1) {
         this.maxLote += 1;
         this.tabs.push('Lote ' + (this.maxLote));
-        this.selected.setValue(this.tabs.length - 1);
+        window.location.reload();
       }
     });
   }

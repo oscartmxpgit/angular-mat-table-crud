@@ -40,7 +40,7 @@ export class LoteInfoComponent implements OnInit {
   stopEdit(): void {
     let lote = new Lote();
     lote.loteId=this.data.loteId;
-    lote.remitente = this.data.descripcion;
+    lote.remitente = this.data.remitente;
     this.lotesDataService.addLote(lote);
   }
 }

@@ -15,6 +15,7 @@ import { EditDialogComponent } from '../dialogs/edit/edit.dialog.component';
 import { DatosUsuarioComponent } from 'app/dialogs/datos-usuario/datos-usuario.component';
 import { PesosCajasComponent } from 'app/dialogs/pesos-cajas/pesos-cajas.component';
 import { LotesDataService } from 'app/services/lotes-data.service';
+import { CajasDataService } from 'app/services/cajas-data.service';
 
 @Component({
   selector: 'app-table-content',
@@ -43,6 +44,7 @@ export class TableContentComponent implements OnInit {
     public dialog: MatDialog,
     private translate: TranslateService,
     public lotesDataService: LotesDataService ,
+    public cajasDataService: CajasDataService ,
     public dataService: DataService) {
     this.translate.setDefaultLang('es');
     const browserLang = translate.getBrowserLang();
@@ -70,10 +72,12 @@ export class TableContentComponent implements OnInit {
     });
   }
 
-  DeleteAll() {
+  deleteLote() {
     if (confirm("¿Seguro que desea eliminar todo el lote?")) {
       this.dataService.deleteLote(this.indiceLoteSel);
-      this.loadData();
+      this.lotesDataService.deleteItem(this.indiceLoteSel);
+      this.cajasDataService.deleteCajasLote(+this.indiceLoteSel);
+      window.location.reload();
     }
   }
 
@@ -159,6 +163,7 @@ export class TableContentComponent implements OnInit {
         this.dataSource.filter = this.filter.nativeElement.value;
       });
   }
+
 }
 
 export class CajasDataSource extends DataSource<Issue> {

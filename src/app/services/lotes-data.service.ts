@@ -37,7 +37,7 @@ export class LotesDataService {
   getNumLotes(): number {
     let noLote = 0;
     if (LotesDataStorage.getItem() === null) {
-      noLote = 1;
+      noLote = 0;
     }
     else {
       const arrObj = this.lotesJsonStrToObjArray();
@@ -45,7 +45,7 @@ export class LotesDataService {
         noLote = Math.max(...arrObj.map(o => o.loteId));
       }
       else {
-        noLote = 1;
+        noLote = 0;
       }
     }
     return noLote;

@@ -61,6 +61,16 @@ export class CajasDataService {
     this.persistArray(arrObj);
   }
 
+  deleteCajasLote(loteId: number) {
+    let arrObj = this.cajasJsonStrToObjArray();
+    arrObj.forEach( (item, index) => {
+      if(+item.loteId == +loteId){
+        arrObj.splice(index,1);
+      }
+    });
+    this.persistArray(arrObj);
+  }
+
   persistArray(arrObj) {
     const strObj = JSON.stringify(arrObj);
     CajasDataStorage.setItem(strObj);
