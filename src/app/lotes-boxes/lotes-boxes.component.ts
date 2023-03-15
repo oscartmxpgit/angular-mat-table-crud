@@ -51,7 +51,7 @@ export class LotesBoxesComponent implements OnInit {
 
   addTab() {
     const dialogRef = this.dialog.open(LoteInfoComponent, {
-      data: { loteId: this.maxLote + 1 }, width: '85%', panelClass: 'custom-dialog-container'
+      data: { loteId: this.maxLote + 1 }, width: '45%', panelClass: 'custom-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe(result => {
