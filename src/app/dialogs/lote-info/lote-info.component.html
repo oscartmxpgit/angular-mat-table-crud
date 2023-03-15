@@ -7,7 +7,7 @@
 
       <div class="form">
         <mat-form-field color="accent">
-          <input readonly="" matInput class="form-control" readonly="true" placeholder="Lote" [(ngModel)]="data.loteId" name="loteId" required>
+          <input matInput class="form-control" placeholder="Lote" [(ngModel)]="data.loteId" name="loteId" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>

@@ -27,15 +27,13 @@ export class LotesBoxesComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTabGroup) tabGroup: MatTabGroup;
 
-  maxLote = 0;
   lotesDatabase: DataService | null;
 
   ngOnInit() {
-    this.maxLote = this.lotesDataService.getNumLotes();
-
-    for (let index = 0; index < this.maxLote; index++) {
-      this.tabs.push('Lote ' + (index + 1))
-    }
+    const arrObj = this.lotesDataService.lotesJsonStrToObjArray();
+    arrObj.forEach(element => {
+      this.tabs.push('L' + (element.loteId) + "(" + element.remitente + ")")
+    });
   }
 
   refresh() {
@@ -50,14 +48,14 @@ export class LotesBoxesComponent implements OnInit {
   selected = new FormControl(0);
 
   addTab() {
+    const maxLote = this.lotesDataService.getNumLotes();
     const dialogRef = this.dialog.open(LoteInfoComponent, {
-      data: { loteId: this.maxLote + 1 }, width: '45%', panelClass: 'custom-dialog-container'
+      data: { loteId: maxLote + 1 }, width: '45%', panelClass: 'custom-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        this.maxLote += 1;
-        this.tabs.push('Lote ' + (this.maxLote));
+        this.tabs.push('Lote ' + (maxLote));
         window.location.reload();
       }
     });
