@@ -87,7 +87,7 @@ export class DatosUsuarioComponent implements OnInit {
     const arrIgl = cajasIntroducidas.sort().join(',') === cajasUsrIds.sort().join(',');
 
     if (!(arrIgl)) {
-      this.cajasConProb = "¡Hay pesos de cajas no introducidas!";
+      this.cajasConProb = "¡Hay cajas no introducidas!";
     }
 
     puedeExportar = pesoAcorde && arrIgl;
