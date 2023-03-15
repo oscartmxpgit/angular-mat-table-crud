@@ -1,6 +1,6 @@
 export class Issue {
   loteId: number;
-  cajaId: number;
+  cajaId: string;
   id: number;
   descripcion: string;
   pesoUnitario: number;
@@ -16,7 +16,7 @@ export class Issue {
 
 export class Caja {
   loteId: number;
-  cajaId: number;
+  cajaId: string;
   peso: number;
   observaciones: string;
 }

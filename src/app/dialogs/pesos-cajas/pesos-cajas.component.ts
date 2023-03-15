@@ -60,7 +60,7 @@ formControl = new FormControl('', [
     // empty stuff
   }
 
-  deleteItem(loteId: number, cajaId: number){
+  deleteItem(loteId: number, cajaId: string){
     //this.cajasDataService.persistArray(this.cajasDatabase.dataChange.value);
     this.cajasDataService.deleteItem(loteId, cajaId);
     this.loadData();
@@ -70,7 +70,7 @@ formControl = new FormControl('', [
   AddNewRow() {
     this.cajasDataService.persistArray(this.cajasDatabase.dataChange.value);
     const newCaja= new Caja();
-    newCaja.cajaId = 0;
+    newCaja.cajaId = "0";
     newCaja.loteId = this.data.currentLote;
     newCaja.peso = 0;
     //this.cajasDatabase.dataChange.value.push(newCaja);

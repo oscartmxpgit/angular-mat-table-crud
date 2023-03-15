@@ -32,13 +32,13 @@ export class CajasDataService {
     this.persistArray(arrObj);
   }
 
-  pesosCaja(currentLote: number): number {
+  cajasLoteUsr(currentLote: number): Caja[] {
     const arrObj = this.cajasJsonStrToObjArray().filter(caja=>caja.loteId==currentLote);
-    let pesoTotal=0;
+    let cajasTotal:Caja[] =[];
     arrObj.forEach(element => {
-      pesoTotal+=+element.peso;
+      cajasTotal.push(element);
     });
-    return pesoTotal;
+    return cajasTotal;
   }
 
   getCajasData(): void {
@@ -51,7 +51,7 @@ export class CajasDataService {
     CajasDataStorage.removeItem();
   }
 
-  deleteItem(loteId: number, cajaId: number) {
+  deleteItem(loteId: number, cajaId: string) {
     let arrObj = this.cajasJsonStrToObjArray();
     //const filtObj = arrObj.filter(obj => {obj.loteId !== loteId && obj.cajaId !== cajaId});
     let filtObj = arrObj.filter(function (currentElement) {

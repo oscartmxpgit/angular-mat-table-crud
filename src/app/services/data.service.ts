@@ -88,7 +88,7 @@ export class DataService {
     return arrObj.filter(caja => caja.loteId === +indiceLoteSel).length;
   }
 
-  exportToExcel(currentLote, nombreUsuario, pesoCajasUsr, destinatario3, observacionesExcel): void {
+  exportToExcel(currentLote, nombreUsuario, pesoLote, destinatario3, observacionesExcel): void {
     var options = {
       filename: 'MisCajas.xlsx',
       useStyles: true,
@@ -132,7 +132,7 @@ export class DataService {
     worksheet.getCell('D1').value = configSpreadSheet.operacionNombreCompleto;
     worksheet.getCell('D2').value = now.toISOString();
     worksheet.getCell('D3').value = nombreUsuario;
-    worksheet.getCell('D4').value = pesoCajasUsr;
+    worksheet.getCell('D4').value = pesoLote;
     worksheet.getCell('D5').value = observacionesExcel;
 
     worksheet.getCell('D4').alignment = { vertical: 'center', horizontal: 'left' };
@@ -169,9 +169,9 @@ export class DataService {
       const element = datosFiltradosLote[j];
       const cajaIdElem = element.cajaId;
       let datoNuevaCaja = false;
-      if (datosFiltradosLote[j-1] != undefined){
-        const cajaIdElemAnt = datosFiltradosLote[j-1].cajaId;
-        if (cajaIdElem != cajaIdElemAnt){
+      if (datosFiltradosLote[j - 1] != undefined) {
+        const cajaIdElemAnt = datosFiltradosLote[j - 1].cajaId;
+        if (cajaIdElem != cajaIdElemAnt) {
           datoNuevaCaja = true;
         }
       }
@@ -181,9 +181,9 @@ export class DataService {
       else {
         worksheet.addRow({ cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria, observaciones: element.observaciones });
       }
-      if (datosFiltradosLote[j+1] != undefined){
-        const cajaIdElemSig = datosFiltradosLote[j+1].cajaId;
-        if (cajaIdElem != cajaIdElemSig){
+      if (datosFiltradosLote[j + 1] != undefined) {
+        const cajaIdElemSig = datosFiltradosLote[j + 1].cajaId;
+        if (cajaIdElem != cajaIdElemSig) {
           worksheet.addRow();
         }
       }
@@ -199,7 +199,7 @@ export class DataService {
       });
   }
 
-  pesoLoteIndividual(currentLote: number, cajaId: number): number {
+  pesoLoteIndividual(currentLote: number, cajaId: string): number {
     let peso = 0;
     const arrObj = this.cajasJsonStrToObjArray().filter(lote => lote.loteId == currentLote);
     if (CajasStorage.getItem() != null) {
@@ -213,15 +213,39 @@ export class DataService {
   }
 
 
-  pesoCajas(currentLote: number): number {
-    let peso = 0;
+  pesoCajasCalculado(currentLote: number, cajaId: string): number {
+    let pesoCaja = 0;
     const arrObj = this.cajasJsonStrToObjArray().filter(lote => lote.loteId == currentLote);
     if (CajasStorage.getItem() != null) {
       arrObj.forEach(element => {
-        peso += element.pesoUnitario * element.cantidad;
+        if (element.cajaId == cajaId) {
+          pesoCaja += element.pesoUnitario * element.cantidad;
+        }
       });
     }
-    return peso;
+    return pesoCaja;
+  }
+
+  cajasIntroducidas(currentLote: number): Caja[] {
+    let cajas: Caja[] = [];
+    const arrObj = this.cajasJsonStrToObjArray().filter(lote => lote.loteId == currentLote);
+    if (CajasStorage.getItem() != null) {
+      arrObj.forEach(element => {
+        const caja = new Caja();
+        caja.loteId = currentLote;
+        caja.cajaId = element.cajaId;
+        caja.peso = 0;
+        caja.observaciones = "";
+
+        const arrObjFiltLoteId = cajas.filter(c => c.loteId == caja.loteId);
+        const arrObjFiltCajaId = arrObjFiltLoteId.filter(c => c.cajaId == caja.cajaId);
+
+        if (arrObjFiltCajaId.length === 0) {
+          cajas.push(caja);
+        }
+      });
+    }
+    return cajas;
   }
 
   addIssue(issue: Issue): void {
