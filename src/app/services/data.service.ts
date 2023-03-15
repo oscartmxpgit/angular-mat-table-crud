@@ -125,7 +125,7 @@ export class DataService {
 
     worksheet.getCell('A1').value = 'Operación:';
     worksheet.getCell('A2').value = 'Fecha de generación de Excel:';
-    worksheet.getCell('A3').value = 'Remitente:';
+    worksheet.getCell('A3').value = 'Nombre del lote:';
     worksheet.getCell('A4').value = 'Peso total (usuario):';
     worksheet.getCell('A5').value = 'Observaciones lote:';
     worksheet.getCell('A6').value = 'Pallet nº:';
