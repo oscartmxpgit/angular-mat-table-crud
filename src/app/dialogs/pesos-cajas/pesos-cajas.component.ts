@@ -34,15 +34,7 @@ export class PesosCajasComponent implements OnInit {
     this.cajasDatabase = new CajasDataService();
 
     this.dataSource = new CajasDatosSource(this.cajasDatabase, this.paginator, this.sort);
-    fromEvent(this.filter.nativeElement, 'keyup')
-      // .debounceTime(150)
-      // .distinctUntilChanged()
-      .subscribe(() => {
-        if (!this.dataSource) {
-          return;
-        }
-        this.dataSource.filter = this.filter.nativeElement.value;
-      });
+
   }
 
 formControl = new FormControl('', [
@@ -61,7 +53,8 @@ formControl = new FormControl('', [
   }
 
   deleteItem(loteId: number, cajaId: string){
-    //this.cajasDataService.persistArray(this.cajasDatabase.dataChange.value);
+    this.cajasDataService.persistArray(this.cajasDatabase.dataChange.value);
+
     this.cajasDataService.deleteItem(loteId, cajaId);
     this.loadData();
     this.refreshTable();

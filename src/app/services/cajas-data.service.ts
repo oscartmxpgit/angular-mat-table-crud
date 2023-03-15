@@ -53,11 +53,12 @@ export class CajasDataService {
 
   deleteItem(loteId: number, cajaId: string) {
     let arrObj = this.cajasJsonStrToObjArray();
-    //const filtObj = arrObj.filter(obj => {obj.loteId !== loteId && obj.cajaId !== cajaId});
-    let filtObj = arrObj.filter(function (currentElement) {
-      return currentElement.loteId !== loteId && currentElement.cajaId !== cajaId;
+    arrObj.forEach( (item, index) => {
+      if(+item.loteId == +loteId && item.cajaId.trim() == cajaId.trim()){
+        arrObj.splice(index,1);
+      }
     });
-    this.persistArray(filtObj);
+    this.persistArray(arrObj);
   }
 
   persistArray(arrObj) {

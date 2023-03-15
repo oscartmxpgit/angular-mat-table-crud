@@ -21,6 +21,7 @@ export class DatosUsuarioComponent implements OnInit {
   observaciones: "";
 
   cajasConProb = "";
+  cajasNoIntroducidas = "";
   mensajeErrForm: "";
 
   formControl = new FormControl('', [
@@ -87,7 +88,7 @@ export class DatosUsuarioComponent implements OnInit {
     const arrIgl = cajasIntroducidas.sort().join(',') === cajasUsrIds.sort().join(',');
 
     if (!(arrIgl)) {
-      this.cajasConProb = "¡Hay cajas no introducidas!";
+      this.cajasNoIntroducidas = "¡Hay cajas no introducidas!";
     }
 
     puedeExportar = pesoAcorde && arrIgl;

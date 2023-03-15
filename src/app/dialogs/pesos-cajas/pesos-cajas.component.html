@@ -13,9 +13,9 @@
             <mat-icon>close</mat-icon>
         </button>
 
-        <mat-table #table [dataSource]="dataSource" matSort>
+        <mat-table #table [dataSource]="dataSource" matSort matSortActive="loteId" matSortDirection="asc" >
             <ng-container matColumnDef="loteId">
-                <mat-header-cell *matHeaderCellDef> Lote </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Lote </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                     <mat-form-field floatLabel="never">
                         <input required onlyNumber matInput placeholder="Lote" [value]="element.loteId"
@@ -69,7 +69,7 @@
         No hay resultados
     </div>
 
-    <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="1000"
+    <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
         [pageSizeOptions]="[50, 100, 250, 1000]">
     </mat-paginator>
 

@@ -32,6 +32,10 @@
             Revise que los datos de pesos de las cajas estén introducidos en Kgs
         </div>
 
+        <div *ngIf="this.cajasNoIntroducidas.trim().length>0" style="color: red;">
+            Han ocurrido los siguientes problemas: {{cajasNoIntroducidas}}. Debe introducir los valores <mat-icon>how_to_vote</mat-icon>
+        </div>
+
         <div mat-dialog-actions>
             <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid"
                 (click)="confirmExport()">Exportar a Excel
