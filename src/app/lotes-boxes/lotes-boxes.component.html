@@ -21,8 +21,8 @@
     </mat-accordion>
 
   <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-    <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
-      <app-table-content [indiceLoteSel]="index"></app-table-content>
+    <mat-tab *ngFor="let tab of tabs; let index = index" [label]="'Lote ' + tab">
+      <app-table-content [indiceLoteSel]="tab"></app-table-content>
     </mat-tab>
     <mat-tab disabled>
       <ng-template mat-tab-label>

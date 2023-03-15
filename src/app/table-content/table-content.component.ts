@@ -32,7 +32,7 @@ export class TableContentComponent implements OnInit {
   private _indiceLoteSel: string;
 
   @Input() set indiceLoteSel(value: string) {
-    this._indiceLoteSel = value + 1;
+    this._indiceLoteSel = value;
     this.loadData();
   }
 

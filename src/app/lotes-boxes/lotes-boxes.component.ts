@@ -32,7 +32,7 @@ export class LotesBoxesComponent implements OnInit {
   ngOnInit() {
     const arrObj = this.lotesDataService.lotesJsonStrToObjArray();
     arrObj.forEach(element => {
-      this.tabs.push('L' + (element.loteId) + "(" + element.remitente + ")")
+      this.tabs.push(element.loteId)
     });
   }
 
@@ -55,7 +55,6 @@ export class LotesBoxesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        this.tabs.push('Lote ' + (maxLote));
         window.location.reload();
       }
     });

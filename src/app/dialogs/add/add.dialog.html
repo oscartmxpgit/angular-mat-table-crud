@@ -4,7 +4,7 @@
     <h3 mat-dialog-title>Nuevo ítem</h3>
 
     <div class="form">
-      <mat-form-field color="accent" [class.cdk-visually-hidden]="true">
+      <mat-form-field color="accent" >
         <input matInput #input class="form-control" readonly="true" placeholder="Lote" [(ngModel)]="data.loteId" name="loteId" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
