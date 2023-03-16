@@ -16,9 +16,8 @@
             required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
-      </div>
+        &nbsp;&nbsp;
 
-      <div mat-dialog-actions>
         <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
           (click)="stopEdit()"><mat-icon>save</mat-icon>Guardar</button>
         <button mat-button style="margin-bottom: 20px;" (click)="onNoClick()" tabindex="-1"><mat-icon>cancel</mat-icon>Cancelar</button>

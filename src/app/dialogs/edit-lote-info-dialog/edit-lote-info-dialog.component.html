@@ -1,7 +1,7 @@
 <div class="container">
 
     <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
-      <h3 mat-dialog-title>Editar elemento</h3>
+      <h3 mat-dialog-title>Editar lote</h3>
 
       <div class="form">
         <mat-form-field color="accent" >
@@ -14,9 +14,7 @@
             required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
-      </div>
-
-      <div mat-dialog-actions>
+        &nbsp;&nbsp;
         <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
           (click)="stopEdit()"><mat-icon>save</mat-icon>Guardar</button>
         <button mat-button style="margin-bottom: 20px;" (click)="onNoClick()" tabindex="-1"><mat-icon>cancel</mat-icon>Cancelar</button>
