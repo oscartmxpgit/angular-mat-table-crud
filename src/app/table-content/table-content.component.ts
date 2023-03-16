@@ -17,6 +17,7 @@ import { PesosCajasComponent } from 'app/dialogs/pesos-cajas/pesos-cajas.compone
 import { LotesDataService } from 'app/services/lotes-data.service';
 import { CajasDataService } from 'app/services/cajas-data.service';
 import { EditLoteInfoDialogComponent } from 'app/dialogs/edit-lote-info-dialog/edit-lote-info-dialog.component';
+import { GsheetsExportService } from 'app/services/gsheets-export.service';
 
 @Component({
   selector: 'app-table-content',
@@ -44,8 +45,9 @@ export class TableContentComponent implements OnInit {
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
     private translate: TranslateService,
-    public lotesDataService: LotesDataService ,
-    public cajasDataService: CajasDataService ,
+    public gsheetsExportService: GsheetsExportService,
+    public lotesDataService: LotesDataService,
+    public cajasDataService: CajasDataService,
     public dataService: DataService) {
     this.translate.setDefaultLang('es');
     const browserLang = translate.getBrowserLang();
@@ -97,6 +99,13 @@ export class TableContentComponent implements OnInit {
       this.lotesDataService.deleteItem(this.indiceLoteSel);
       this.cajasDataService.deleteCajasLote(+this.indiceLoteSel);
       window.location.reload();
+    }
+
+  }
+  sendLotes() {
+    if (confirm("¿Seguro que desea enviar todos los lotes?")) {
+      this.gsheetsExportService.exportToSheets();
+
     }
   }
 
