@@ -63,7 +63,7 @@ export class TableContentComponent implements OnInit {
 
   editLote() {
     const dialogRef = this.dialog.open(EditLoteInfoDialogComponent, {
-      data: {loteId: this.indiceLoteSel, remitente: this.getRemitenteLote()}, width: '55%', panelClass: 'custom-dialog-container'
+      data: {loteId: this.indiceLoteSel, remitente: this.getRemitenteLote()}, width: '25%', panelClass: 'custom-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe(result => {
