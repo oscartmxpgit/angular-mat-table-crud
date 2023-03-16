@@ -8,11 +8,9 @@
           <input matInput class="form-control" readonly="true" placeholder="Lote" [(ngModel)]="data.loteId" name="loteId" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
-      </div>
-
-      <div class="form">
+        &nbsp;&nbsp;
         <mat-form-field color="accent">
-          <input matInput class="form-control" placeholder="Remitente" [(ngModel)]="data.remitente" name="remitente"
+          <input matInput placeholder="Nombre del lote" [(ngModel)]="data.remitente" name="remitente"
             required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
