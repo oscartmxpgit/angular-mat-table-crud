@@ -81,12 +81,13 @@ export class GsheetsExportService {
 
   getPesoCaja(loteid, cajaId): number {
     const cajas = this.getCajasData();
+    let pesoCaja=0;
     cajas.forEach(caja => {
       if (caja.loteId == loteid && caja.cajaId == cajaId) {
-        return caja.peso;
+        pesoCaja = caja.peso;
       }
     });
-    return 0;
+    return pesoCaja;
   }
 
   post(data: any): any {
