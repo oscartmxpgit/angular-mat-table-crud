@@ -27,7 +27,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ResetDialogComponent } from './dialogs/reset-dialog/reset-dialog.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LotesBoxesComponent } from './lotes-boxes/lotes-boxes.component';
-import { HomeComponent } from './home/home.component';
+import { AvisosComponent } from './avisos/avisos.component';
 import { environment } from 'environments/environment';
 import { OnlyNumberDirective } from './directives/only-number.directive';
 import { DatosUsuarioComponent } from './dialogs/datos-usuario/datos-usuario.component';
@@ -37,6 +37,7 @@ import { HelpTextsComponent } from './help-texts/help-texts.component';
 import { PesosCajasComponent } from './dialogs/pesos-cajas/pesos-cajas.component';
 import { LoteInfoComponent } from './dialogs/lote-info/lote-info.component';
 import { EditLoteInfoDialogComponent } from './dialogs/edit-lote-info-dialog/edit-lote-info-dialog.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
     declarations: [
@@ -47,13 +48,14 @@ import { EditLoteInfoDialogComponent } from './dialogs/edit-lote-info-dialog/edi
         TableContentComponent,
         ResetDialogComponent,
         LotesBoxesComponent,
-        HomeComponent,
+        AvisosComponent,
         OnlyNumberDirective,
         DatosUsuarioComponent,
         HelpTextsComponent,
         PesosCajasComponent,
         LoteInfoComponent,
         EditLoteInfoDialogComponent,
+        HomeComponent,
     ],
     imports: [
         BrowserModule,
