@@ -5,8 +5,8 @@
 @include mat-core();
 
 $primary: mat-palette($mat-indigo, 500);
-$accent:  mat-palette($mat-pink, 500, A200, A400);
-$warn:    mat-palette($mat-red, 500);
+$accent: mat-palette($mat-pink, 500, A200, A400);
+$warn: mat-palette($mat-red, 500);
 
 $config: mat-typography-config();
 
@@ -20,7 +20,7 @@ body {
   margin: 0;
 }
 
-.small-form-control{
+.small-form-control {
   max-width: 90px;
 }
 
@@ -28,4 +28,24 @@ body {
 .mat-dialog-content {
   //overflow-y: hidden !important;
   overflow-x: hidden !important;
+}
+
+.only-on-wide {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .only-on-wide {
+    display: contents;
+  }
+}
+
+.only-on-mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .only-on-mobile {
+    display: contents;
+  }
 }
