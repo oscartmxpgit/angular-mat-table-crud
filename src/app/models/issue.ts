@@ -14,6 +14,20 @@ export class Issue {
   observaciones?: string;
 }
 
+export class IssueCompleto {
+  fecha: string;
+  loteId: number;
+  cajaId: string;
+  pesoCaja: number;
+  cantidad: number;
+  pesoUnitario: number;
+  descripcion: string;
+  categoria: string;
+  destinatario: string;
+  observaciones: string;
+  remitente: string;
+}
+
 export class Caja {
   loteId: number;
   cajaId: string;

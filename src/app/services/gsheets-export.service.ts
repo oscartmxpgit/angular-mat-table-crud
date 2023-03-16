@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Caja, Issue, Lote } from 'app/models/issue';
+import { Caja, Issue, IssueCompleto, Lote } from 'app/models/issue';
 
 @Injectable({
   providedIn: 'root'
@@ -16,36 +16,113 @@ export class GsheetsExportService {
   private readonly ELEMENTS_SHEET = "elements";
   private readonly now = new Date();
 
-  baseURL = "https://script.google.com/macros/s/AKfycbxas_3d7LHr1NG-x45xiPU5xpc20TrhDoqQprV-U8QYErufwFC2RgiQHRkoSsu-cJHf1g/exec";
+  baseURL = "https://script.google.com/macros/s/AKfycbz-L8nE3q_FXLLeylPD078son9vXq-A92rdvZCWTDaYB_aRV-yf8gBo_SYL-lZOABxl9Q/exec";
+
   resourcesSpreadsheetId = "1J5kz8b6cAsaICl3w-_zTGZYhdjIhlfn0fEE_rYrPD7E";
 
   constructor(private http: HttpClient) { }
 
   exportToSheets() {
+    //FECHA	LOTE ID	CAJA ID	CANTIDAD	PESO UNITARIO (KGS)	PESO (KGS)	DESCRIPCIÓN	CATEGORIA	DESTINATARIO	OBSERVACIONES	REMITENTE	PESO CAJA
     this.exportLotes();
   }
 
+  conformData(): IssueCompleto[] {
+    const issues = this.getElementsData();
+    let issueCompleto: IssueCompleto = new IssueCompleto();
+    let issuesCompletos: IssueCompleto[] = [];
+    issues.forEach(issue => {
+      console.log("issue")
+      console.log(issue)
+      issueCompleto.fecha = this.now.toISOString();
+      issueCompleto.loteId = issue.loteId;
+      issueCompleto.cajaId = issue.cajaId;
+      issueCompleto.pesoCaja = this.getPesoCaja(issue.loteId, issue.cajaId);
+      issueCompleto.cantidad = issue.cantidad;
+      issueCompleto.pesoUnitario = issue.pesoUnitario;
+      issueCompleto.descripcion = issue.descripcion;
+      issueCompleto.categoria = issue.categoria;
+      if (issue.observaciones != undefined){
+        issueCompleto.observaciones = issue.observaciones;
+      }
+      else{
+        issueCompleto.observaciones = "-";
+      }
+      issueCompleto.remitente = this.getRemitente(issue.loteId);
+      issuesCompletos.push(issueCompleto);
+    });
+    return issuesCompletos;
+  }
+
   exportLotes() {
-    const lotes = this.getLotesData();
-    lotes.forEach(lote => {
-      this.post(this.now + " " + lote.loteId + lote.remitente, this.LOTES_SHEET);
+    let issuesCompletos = this.conformData();
+    let aPostear="";
+    issuesCompletos.forEach(element => {
+      aPostear+=element.fecha + ",";
+      aPostear+=element.loteId + ",";
+      aPostear+=element.cajaId + ",";
+      aPostear+=element.pesoCaja + ",";
+      aPostear+=element.cantidad + ",";
+      aPostear+=element.pesoUnitario + ",";
+      aPostear+=element.descripcion + ",";
+      aPostear+=element.categoria + ",";
+      aPostear+=element.observaciones + ",";
+      aPostear+=element.remitente + ",";
+      this.post(aPostear.slice(0, -1));
     });
   }
 
-  exportCajas() {
+  getRemitente(loteid): string {
+    const lotes = this.getLotesData();
+    let remitente = "";
+    lotes.forEach(lote => {
+      console.log(lote)
+      if (lote.loteId == loteid) {
+        remitente = lote.remitente;
+      }
+    });
+    return remitente;
+  }
+
+  getPesoCaja(loteid, cajaId): number {
     const cajas = this.getCajasData();
+    cajas.forEach(caja => {
+      if (caja.loteId == loteid && caja.cajaId == cajaId) {
+        return caja.peso;
+      }
+    });
+    return 0;
   }
 
-  exportElements() {
-    const issues = this.getElementsData();
-  }
-
-  post(data: any, sheetName: string): any {
+  post(data : any): any {
     const baseUrl = this.baseURL;  // Please set your Web Apps URL.
     const para = {
       spreadsheetId: this.resourcesSpreadsheetId,  // Please set your Google Spreadsheet ID.
-      sheetName: sheetName,  // Please set the sheet name you want to retrieve the values.
+      sheetName: "MisLotes",  // Please set the sheet name you want to retrieve the values.
       values: data,  // Please set the sheet name you want to retrieve the values.
+    };
+    const q = new URLSearchParams(para);
+    const url = baseUrl + "?" + q;
+
+    return this.http.post(url, data).subscribe();
+  }
+
+  postB(data: any): any {
+    const baseUrl = this.baseURL;  // Please set your Web Apps URL.
+    const para = {
+      spreadsheetId: this.resourcesSpreadsheetId,  // Please set your Google Spreadsheet ID.
+      sheetName: 'MisLotes',  // Please set the sheet name you want to retrieve the values.
+      fechaH: data.fecha,
+      loteId: data.LoteId,
+      cajaId: data.CajaId,
+      pesCaj: data.pesoCaja,
+      cantid: data.cantidad,
+      pesoUn: data.pesoUnitario,
+      descri: data.descripcion,
+      catego: data.categoria,
+      destin: data.destinatario,
+      observ: data.observaciones,
+      remite: data.remitente,
     };
     const q = new URLSearchParams(para);
     const url = baseUrl + "?" + q;
