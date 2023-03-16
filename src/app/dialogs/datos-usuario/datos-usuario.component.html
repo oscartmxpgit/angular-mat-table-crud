@@ -5,8 +5,8 @@
 
         <div class="form">
             <mat-form-field color="accent">
-                <input style="width: 200px;" matInput #input class="form-control" placeholder="Nombre usuario" [(ngModel)]="nombreUsuario"
-                    name="nombreUsuario" required>
+                <input onlyNumber style="width: 200px;" matInput #input class="form-control" placeholder="Palet" [(ngModel)]="palet"
+                    name="palet" required>
                 <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>
@@ -38,8 +38,11 @@
 
         <div mat-dialog-actions>
             <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid"
-                (click)="confirmExport()">Exportar a Excel
+                (click)="exportExcel()">Exportar a Excel
                 <mat-icon>arrow_drop_down_circle</mat-icon></button>
+            <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid"
+                (click)="exportSheets()">Exportar a Sheets
+                <mat-icon>send</mat-icon></button>
             <button style="margin-bottom: 20px;" mat-button (click)="onNoClick()"
                 tabindex="-1"><mat-icon>cancel</mat-icon>Cancelar</button>
             <br />

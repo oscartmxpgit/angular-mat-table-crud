@@ -18,13 +18,28 @@ export class GsheetsExportService {
 
   baseURL = "https://script.google.com/macros/s/AKfycbz-L8nE3q_FXLLeylPD078son9vXq-A92rdvZCWTDaYB_aRV-yf8gBo_SYL-lZOABxl9Q/exec";
 
-  resourcesSpreadsheetId = "1J5kz8b6cAsaICl3w-_zTGZYhdjIhlfn0fEE_rYrPD7E";
+  resourcesSpreadsheetId = "1e8UOVKbTfWsmaskudKpEU1u0rMDVu_YPWOuxcMqKweI";
 
   constructor(private http: HttpClient) { }
 
-  exportToSheets() {
-    //FECHA	LOTE ID	CAJA ID	CANTIDAD	PESO UNITARIO (KGS)	PESO (KGS)	DESCRIPCIÓN	CATEGORIA	DESTINATARIO	OBSERVACIONES	REMITENTE	PESO CAJA
-    this.exportLotes();
+  exportToSheets(palet, destinatario) {
+    let issuesCompletos = this.conformData();
+    let aPostear = "";
+    issuesCompletos.forEach(element => {
+      aPostear += element.fecha + ",";
+      aPostear += palet + ",";
+      aPostear += element.loteId + ",";
+      aPostear += element.cajaId + ",";
+      aPostear += element.pesoCaja + ",";
+      aPostear += element.cantidad + ",";
+      aPostear += element.pesoUnitario + ",";
+      aPostear += element.descripcion + ",";
+      aPostear += element.categoria + ",";
+      aPostear += destinatario + ",";
+      aPostear += element.observaciones + ",";
+      aPostear += element.remitente + ",";
+      this.post(aPostear.slice(0, -1));
+    });
   }
 
   conformData(): IssueCompleto[] {
@@ -32,8 +47,6 @@ export class GsheetsExportService {
     let issueCompleto: IssueCompleto = new IssueCompleto();
     let issuesCompletos: IssueCompleto[] = [];
     issues.forEach(issue => {
-      console.log("issue")
-      console.log(issue)
       issueCompleto.fecha = this.now.toISOString();
       issueCompleto.loteId = issue.loteId;
       issueCompleto.cajaId = issue.cajaId;
@@ -42,34 +55,16 @@ export class GsheetsExportService {
       issueCompleto.pesoUnitario = issue.pesoUnitario;
       issueCompleto.descripcion = issue.descripcion;
       issueCompleto.categoria = issue.categoria;
-      if (issue.observaciones != undefined){
+      if (issue.observaciones != undefined) {
         issueCompleto.observaciones = issue.observaciones;
       }
-      else{
+      else {
         issueCompleto.observaciones = "-";
       }
       issueCompleto.remitente = this.getRemitente(issue.loteId);
       issuesCompletos.push(issueCompleto);
     });
     return issuesCompletos;
-  }
-
-  exportLotes() {
-    let issuesCompletos = this.conformData();
-    let aPostear="";
-    issuesCompletos.forEach(element => {
-      aPostear+=element.fecha + ",";
-      aPostear+=element.loteId + ",";
-      aPostear+=element.cajaId + ",";
-      aPostear+=element.pesoCaja + ",";
-      aPostear+=element.cantidad + ",";
-      aPostear+=element.pesoUnitario + ",";
-      aPostear+=element.descripcion + ",";
-      aPostear+=element.categoria + ",";
-      aPostear+=element.observaciones + ",";
-      aPostear+=element.remitente + ",";
-      this.post(aPostear.slice(0, -1));
-    });
   }
 
   getRemitente(loteid): string {
@@ -94,7 +89,7 @@ export class GsheetsExportService {
     return 0;
   }
 
-  post(data : any): any {
+  post(data: any): any {
     const baseUrl = this.baseURL;  // Please set your Web Apps URL.
     const para = {
       spreadsheetId: this.resourcesSpreadsheetId,  // Please set your Google Spreadsheet ID.

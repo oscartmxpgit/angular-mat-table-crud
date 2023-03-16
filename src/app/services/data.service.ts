@@ -39,21 +39,6 @@ export class DataService {
     return this.dialogData;
   }
 
-  /* getNumLotes(): any {
-    if (CajasStorage.getItem() === null) {
-      this.numLotes = 1;
-    }
-    else {
-      const arrObj = this.cajasJsonStrToObjArray();
-      if (arrObj.length > 0) {
-        this.numLotes = Math.max(...arrObj.map(o => o.loteId));
-      }
-      else {
-        this.numLotes = 1;
-      }
-    }
-  } */
-
   getNumCajas(): any {
     if (CajasStorage.getItem() === null) {
       this.numCajas = 0;
@@ -89,19 +74,12 @@ export class DataService {
     return arrObj.filter(caja => caja.loteId === +indiceLoteSel).length;
   }
 
-  exportToExcel(currentLote, nombreUsuario, pesoLote, destinatario3, observacionesExcel): void {
+  exportToExcel(palet, currentLote, pesoLote, destinatario3, observacionesExcel): void {
     var options = {
       filename: 'MisCajas.xlsx',
       useStyles: true,
       useSharedStrings: true
     };
-
-    // workbook.creator = 'Me';
-    // workbook.lastModifiedBy = 'Her';
-    // workbook.created = new Date(1985, 8, 30);
-    // workbook.modified = new Date();
-    // workbook.lastPrinted = new Date(2016, 9, 27);
-    // create a sheet with red tab colour
 
     let workbook = new Excel.Workbook(options);
 
@@ -190,7 +168,7 @@ export class DataService {
       }
     }
 
-    let fileName = configSpreadSheet.operacion + "_" + nombreUsuario + "_" + now.toISOString() + ".xlsx";
+    let fileName = configSpreadSheet.operacion + "_" + this.lotesDataService.getRemitente(currentLote) + "_" + now.toISOString() + ".xlsx";
     const excelBuffer: any = workbook.xlsx.writeBuffer();
     workbook.xlsx.writeBuffer()
       .then(function (buffer) {

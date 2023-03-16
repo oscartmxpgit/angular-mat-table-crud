@@ -81,7 +81,7 @@ export class TableContentComponent implements OnInit {
     });
   }
 
-  ExportTOExcel() {
+  ExportTOExcelOrSheets() {
     const dialogRef = this.dialog.open(DatosUsuarioComponent, {
       data: { currentLote: this.indiceLoteSel }, width: '85%', panelClass: 'custom-dialog-container'
     });
@@ -99,13 +99,6 @@ export class TableContentComponent implements OnInit {
       this.lotesDataService.deleteItem(this.indiceLoteSel);
       this.cajasDataService.deleteCajasLote(+this.indiceLoteSel);
       window.location.reload();
-    }
-
-  }
-  sendLotes() {
-    if (confirm("¿Seguro que desea enviar todos los lotes?")) {
-      this.gsheetsExportService.exportToSheets();
-
     }
   }
 
