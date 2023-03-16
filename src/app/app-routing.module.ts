@@ -6,6 +6,7 @@ import { TableContentComponent } from './table-content/table-content.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
+  {path:'home',component:HomeComponent},
   {path:'loteBoxes',component:LotesBoxesComponent},
   {path:'tablelote',component:TableContentComponent},
 ];

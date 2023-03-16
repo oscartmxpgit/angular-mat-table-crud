@@ -76,6 +76,14 @@ export class LotesDataService {
     return lotesTotal;
   }
 
+  updateLote(loteId: number, remitente: string) {
+    const arrObj = this.lotesJsonStrToObjArray().filter(lote=>lote.loteId==loteId);
+    arrObj.forEach(element => {
+      element.remitente = remitente;
+    });
+    this.persistArray(arrObj);
+  }
+
   getLotesData(): void {
     const arrObj = this.lotesJsonStrToObjArray();
     this.dataChange.next(arrObj);

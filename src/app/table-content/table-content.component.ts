@@ -16,6 +16,7 @@ import { DatosUsuarioComponent } from 'app/dialogs/datos-usuario/datos-usuario.c
 import { PesosCajasComponent } from 'app/dialogs/pesos-cajas/pesos-cajas.component';
 import { LotesDataService } from 'app/services/lotes-data.service';
 import { CajasDataService } from 'app/services/cajas-data.service';
+import { EditLoteInfoDialogComponent } from 'app/dialogs/edit-lote-info-dialog/edit-lote-info-dialog.component';
 
 @Component({
   selector: 'app-table-content',
@@ -58,6 +59,24 @@ export class TableContentComponent implements OnInit {
 
   getRemitenteLote(): string {
     return this.lotesDataService.getRemitente(+this.indiceLoteSel);
+  }
+
+  editLote() {
+    const dialogRef = this.dialog.open(EditLoteInfoDialogComponent, {
+      data: {loteId: this.indiceLoteSel, remitente: this.getRemitenteLote()}, width: '55%', panelClass: 'custom-dialog-container'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        // When using an edit things are little different, firstly we find record inside DataService by id
+        const foundIndex = this.lotesDatabase.dataChange.value.findIndex(x => x.loteId === this.loteId);
+        // Then you update that record using data from dialogData (values you enetered)
+        this.lotesDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
+        // And lastly refresh table
+        this.loadData();
+        this.refreshTable();
+      }
+    });
   }
 
   ExportTOExcel() {

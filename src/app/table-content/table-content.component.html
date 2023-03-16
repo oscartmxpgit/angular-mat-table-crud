@@ -1,5 +1,9 @@
 <div class="mat-elevation-z8">
-  No. Lote: {{indiceLoteSel}}. Nombre del lote: {{getRemitenteLote()}}
+  No. Lote: <b>{{indiceLoteSel}}</b>. Nombre del lote: <b>{{getRemitenteLote()}}</b>
+  <button mat-icon-button color="accent"
+            (click)="editLote()">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
   <br />
   <div class="mobile-buttons">
     <br />

@@ -36,6 +36,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { HelpTextsComponent } from './help-texts/help-texts.component';
 import { PesosCajasComponent } from './dialogs/pesos-cajas/pesos-cajas.component';
 import { LoteInfoComponent } from './dialogs/lote-info/lote-info.component';
+import { EditLoteInfoDialogComponent } from './dialogs/edit-lote-info-dialog/edit-lote-info-dialog.component';
 
 @NgModule({
     declarations: [
@@ -52,6 +53,7 @@ import { LoteInfoComponent } from './dialogs/lote-info/lote-info.component';
         HelpTextsComponent,
         PesosCajasComponent,
         LoteInfoComponent,
+        EditLoteInfoDialogComponent,
     ],
     imports: [
         BrowserModule,

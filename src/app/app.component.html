@@ -1,35 +1,25 @@
 <nav class="navigation">
   <div class="container">
-    <span class="logo">
-      <img src="favicon.ico" width="18" />
-      <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path
-              d="M23 0l-4.5 16.5-6.097-5.43 5.852-6.175-7.844 5.421-5.411-1.316 18-9zm-11 12.501v5.499l2.193-3.323-2.193-2.176zm-2.789 3.857l.94.934c-.875.885-1.773 1.933-2.125 3.375l-1.286-.314c.434-1.774 1.491-3.004 2.471-3.995zm-1.565 7.642c-.715 0-1.353-.279-1.887-.83-1.458.515-2.844-.044-3.576-1.084-.575-.817-.703-1.853-.353-2.845-.552-.534-.83-1.166-.83-1.884 0-1.562 1.16-2.803 3.24-2.586l.195 1.117c-.664.062-1.277.097-1.674.494-.668.668-.467 2.063.787 2.433-.832.836-.751 2.037-.127 2.696.654.69 1.903.799 2.765-.059.385 1.305 1.798 1.422 2.433.787.392-.392.431-.995.492-1.649l1.125.229c.2 1.979-1.009 3.181-2.59 3.181zm-3.318-7.032l.314 1.287c1.755-.43 2.953-1.45 3.989-2.471l-.938-.931c-.876.866-1.927 1.764-3.365 2.115z" />
-          </svg> -->
-    </span>
-    <a routerLink="/">
-      <span class="title">Kosmódromo</span>
-    </a>
-    <!--     <span class="navigation-list">
-        <a href="#documentation">Documentation</a>
-        <a href="https://github.com/FranzDiebold/ng-google-sheets-db-library" target="_blank">
-          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
-          </svg>
-        </a>
-      </span> -->
-    <span class="navigation-list">
-      <a (click)="DeleteAll()">
-        <a routerLink="loteBoxes" class="btn btn-light" type="button" style="float: right;">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a routerLink="home">
+        <img src="favicon.ico" width="18" />
+        <span class="logo">
+        </span>
+        <span class="title">Kosmódromo</span>
+      </a>
+      &nbsp;&nbsp;&nbsp;
+      <a class="nav-link" routerLink="home" title="Página de inicio" data-bs-toggle="collapse"
+        data-bs-target=".navbar-collapse.show" routerLinkActive="active-link">Inicio</a>
+      &nbsp;&nbsp;
+      <a class="nav-link" routerLink="loteBoxes" title="Herramienta de administración de Lotes" data-bs-toggle="collapse"
+        data-bs-target=".navbar-collapse.show" routerLinkActive="active-link">Mis lotes</a>
+      <span class="navigation-list">
+        <a (click)="DeleteAll()" class="btn btn-light" type="button" style="float: right;">
           <mat-icon>delete_forever</mat-icon>
         </a>
-        <!-- <svg style="color: rgb(112, 152, 52);" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-          <path fill="#709834"
-            d="M128 192v640h768V320H485.76L357.504 192H128zm-32-64h287.872l128.384 128H928a32 32 0 0 1 32 32v576a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32zm370.752 448-90.496-90.496 45.248-45.248L512 530.752l90.496-90.496 45.248 45.248L557.248 576l90.496 90.496-45.248 45.248L512 621.248l-90.496 90.496-45.248-45.248L466.752 576z">
-          </path>
-        </svg>  -->
-      </a>
-    </span>
+      </span>
+    </nav>
   </div>
 </nav>
 <router-outlet></router-outlet>
