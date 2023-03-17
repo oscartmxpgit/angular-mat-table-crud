@@ -48,9 +48,9 @@ export class GsheetsExportService {
 
   conformData(): IssueCompleto[] {
     const issues = this.getElementsData();
-    let issueCompleto: IssueCompleto = new IssueCompleto();
     let issuesCompletos: IssueCompleto[] = [];
     issues.forEach(issue => {
+      let issueCompleto: IssueCompleto = new IssueCompleto();
       issueCompleto.fecha = this.now.toISOString();
       issueCompleto.loteId = issue.loteId;
       issueCompleto.cajaId = issue.cajaId;

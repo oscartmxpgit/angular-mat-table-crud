@@ -92,10 +92,9 @@ export class TableContentComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result!=undefined && result.destino === 'Sheets') {
         this._snackBar.open('Datos exportados al Servidor. Deberá esperar 1 minuto para volver a exportar', 'Cerrar');
-
+        this.counter=61;
         this.countDown = timer(0, 1000).subscribe(() => {
           --this.counter;
           if (this.counter === 0) {
