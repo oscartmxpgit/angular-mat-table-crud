@@ -91,7 +91,7 @@ export class TableContentComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if (result.destino === 'Sheets') {
-        this._snackBar.open('Datos exportados a Google Sheets', 'Cerrar');
+        this._snackBar.open('Datos exportados al Servidor', 'Cerrar');
       }
       else if (result.destino === 'Excel') {
         this._snackBar.open('Datos exportados a Excel', 'Cerrar');
