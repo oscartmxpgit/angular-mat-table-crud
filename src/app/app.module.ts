@@ -38,6 +38,7 @@ import { PesosCajasComponent } from './dialogs/pesos-cajas/pesos-cajas.component
 import { LoteInfoComponent } from './dialogs/lote-info/lote-info.component';
 import { EditLoteInfoDialogComponent } from './dialogs/edit-lote-info-dialog/edit-lote-info-dialog.component';
 import { HomeComponent } from './home/home.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [
@@ -67,6 +68,7 @@ import { HomeComponent } from './home/home.component';
         FormsModule,
         MatButtonModule,
         MatExpansionModule,
+        MatSnackBarModule,
         MatInputModule,
         MatSelectModule,
         MatIconModule,

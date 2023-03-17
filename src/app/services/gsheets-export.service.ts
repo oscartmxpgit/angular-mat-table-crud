@@ -74,7 +74,6 @@ export class GsheetsExportService {
     const lotes = this.getLotesData();
     let remitente = "";
     lotes.forEach(lote => {
-      console.log(lote)
       if (lote.loteId == loteid) {
         remitente = lote.remitente;
       }

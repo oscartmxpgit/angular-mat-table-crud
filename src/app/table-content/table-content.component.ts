@@ -18,6 +18,7 @@ import { LotesDataService } from 'app/services/lotes-data.service';
 import { CajasDataService } from 'app/services/cajas-data.service';
 import { EditLoteInfoDialogComponent } from 'app/dialogs/edit-lote-info-dialog/edit-lote-info-dialog.component';
 import { GsheetsExportService } from 'app/services/gsheets-export.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-table-content',
@@ -48,6 +49,7 @@ export class TableContentComponent implements OnInit {
     public gsheetsExportService: GsheetsExportService,
     public lotesDataService: LotesDataService,
     public cajasDataService: CajasDataService,
+    private _snackBar: MatSnackBar,
     public dataService: DataService) {
     this.translate.setDefaultLang('es');
     const browserLang = translate.getBrowserLang();
@@ -84,6 +86,16 @@ export class TableContentComponent implements OnInit {
   ExportTOExcelOrSheets() {
     const dialogRef = this.dialog.open(DatosUsuarioComponent, {
       data: { currentLote: this.indiceLoteSel }, width: '85%', panelClass: 'custom-dialog-container'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result.destino === 'Sheets') {
+        this._snackBar.open('Datos exportados a Google Sheets', 'Cerrar');
+      }
+      else if (result.destino === 'Excel') {
+        this._snackBar.open('Datos exportados a Excel', 'Cerrar');
+      }
     });
   }
 

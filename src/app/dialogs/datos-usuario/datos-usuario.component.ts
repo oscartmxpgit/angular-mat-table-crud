@@ -57,7 +57,7 @@ export class DatosUsuarioComponent implements OnInit {
         pesoTotalLote += caja.peso;
       });
       this.dataService.exportToExcel(this.data.currentLote, pesoTotalLote, this.destinatario3, this.observaciones);
-      this.dialogRef.close();
+      this.dialogRef.close({destino: 'Excel'});
     }
   }
 
@@ -70,7 +70,7 @@ export class DatosUsuarioComponent implements OnInit {
         pesoTotalLote += caja.peso;
       });
       this.gsheetsExportService.exportToSheets(this.destinatario3);
-      this.dialogRef.close();
+      this.dialogRef.close({destino: 'Sheets'});
     }
   }
 
