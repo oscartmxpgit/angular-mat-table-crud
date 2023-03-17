@@ -49,6 +49,10 @@
     </mat-form-field>
   </div>
 
+  <div *ngIf="counter>0 && counter < 61">
+    Tiempo de espera para volver a exportar {{counter | formatTime}}
+  </div>
+
   <div class="table-container mat-elevation-z8 " #TABLE>
     <table mat-table #table [dataSource]="dataSource" matSort>
       <!--- Note that these columns can be defined in any order.

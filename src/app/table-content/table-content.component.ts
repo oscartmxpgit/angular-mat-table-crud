@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { DataSource } from '@angular/cdk/collections';
-import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
+import { BehaviorSubject, fromEvent, merge, Observable, Subscription, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { DataService } from '../services/data.service';
@@ -33,6 +33,9 @@ export class TableContentComponent implements OnInit {
   loteId: number;
 
   private _indiceLoteSel: string;
+
+  countDown: Subscription;
+  counter = 61;
 
   @Input() set indiceLoteSel(value: string) {
     this._indiceLoteSel = value;
@@ -67,7 +70,7 @@ export class TableContentComponent implements OnInit {
 
   editLote() {
     const dialogRef = this.dialog.open(EditLoteInfoDialogComponent, {
-      data: {loteId: this.indiceLoteSel, remitente: this.getRemitenteLote()}, width: '85%', panelClass: 'custom-dialog-container'
+      data: { loteId: this.indiceLoteSel, remitente: this.getRemitenteLote() }, width: '85%', panelClass: 'custom-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -85,15 +88,22 @@ export class TableContentComponent implements OnInit {
 
   ExportTOExcelOrSheets() {
     const dialogRef = this.dialog.open(DatosUsuarioComponent, {
-      data: { currentLote: this.indiceLoteSel }, width: '85%', panelClass: 'custom-dialog-container'
+      data: { currentLote: this.indiceLoteSel, counter: this.counter }, width: '85%', panelClass: 'custom-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      if (result.destino === 'Sheets') {
-        this._snackBar.open('Datos exportados al Servidor', 'Cerrar');
+      if (result!=undefined && result.destino === 'Sheets') {
+        this._snackBar.open('Datos exportados al Servidor. Deberá esperar 1 minuto para volver a exportar', 'Cerrar');
+
+        this.countDown = timer(0, 1000).subscribe(() => {
+          --this.counter;
+          if (this.counter === 0) {
+            this.countDown.unsubscribe();
+          }
+        });
       }
-      else if (result.destino === 'Excel') {
+      else if (result!=undefined && result.destino === 'Excel') {
         this._snackBar.open('Datos exportados a Excel', 'Cerrar');
       }
     });

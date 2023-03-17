@@ -29,7 +29,7 @@
         </div>
 
         <div mat-dialog-actions>
-            <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+            <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid || (data.counter>0 && data.counter<61)" [mat-dialog-close]="1"
                 (click)="exportSheets()">Exportar a Sheets
                 <mat-icon>send</mat-icon></button>
             <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="2"

@@ -40,6 +40,7 @@ import { EditLoteInfoDialogComponent } from './dialogs/edit-lote-info-dialog/edi
 import { HomeComponent } from './home/home.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ContactDialogComponent } from './dialogs/contact-dialog/contact-dialog.component';
+import { FormatTimePipe } from './pipes/format-time.pipe';
 
 @NgModule({
     declarations: [
@@ -59,6 +60,7 @@ import { ContactDialogComponent } from './dialogs/contact-dialog/contact-dialog.
         EditLoteInfoDialogComponent,
         HomeComponent,
         ContactDialogComponent,
+        FormatTimePipe,
     ],
     imports: [
         BrowserModule,
