@@ -43,7 +43,7 @@ export class ContactDialogComponent implements OnInit {
   public enviaMensjSheets(): void {
     const datosContacto= "Kosmodromo," + this.remitente + ","+this.mensaje;
     this.gsheetsContactService.exportToSheets(datosContacto);
-    this.dialogRef.close({ destino: 'Sheets' });
+    this.dialogRef.close({ res: 'Ok' });
   }
 
 }
