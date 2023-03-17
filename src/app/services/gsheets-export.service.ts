@@ -22,25 +22,27 @@ export class GsheetsExportService {
 
   constructor(private http: HttpClient) { }
 
-  exportToSheets(destinatario) {
+  exportToSheets(lote, destinatario) {
     let issuesCompletos = this.conformData();
     let aPostear = "";
     issuesCompletos.forEach(element => {
-      aPostear += element.fecha + ",";
-      aPostear += element.loteId + ",";
-      aPostear += element.cajaId + ",";
-      aPostear += element.pesoCaja + ",";
-      aPostear += element.cantidad + ",";
-      aPostear += element.pesoUnitario + ",";
-      aPostear += element.pesoUnitario * element.cantidad + ",";
-      aPostear += element.descripcion + ",";
-      aPostear += element.categoria + ",";
-      aPostear += configSpreadSheet.destinatario1 + ",";
-      aPostear += configSpreadSheet.destinatario2 + ",";
-      aPostear += destinatario + ",";
-      aPostear += element.observaciones + ",";
-      aPostear += element.remitente + ",";
-      this.post(aPostear.slice(0, -1));
+      if (element.loteId ==lote){
+        aPostear += element.fecha + ",";
+        aPostear += element.loteId + ",";
+        aPostear += element.cajaId + ",";
+        aPostear += element.pesoCaja + ",";
+        aPostear += element.cantidad + ",";
+        aPostear += element.pesoUnitario + ",";
+        aPostear += element.pesoUnitario * element.cantidad + ",";
+        aPostear += element.descripcion + ",";
+        aPostear += element.categoria + ",";
+        aPostear += configSpreadSheet.destinatario1 + ",";
+        aPostear += configSpreadSheet.destinatario2 + ",";
+        aPostear += destinatario + ",";
+        aPostear += element.observaciones + ",";
+        aPostear += element.remitente + ",";
+        this.post(aPostear.slice(0, -1));
+      }
     });
   }
 

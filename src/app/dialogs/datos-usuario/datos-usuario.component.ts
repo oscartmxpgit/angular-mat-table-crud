@@ -69,7 +69,7 @@ export class DatosUsuarioComponent implements OnInit {
       cajasLoteUsr.forEach(caja => {
         pesoTotalLote += caja.peso;
       });
-      this.gsheetsExportService.exportToSheets(this.destinatario3);
+      this.gsheetsExportService.exportToSheets(this.data.currentLote, this.destinatario3);
       this.dialogRef.close({destino: 'Sheets'});
     }
   }
