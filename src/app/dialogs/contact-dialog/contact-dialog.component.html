@@ -1,0 +1,27 @@
+<div class="container">
+
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+        <h3 mat-dialog-title>Datos guardado</h3>
+
+        <div class="form">
+            <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Nombre, apellidos y teléfono" [(ngModel)]="remitente"
+                    name="remitente" required>
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            &nbsp;&nbsp;
+            <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Mensaje" [(ngModel)]="mensaje"
+                    name="mensaje" required>
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            &nbsp;&nbsp;
+            <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+                (click)="enviaMensjSheets()">Enviar comentario
+                <mat-icon>send</mat-icon></button>
+            <button style="margin-bottom: 20px;" mat-button (click)="onNoClick()"
+                tabindex="-1"><mat-icon>cancel</mat-icon>Cancelar</button>
+            <br />
+        </div>
+    </form>
+</div>

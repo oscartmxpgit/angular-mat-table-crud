@@ -19,15 +19,18 @@
         <app-help-texts></app-help-texts>
       </mat-expansion-panel>
     </mat-accordion>
-
-  <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-    <mat-tab *ngFor="let tab of tabs; let index = index" [label]="'Lote ' + tab">
-      <app-table-content [indiceLoteSel]="tab"></app-table-content>
-    </mat-tab>
-    <mat-tab disabled>
-      <ng-template mat-tab-label>
-        <button mat-flat-button style="border:none; padding:0;" title="Añadir nuevo lote" (click)="addTab()">+</button>
-      </ng-template>
-    </mat-tab>
-  </mat-tab-group>
-</div>
+    <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+      <mat-tab *ngFor="let tab of tabs; let index = index" [label]="'Lote ' + tab">
+        <app-table-content [indiceLoteSel]="tab"></app-table-content>
+      </mat-tab>
+      <mat-tab disabled>
+        <ng-template mat-tab-label>
+          <button mat-flat-button style="border:none; padding:0;" title="Añadir nuevo lote" (click)="addTab()">+</button>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+    <button mat-icon-button color="accent"
+            (click)="DeleteAll()">
+            <mat-icon>delete_forever</mat-icon>&nbsp;Eliminar todos los datos
+          </button>
+  </div>

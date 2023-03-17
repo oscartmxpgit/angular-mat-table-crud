@@ -18,7 +18,6 @@ export class GsheetsExportService {
   private readonly now = new Date();
 
   baseURL = "https://script.google.com/macros/s/AKfycbz-L8nE3q_FXLLeylPD078son9vXq-A92rdvZCWTDaYB_aRV-yf8gBo_SYL-lZOABxl9Q/exec";
-
   resourcesSpreadsheetId = "1e8UOVKbTfWsmaskudKpEU1u0rMDVu_YPWOuxcMqKweI";
 
   constructor(private http: HttpClient) { }

@@ -8,6 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { LoteInfoComponent } from 'app/dialogs/lote-info/lote-info.component';
+import { CajasDataService } from 'app/services/cajas-data.service';
 import { DataService } from 'app/services/data.service';
 import { LotesDataService } from 'app/services/lotes-data.service';
 import { TableContentComponent } from 'app/table-content/table-content.component';
@@ -19,7 +20,11 @@ import { ResetDialogComponent } from '../dialogs/reset-dialog/reset-dialog.compo
   styleUrls: ['./lotes-boxes.component.scss']
 })
 export class LotesBoxesComponent implements OnInit {
-  constructor(private router: Router, public dialog: MatDialog, public dataService: DataService, public httpClient: HttpClient, public lotesDataService: LotesDataService) { }
+  constructor(private router: Router, public dialog: MatDialog,
+    public dataService: DataService,
+    public cajaDataSrv: CajasDataService,
+    public httpClient: HttpClient,
+    public lotesDataService: LotesDataService) { }
   obs: any = [];
   panelOpenState = false;
 
@@ -34,6 +39,15 @@ export class LotesBoxesComponent implements OnInit {
     arrObj.forEach(element => {
       this.tabs.push(element.loteId)
     });
+  }
+
+  DeleteAll() {
+    if(confirm("¿Seguro que desea eliminar todo?")) {
+      this.dataService.deleteAll();
+      this.cajaDataSrv.deleteAll();
+      this.lotesDataService.deleteAll();
+      window.location.reload();
+    }
   }
 
   refresh() {

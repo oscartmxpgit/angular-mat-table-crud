@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ContactDialogComponent } from './dialogs/contact-dialog/contact-dialog.component';
 import { CajasDataService } from './services/cajas-data.service';
 import { DataService } from './services/data.service';
 import { LotesDataService } from './services/lotes-data.service';
@@ -14,16 +17,22 @@ export class AppComponent implements OnInit {
   }
 
   constructor(
-    public dataService: DataService, public cajaDataSrv: CajasDataService, public lotesDataService: LotesDataService) {
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar,
+    public dataService: DataService) {
   }
 
-  DeleteAll() {
-    if(confirm("¿Seguro que desea eliminar todo?")) {
-      this.dataService.deleteAll();
-      this.cajaDataSrv.deleteAll();
-      this.lotesDataService.deleteAll();
-      window.location.reload();
-    }
+  contact() {
+    const dialogRef = this.dialog.open(ContactDialogComponent, {
+      data: { }, width: '85%', panelClass: 'custom-dialog-container'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result.destino === 'Ok') {
+        this._snackBar.open('Mensaje enviado correctamente', 'Cerrar');
+      }
+    });
   }
 
 }

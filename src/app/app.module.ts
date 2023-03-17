@@ -39,6 +39,7 @@ import { LoteInfoComponent } from './dialogs/lote-info/lote-info.component';
 import { EditLoteInfoDialogComponent } from './dialogs/edit-lote-info-dialog/edit-lote-info-dialog.component';
 import { HomeComponent } from './home/home.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ContactDialogComponent } from './dialogs/contact-dialog/contact-dialog.component';
 
 @NgModule({
     declarations: [
@@ -57,6 +58,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         LoteInfoComponent,
         EditLoteInfoDialogComponent,
         HomeComponent,
+        ContactDialogComponent,
     ],
     imports: [
         BrowserModule,
