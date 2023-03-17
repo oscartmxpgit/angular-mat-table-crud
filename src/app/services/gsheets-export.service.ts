@@ -22,12 +22,11 @@ export class GsheetsExportService {
 
   constructor(private http: HttpClient) { }
 
-  exportToSheets(palet, destinatario) {
+  exportToSheets(destinatario) {
     let issuesCompletos = this.conformData();
     let aPostear = "";
     issuesCompletos.forEach(element => {
       aPostear += element.fecha + ",";
-      aPostear += palet + ",";
       aPostear += element.loteId + ",";
       aPostear += element.cajaId + ",";
       aPostear += element.pesoCaja + ",";

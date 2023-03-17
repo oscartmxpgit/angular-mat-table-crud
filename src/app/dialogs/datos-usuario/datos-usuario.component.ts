@@ -19,7 +19,6 @@ export class DatosUsuarioComponent implements OnInit {
 
   destinatario3: "";
   observaciones: "";
-  palet="";
 
   cajasConProb = "";
   cajasNoIntroducidas = "";
@@ -57,7 +56,7 @@ export class DatosUsuarioComponent implements OnInit {
       cajasLoteUsr.forEach(caja => {
         pesoTotalLote += caja.peso;
       });
-      this.dataService.exportToExcel(this.palet, this.data.currentLote, pesoTotalLote, this.destinatario3, this.observaciones);
+      this.dataService.exportToExcel(this.data.currentLote, pesoTotalLote, this.destinatario3, this.observaciones);
       this.dialogRef.close();
     }
   }
@@ -70,7 +69,7 @@ export class DatosUsuarioComponent implements OnInit {
       cajasLoteUsr.forEach(caja => {
         pesoTotalLote += caja.peso;
       });
-      this.gsheetsExportService.exportToSheets(this.palet, this.destinatario3);
+      this.gsheetsExportService.exportToSheets(this.destinatario3);
       this.dialogRef.close();
     }
   }

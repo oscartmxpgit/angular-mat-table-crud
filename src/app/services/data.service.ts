@@ -74,7 +74,7 @@ export class DataService {
     return arrObj.filter(caja => caja.loteId === +indiceLoteSel).length;
   }
 
-  exportToExcel(palet, currentLote, pesoLote, destinatario3, observacionesExcel): void {
+  exportToExcel(currentLote, pesoLote, destinatario3, observacionesExcel): void {
     var options = {
       filename: 'MisCajas.xlsx',
       useStyles: true,
