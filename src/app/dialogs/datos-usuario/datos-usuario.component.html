@@ -30,11 +30,11 @@
 
         <div mat-dialog-actions>
             <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid"
-                (click)="exportExcel()">Exportar a Excel
-                <mat-icon>arrow_drop_down_circle</mat-icon></button>
-            <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid"
                 (click)="exportSheets()">Exportar a Sheets
                 <mat-icon>send</mat-icon></button>
+            <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid"
+                (click)="exportExcel()">Exportar a Excel
+                <mat-icon>arrow_drop_down_circle</mat-icon></button>
             <button style="margin-bottom: 20px;" mat-button (click)="onNoClick()"
                 tabindex="-1"><mat-icon>cancel</mat-icon>Cancelar</button>
             <br />

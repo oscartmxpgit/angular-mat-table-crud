@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Caja, Issue, IssueCompleto, Lote } from 'app/models/issue';
+import { configSpreadSheet } from 'assets/config';
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +33,11 @@ export class GsheetsExportService {
       aPostear += element.pesoCaja + ",";
       aPostear += element.cantidad + ",";
       aPostear += element.pesoUnitario + ",";
+      aPostear += element.pesoUnitario * element.cantidad + ",";
       aPostear += element.descripcion + ",";
       aPostear += element.categoria + ",";
+      aPostear += configSpreadSheet.destinatario1 + ",";
+      aPostear += configSpreadSheet.destinatario2 + ",";
       aPostear += destinatario + ",";
       aPostear += element.observaciones + ",";
       aPostear += element.remitente + ",";
