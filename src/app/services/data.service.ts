@@ -95,30 +95,34 @@ export class DataService {
     worksheet.mergeCells('A4', 'C4');
     worksheet.mergeCells('A5', 'C5');
     worksheet.mergeCells('A6', 'C6');
+    worksheet.mergeCells('A7', 'C7');
 
     worksheet.mergeCells('D1', 'F1');
     worksheet.mergeCells('D2', 'F2');
     worksheet.mergeCells('D3', 'F3');
     worksheet.mergeCells('D5', 'F5');
+    worksheet.mergeCells('D6', 'F6');
 
     worksheet.getCell('A1').value = 'Operación:';
     worksheet.getCell('A2').value = 'Fecha de generación de Excel:';
     worksheet.getCell('A3').value = 'Nombre del lote:';
     worksheet.getCell('A4').value = 'Peso total (usuario):';
-    worksheet.getCell('A5').value = 'Observaciones lote:';
-    worksheet.getCell('A6').value = 'Pallet nº:';
+    worksheet.getCell('A5').value = 'Destinatario3:';
+    worksheet.getCell('A6').value = 'Observaciones lote:';
+    worksheet.getCell('A7').value = 'Pallet nº:';
 
     worksheet.getCell('D1').value = configSpreadSheet.operacionNombreCompleto;
     worksheet.getCell('D2').value = now.toISOString();
     worksheet.getCell('D3').value = this.lotesDataService.getRemitente(currentLote);
-    worksheet.getCell('D4').value = pesoLote;
-    worksheet.getCell('D5').value = observacionesExcel;
+    worksheet.getCell('D4').value = +pesoLote;
+    worksheet.getCell('D5').value = destinatario3;
+    worksheet.getCell('D6').value = observacionesExcel;
 
     worksheet.getCell('D4').alignment = { vertical: 'center', horizontal: 'left' };
-    worksheet.getCell('D6').alignment = { vertical: 'center', horizontal: 'left' };
+    worksheet.getCell('D7').alignment = { vertical: 'center', horizontal: 'left' };
 
     /*Column headers*/
-    worksheet.getRow(8).values = ['CAJA Nº', 'PESO CAJA (Kgs)', 'CANTIDAD', 'PESO UNITARIO (Kgs)', 'PESO (Kgs)', 'DESCRIPCIÓN', 'CATEGORÍA', 'DESTINATARIO 1', 'DESTINATARIO 2', 'DESTINATARIO 3', 'OBSERVACIONES'];
+    worksheet.getRow(9).values = ['CAJA Nº', 'PESO CAJA (Kgs)', 'CANTIDAD', 'PESO UNITARIO (Kgs)', 'PESO (Kgs)', 'DESCRIPCIÓN', 'CATEGORÍA', 'DESTINATARIO 1', 'DESTINATARIO 2', 'DESTINATARIO 3', 'OBSERVACIONES'];
 
     /*Define your column keys because this is what you use to insert your data according to your columns, they're column A, B, C, D respectively being idClient, Name, Tel, and Adresse.
     So, it's pretty straight forward */
@@ -136,8 +140,8 @@ export class DataService {
       { key: 'observaciones', width: 40 },
     ];
 
-    ['A8', 'B8', 'C8', 'D8', 'E8', 'F8', 'G8', 'H8', 'I8', 'J8', 'K8'].map(key => {
-      worksheet.getCell(key).style = { font: { name: 'Arial Black', color: { argb: '808080' } } };
+    ['A9', 'B9', 'C9', 'D9', 'E9', 'F9', 'G9', 'H9', 'I9', 'J9', 'K9'].map(key => {
+      worksheet.getCell(key).style = { font: { name: 'Arial Black', color: { argb: '909090' } } };
     });
 
     //this.getNumLotes();
