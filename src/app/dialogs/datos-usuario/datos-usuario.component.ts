@@ -54,7 +54,7 @@ export class DatosUsuarioComponent implements OnInit {
     if (this.puedeExportar()) {
       let pesoTotalLote = 0;
       cajasLoteUsr.forEach(caja => {
-        pesoTotalLote += caja.peso;
+        pesoTotalLote += +caja.peso;
       });
       this.dataService.exportToExcel(this.data.currentLote, +pesoTotalLote, this.destinatario3, this.observaciones);
       this.dialogRef.close({destino: 'Excel'});
