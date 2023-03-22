@@ -74,7 +74,7 @@ export class DataService {
     return arrObj.filter(caja => caja.loteId === +indiceLoteSel).length;
   }
 
-  exportToExcel(currentLote, pesoLote, destinatario3, observacionesExcel): void {
+  exportToExcel(currentLote, pesoLote, destinatario2, destinatario3, observacionesExcel): void {
     var options = {
       filename: 'MisCajas.xlsx',
       useStyles: true,
@@ -159,7 +159,7 @@ export class DataService {
         }
       }
       if (j == 0 || datoNuevaCaja) {
-        worksheet.addRow({ caja: cajaIdElem, pesocaja: this.pesoLoteIndividual(currentLote, element.cajaId), cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria, destinatario1: configSpreadSheet.destinatario1, destinatario2: configSpreadSheet.destinatario2, destinatario3: destinatario3, observaciones: element.observaciones });
+        worksheet.addRow({ caja: cajaIdElem, pesocaja: this.pesoLoteIndividual(currentLote, element.cajaId), cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria, destinatario1: configSpreadSheet.destinatario1, destinatario2: destinatario2, destinatario3: destinatario3, observaciones: element.observaciones });
       }
       else {
         worksheet.addRow({ cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria, observaciones: element.observaciones });
@@ -172,7 +172,7 @@ export class DataService {
       }
     }
 
-    let fileName = configSpreadSheet.operacion + "_" + this.lotesDataService.getRemitente(currentLote) + "_" + now.toISOString() + ".xlsx";
+    let fileName = configSpreadSheet.operacion + "_" + this.lotesDataService.getRemitente(currentLote).substring(0,10) + "_" + now.toISOString() + ".xlsx";
     const excelBuffer: any = workbook.xlsx.writeBuffer();
     workbook.xlsx.writeBuffer()
       .then(function (buffer) {

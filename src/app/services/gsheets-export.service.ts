@@ -22,7 +22,7 @@ export class GsheetsExportService {
 
   constructor(private http: HttpClient) { }
 
-  exportToSheets(lote, destinatario) {
+  exportToSheets(lote, destinatario2, destinatario3) {
     let issuesCompletos = this.conformData();
     let aPostear = "";
     issuesCompletos.forEach(element => {
@@ -37,8 +37,8 @@ export class GsheetsExportService {
         aPostear += element.descripcion + ",";
         aPostear += element.categoria + ",";
         aPostear += configSpreadSheet.destinatario1 + ",";
-        aPostear += configSpreadSheet.destinatario2 + ",";
-        aPostear += destinatario + ",";
+        aPostear += destinatario2 + ",";
+        aPostear += destinatario3 + ",";
         aPostear += element.observaciones + ",";
         aPostear += element.remitente + ",";
         this.post(aPostear.slice(0, -1));

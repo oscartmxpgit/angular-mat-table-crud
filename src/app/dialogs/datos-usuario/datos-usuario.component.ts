@@ -6,6 +6,7 @@ import { Caja } from 'app/models/issue';
 import { CajasDataService } from 'app/services/cajas-data.service';
 import { DataService } from 'app/services/data.service';
 import { GsheetsExportService } from 'app/services/gsheets-export.service';
+import { configSpreadSheet } from 'assets/config';
 
 @Component({
   selector: 'app-datos-usuario',
@@ -17,8 +18,9 @@ export class DatosUsuarioComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService, public cajasDataService: CajasDataService, public gsheetsExportService: GsheetsExportService,
     public dialogRef: MatDialogRef<DatosUsuarioComponent>,) { }
 
-  destinatario3: "";
-  observaciones: "";
+  destinatario2 = "";
+  destinatario3 = "";
+  observaciones = "";
 
   cajasConProb = "";
   cajasNoIntroducidas = "";
@@ -46,6 +48,7 @@ export class DatosUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.destinatario2=configSpreadSheet.destinatario2;
   }
 
   public exportExcel(): void {
@@ -56,8 +59,8 @@ export class DatosUsuarioComponent implements OnInit {
       cajasLoteUsr.forEach(caja => {
         pesoTotalLote += +caja.peso;
       });
-      this.dataService.exportToExcel(this.data.currentLote, +pesoTotalLote, this.destinatario3, this.observaciones);
-      this.dialogRef.close({destino: 'Excel'});
+      this.dataService.exportToExcel(this.data.currentLote, +pesoTotalLote, this.destinatario2, this.destinatario3, this.observaciones);
+      this.dialogRef.close({ destino: 'Excel' });
     }
   }
 
@@ -69,12 +72,12 @@ export class DatosUsuarioComponent implements OnInit {
       cajasLoteUsr.forEach(caja => {
         pesoTotalLote += caja.peso;
       });
-      this.gsheetsExportService.exportToSheets(this.data.currentLote, this.destinatario3);
-      this.dialogRef.close({destino: 'Sheets'});
+      this.gsheetsExportService.exportToSheets(this.data.currentLote, this.destinatario2, this.destinatario3);
+      this.dialogRef.close({ destino: 'Sheets' });
     }
   }
 
-  puedeExportar(): boolean{
+  puedeExportar(): boolean {
     let cajasLoteUsr = this.cajasDataService.cajasLoteUsr(this.data.currentLote); //Caja, CajasDataValues
     let pesodiff = 0;
     let puedeExportar = false;
