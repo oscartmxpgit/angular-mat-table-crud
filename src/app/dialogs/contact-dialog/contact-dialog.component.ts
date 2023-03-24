@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { GsheetsContactService } from 'app/services/gsheets-contact.service';
-import { DatosUsuarioComponent } from '../datos-usuario/datos-usuario.component';
 
 @Component({
   selector: 'app-contact-dialog',
@@ -11,12 +10,14 @@ import { DatosUsuarioComponent } from '../datos-usuario/datos-usuario.component'
 })
 export class ContactDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<DatosUsuarioComponent>, public gsheetsContactService: GsheetsContactService) { }
+  constructor(public dialogRef: MatDialogRef<ContactDialogComponent>, public gsheetsContactService: GsheetsContactService) { }
 
   ngOnInit(): void {
   }
 
-  remitente = "";
+  remitenteNombre = "";
+  remitenteCorreo = "";
+  remitenteTelefono = "";
   mensaje = "";
 
   formControl = new FormControl('', [
@@ -41,7 +42,7 @@ export class ContactDialogComponent implements OnInit {
   }
 
   public enviaMensjSheets(): void {
-    const datosContacto= "Kosmodromo," + this.remitente + ","+this.mensaje;
+    const datosContacto = "CaminoEmaus," + this.remitenteNombre + "," + this.remitenteCorreo + "," + this.remitenteTelefono + "," + this.mensaje;
     this.gsheetsContactService.exportToSheets(datosContacto);
     this.dialogRef.close({ res: 'Ok' });
   }

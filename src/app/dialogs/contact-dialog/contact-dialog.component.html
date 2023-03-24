@@ -5,18 +5,30 @@
 
         <div class="form">
             <mat-form-field color="accent">
-                <input matInput #input class="form-control" placeholder="Nombre, apellidos y teléfono" [(ngModel)]="remitente"
+                <input matInput class="form-control" placeholder="Nombre y apellidos" [(ngModel)]="remitenteNombre"
                     name="remitente" required>
                 <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
             &nbsp;&nbsp;
             <mat-form-field color="accent">
-                <input matInput #input class="form-control" placeholder="Mensaje" [(ngModel)]="mensaje"
+                <input email matInput class="form-control" placeholder="Correo electrónico" [(ngModel)]="remitenteCorreo"
+                    name="remitenteCorreo" required>
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            &nbsp;&nbsp;
+            <mat-form-field color="accent">
+                <input matInput class="form-control" placeholder="Teléfono" [(ngModel)]="remitenteTelefono"
+                    name="remitenteTelefono" required>
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            &nbsp;&nbsp;
+            <mat-form-field color="accent">
+                <input matInput class="form-control" placeholder="Mensaje" [(ngModel)]="mensaje"
                     name="mensaje" required>
                 <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
             &nbsp;&nbsp;
-            <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+            <button style="margin-bottom: 20px;" mat-button [disabled]="!formControl.valid" [mat-dialog-close]="1"
                 (click)="enviaMensjSheets()">Enviar comentario
                 <mat-icon>send</mat-icon></button>
             <button style="margin-bottom: 20px;" mat-button (click)="onNoClick()"
