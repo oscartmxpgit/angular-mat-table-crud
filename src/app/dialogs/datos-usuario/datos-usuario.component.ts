@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { comboData } from 'app/models/datosComboBoxes';
 import { Caja } from 'app/models/issue';
 import { CajasDataService } from 'app/services/cajas-data.service';
@@ -15,13 +16,18 @@ import { configSpreadSheet } from 'assets/config';
 })
 export class DatosUsuarioComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService, public cajasDataService: CajasDataService, public gsheetsExportService: GsheetsExportService,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+    private _snackBar: MatSnackBar,
+    public dataService: DataService,
+    public cajasDataService: CajasDataService,
+    public gsheetsExportService: GsheetsExportService,
     public dialogRef: MatDialogRef<DatosUsuarioComponent>,) { }
 
   destinatario2 = "";
   destinatario3 = "";
   observaciones = "";
 
+  mensajeAclaracionDestinatarios = "Si el  Destinatario3 es un particular mantener como Destinatario2 a: " + configSpreadSheet.destinatario2;
   cajasConProb = "";
   cajasNoIntroducidas = "";
   mensajeErrForm: "";
@@ -30,6 +36,12 @@ export class DatosUsuarioComponent implements OnInit {
     Validators.required
     // Validators.email,
   ]);
+
+  mostrarMensajeAclaracion(){
+    if (this.destinatario2!=configSpreadSheet.destinatario2){
+      this._snackBar.open(this.mensajeAclaracionDestinatarios, 'Ok');
+    }
+  }
 
 
   onNoClick(): void {
@@ -48,7 +60,7 @@ export class DatosUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.destinatario2=configSpreadSheet.destinatario2;
+    this.destinatario2 = configSpreadSheet.destinatario2;
   }
 
   public exportExcel(): void {

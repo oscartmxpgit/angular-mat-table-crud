@@ -3,14 +3,14 @@
     <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
         <h3 mat-dialog-title>Datos para exportar (lote actual)</h3>
 
+
         <div class="form">
             <mat-form-field color="accent">
-                <input matInput #input class="form-control" placeholder="Nombre, apellidos y telef." [(ngModel)]="destinatario2"
+                <input (focusout)="mostrarMensajeAclaracion()" matInput #input class="form-control" placeholder="Destinatario2: Nombre, apellidos y telef." [(ngModel)]="destinatario2"
                     name="destinatario2" required>
                     <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>
-            (Si el  Destinatario3 es un particular mantener como Destinatario2 a: P. Charles Monagal (Diocésis de La Habana)
             <br>
 
         <div class="form">
