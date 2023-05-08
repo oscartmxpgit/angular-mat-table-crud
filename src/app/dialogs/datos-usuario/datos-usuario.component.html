@@ -3,7 +3,6 @@
     <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
         <h3 mat-dialog-title>Datos para exportar (lote actual)</h3>
 
-
         <div class="form">
             <mat-form-field color="accent">
                 <input (focusout)="mostrarMensajeAclaracion()" matInput #input class="form-control" placeholder="Destinatario2: Nombre, apellidos y telef." [(ngModel)]="destinatario2"

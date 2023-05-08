@@ -16,11 +16,16 @@ export class GsheetsExportService {
   private readonly CAJAS_SHEET = "cajas";
   private readonly ELEMENTS_SHEET = "elements";
   private readonly now = new Date();
+  jsonConfigData: any;
 
   baseURL = "https://script.google.com/macros/s/AKfycbz-L8nE3q_FXLLeylPD078son9vXq-A92rdvZCWTDaYB_aRV-yf8gBo_SYL-lZOABxl9Q/exec";
   resourcesSpreadsheetId = "1e8UOVKbTfWsmaskudKpEU1u0rMDVu_YPWOuxcMqKweI";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.http.get(configSpreadSheet.jsonUrl).subscribe(
+      (response) => { this.jsonConfigData = response; },
+      (error) => { console.log(error); });
+   }
 
   exportToSheets(lote, destinatario2, destinatario3) {
     let issuesCompletos = this.conformData();
@@ -36,7 +41,7 @@ export class GsheetsExportService {
         aPostear += element.pesoUnitario * element.cantidad + ",";
         aPostear += element.descripcion + ",";
         aPostear += element.categoria + ",";
-        aPostear += configSpreadSheet.destinatario1 + ",";
+        aPostear += this.jsonConfigData[0].destinatario1 + ",";
         aPostear += destinatario2 + ",";
         aPostear += destinatario3 + ",";
         aPostear += element.observaciones + ",";

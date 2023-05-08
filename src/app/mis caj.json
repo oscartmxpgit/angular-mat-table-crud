@@ -1,0 +1,299 @@
+[
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Animalito",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.021",
+        "cantidad": "10",
+        "id": null
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Muñecos South Park",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.07",
+        "cantidad": "3",
+        "id": 1
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Silbato",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.01",
+        "cantidad": "1",
+        "id": 2
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Estrella de mar",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.045",
+        "cantidad": "1",
+        "id": 3
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Pelotas",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.06",
+        "cantidad": "1",
+        "id": 4
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Arañas",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.04",
+        "cantidad": "1",
+        "id": 5
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Plastilina",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.185",
+        "cantidad": "1",
+        "id": 6
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Acrílico",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.23",
+        "cantidad": "1",
+        "id": 7
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Poker",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.06",
+        "cantidad": "1",
+        "id": 8
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Trompo",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.05",
+        "cantidad": "1",
+        "id": 9
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Patineta mini",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.025",
+        "cantidad": "1",
+        "id": 10
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Parchis",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.08",
+        "cantidad": "1",
+        "id": 11
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Peppa Juega y Colorea",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.14",
+        "cantidad": "1",
+        "id": 12
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Canicas decorativas",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.2525",
+        "cantidad": "2",
+        "id": 13
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Piedras decorativas",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.51",
+        "cantidad": "1",
+        "id": 14
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Pasta para modelar",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.47",
+        "cantidad": "1",
+        "id": 15
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Imanes nevera",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.055",
+        "cantidad": "2",
+        "id": 16
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Llavero",
+        "categoria": "Juguetes",
+        "pesoUnitario": "0.015",
+        "cantidad": "1",
+        "id": 17
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Goma para pelo",
+        "categoria": "Elementos de aseo y limpieza",
+        "pesoUnitario": "0.035",
+        "cantidad": "1",
+        "id": 18
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Felpa de pelo",
+        "categoria": "Elementos de aseo y limpieza",
+        "pesoUnitario": "0.0075",
+        "cantidad": "2",
+        "id": 19
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Estampas",
+        "categoria": "Elementos religiosos",
+        "pesoUnitario": "0.004",
+        "cantidad": "6",
+        "id": 20
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Chocolates Peppa Calendario",
+        "categoria": "Otros ítems de comida",
+        "pesoUnitario": "0.125",
+        "cantidad": "2",
+        "id": 21
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Turrones mini",
+        "categoria": "Otros ítems de comida",
+        "pesoUnitario": "0.025",
+        "cantidad": "52",
+        "id": 22
+    },
+    {
+        "loteId": 1,
+        "cajaId": "1",
+        "descripcion": "Turrones tamaño normal",
+        "categoria": "Otros ítems de comida",
+        "pesoUnitario": "0.28",
+        "cantidad": "20",
+        "id": 23
+    },
+    {
+        "loteId": 1,
+        "cajaId": "2",
+        "descripcion": "latas de judías verdes",
+        "pesoUnitario": "0.83",
+        "cantidad": "4",
+        "categoria": "Otros ítems de comida",
+        "id": 24
+    },
+    {
+        "loteId": 1,
+        "cajaId": "2",
+        "descripcion": "latas de garbanzos",
+        "categoria": "Otros ítems de comida",
+        "pesoUnitario": "0.45",
+        "cantidad": "4",
+        "id": 25
+    },
+    {
+        "loteId": 1,
+        "cajaId": "2",
+        "descripcion": "lentejas con verduras",
+        "categoria": "Otros ítems de comida",
+        "pesoUnitario": "0.60",
+        "cantidad": "12",
+        "id": 26
+    },
+    {
+        "loteId": 1,
+        "cajaId": "2",
+        "descripcion": "turrones medianos",
+        "categoria": "Otros ítems de comida",
+        "pesoUnitario": "0.23",
+        "cantidad": "6",
+        "id": 27
+    },
+    {
+        "loteId": 1,
+        "cajaId": "2",
+        "descripcion": "turrones grandes",
+        "categoria": "Otros ítems de comida",
+        "pesoUnitario": "0.3",
+        "cantidad": "7",
+        "id": 28
+    },
+    {
+        "loteId": 1,
+        "cajaId": "2",
+        "descripcion": "turrones mini",
+        "categoria": "Otros ítems de comida",
+        "cantidad": "3",
+        "pesoUnitario": "0.04",
+        "id": 29
+    },
+    {
+        "loteId": 1,
+        "cajaId": "2",
+        "descripcion": "bombones",
+        "cantidad": "1",
+        "pesoUnitario": "0.02",
+        "categoria": "Otros ítems de comida",
+        "id": 30
+    },
+    {
+        "loteId": 1,
+        "cajaId": "2",
+        "descripcion": "chocolates",
+        "categoria": "Otros ítems de comida",
+        "cantidad": "2",
+        "pesoUnitario": "0.15",
+        "id": 31
+    },
+    {
+        "loteId": 1,
+        "cajaId": "2",
+        "descripcion": "mazapán",
+        "categoria": "Otros ítems de comida",
+        "cantidad": "21",
+        "pesoUnitario": "0.1",
+        "id": 32
+    }
+]

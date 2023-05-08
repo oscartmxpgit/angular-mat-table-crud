@@ -17,8 +17,13 @@ export class LotesDataService {
   lotesData: any;
   numLotes: number;
   numCajas: number;
+  jsonConfigData: any;
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+    this.http.get(configSpreadSheet.jsonUrl).subscribe(
+      (response) => { this.jsonConfigData = response; },
+      (error) => { console.log(error); });
+   }
 
   get data(): Lote[] {
     return this.dataChange.value;

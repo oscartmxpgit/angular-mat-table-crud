@@ -9,6 +9,7 @@
         <span class="title only-on-wide">Kosmódromo</span>
       </a>
       &nbsp;&nbsp;&nbsp;
+
       <a class="nav-link" routerLink="home" title="Página de inicio" data-bs-toggle="collapse"
         data-bs-target=".navbar-collapse.show" routerLinkActive="active-link">Inicio</a>
       &nbsp;&nbsp;
@@ -24,6 +25,7 @@
         </a>
       </span>
     </nav>
+    Operación actual: {{this.jsonConfigData[0].operacionNombreCompleto}}
   </div>
 </nav>
 <router-outlet></router-outlet>

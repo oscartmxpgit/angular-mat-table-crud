@@ -34,11 +34,11 @@
                   "maximumWarning": "6kb"
                 }
               ],
-              "optimization": true,
+              "optimization": false,
               "outputHashing": "all",
               "sourceMap": true,
               "namedChunks": false,
-              "aot": true,
+              "aot": false,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -56,14 +56,12 @@
                   "maximumWarning": "6kb"
                 }
               ],
-              "optimization": true,
-              "outputHashing": "all",
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
+              "namedChunks": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.prod.ts",
