@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -20,6 +21,7 @@ export class DatosUsuarioComponent implements OnInit {
     private _snackBar: MatSnackBar,
     public dataService: DataService,
     public cajasDataService: CajasDataService,
+    private http: HttpClient,
     public gsheetsExportService: GsheetsExportService,
     public dialogRef: MatDialogRef<DatosUsuarioComponent>,) { }
 
@@ -27,18 +29,19 @@ export class DatosUsuarioComponent implements OnInit {
   destinatario3 = "";
   observaciones = "";
 
-  mensajeAclaracionDestinatarios = "Si el  Destinatario3 es un particular mantener como Destinatario2 a: " + configSpreadSheet.destinatario2;
+  mensajeAclaracionDestinatarios = "Si el  Destinatario3 es un particular mantener como Destinatario2 a: ";
   cajasConProb = "";
   cajasNoIntroducidas = "";
   mensajeErrForm: "";
+  jsonConfigData: any;
 
   formControl = new FormControl('', [
     Validators.required
     // Validators.email,
   ]);
 
-  mostrarMensajeAclaracion(){
-    if (this.destinatario2!=configSpreadSheet.destinatario2){
+  mostrarMensajeAclaracion() {
+    if (this.destinatario2 != this.jsonConfigData[0].destinatario2) {
       this._snackBar.open(this.mensajeAclaracionDestinatarios, 'Ok');
     }
   }
@@ -60,7 +63,14 @@ export class DatosUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.destinatario2 = configSpreadSheet.destinatario2;
+    
+    this.http.get(configSpreadSheet.jsonUrl).subscribe(
+      (response) => { 
+        this.jsonConfigData = response;
+        this.destinatario2 = this.jsonConfigData[0].destinatario2;
+        this.mensajeAclaracionDestinatarios = "Si el  Destinatario3 es un particular mantener como Destinatario2 a: " + this.destinatario2;
+       },
+      (error) => { console.log(error); });
   }
 
   public exportExcel(): void {
