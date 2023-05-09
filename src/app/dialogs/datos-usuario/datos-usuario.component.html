@@ -14,7 +14,7 @@
         <div class="form">
             <mat-form-field color="accent">
                 <input matInput #input class="form-control" placeholder="Destinatario3: Nombre, apellidos y telef" [(ngModel)]="destinatario3"
-                    name="destinatario3" required>
+                    name="destinatario3">
                 <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>
