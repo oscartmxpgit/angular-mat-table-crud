@@ -116,7 +116,7 @@ export class DataService {
     worksheet.getCell('A6').value = 'Observaciones lote:';
     worksheet.getCell('A7').value = 'Pallet nº:';
 
-    worksheet.getCell('D1').value = this.jsonConfigData[0].operacionNombreCompleto;
+    worksheet.getCell('D1').value = this.jsonConfigData[0]?.operacionNombreCompleto;
     worksheet.getCell('D2').value = now.toISOString();
     worksheet.getCell('D3').value = this.lotesDataService.getRemitente(currentLote);
     worksheet.getCell('D4').value = +pesoLote;
@@ -164,7 +164,7 @@ export class DataService {
         }
       }
       if (j == 0 || datoNuevaCaja) {
-        worksheet.addRow({ caja: cajaIdElem, pesocaja: this.pesoLoteIndividual(currentLote, element.cajaId), cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria, destinatario1: this.jsonConfigData[0].destinatario1, destinatario2: destinatario2, destinatario3: destinatario3, observaciones: element.observaciones });
+        worksheet.addRow({ caja: cajaIdElem, pesocaja: this.pesoLoteIndividual(currentLote, element.cajaId), cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria, destinatario1: this.jsonConfigData[0]?.destinatario1, destinatario2: destinatario2, destinatario3: destinatario3, observaciones: element.observaciones });
       }
       else {
         worksheet.addRow({ cantidad: +element.cantidad, pesoUnitario: +element.pesoUnitario, peso: element.pesoUnitario * element.cantidad, descripcion: element.descripcion, categoria: element.categoria, observaciones: element.observaciones });
@@ -177,7 +177,7 @@ export class DataService {
       }
     }
 
-    let fileName = this.jsonConfigData[0].operacion + "_" + this.lotesDataService.getRemitente(currentLote).substring(0,10) + "_" + now.toISOString() + ".xlsx";
+    let fileName = this.jsonConfigData[0]?.operacion + "_" + this.lotesDataService.getRemitente(currentLote).substring(0,10) + "_" + now.toISOString() + ".xlsx";
     const excelBuffer: any = workbook.xlsx.writeBuffer();
     workbook.xlsx.writeBuffer()
       .then(function (buffer) {

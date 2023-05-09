@@ -41,7 +41,7 @@ export class DatosUsuarioComponent implements OnInit {
   ]);
 
   mostrarMensajeAclaracion() {
-    if (this.destinatario2 != this.jsonConfigData[0].destinatario2) {
+    if (this.destinatario2 != this.jsonConfigData[0]?.destinatario2) {
       this._snackBar.open(this.mensajeAclaracionDestinatarios, 'Ok');
     }
   }
@@ -63,11 +63,11 @@ export class DatosUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
     this.http.get(configSpreadSheet.jsonUrl).subscribe(
-      (response) => { 
+      (response) => {
         this.jsonConfigData = response;
-        this.destinatario2 = this.jsonConfigData[0].destinatario2;
+        this.destinatario2 = this.jsonConfigData[0]?.destinatario2;
         this.mensajeAclaracionDestinatarios = "Si el  Destinatario3 es un particular mantener como Destinatario2 a: " + this.destinatario2;
        },
       (error) => { console.log(error); });

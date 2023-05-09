@@ -1,7 +1,4 @@
 export const configSpreadSheet = {
-    operacion: 'H61',
-    operacionNombreCompleto: 'H61: Operación Ícaro',
-    destinatario1: 'Conferencia Obispos Católicos de Cuba',
-    destinatario2: 'P. Charles Monagal (Diocésis de La Habana)',
     jsonUrl: 'https://oscartmxpgit.github.io/kosmoconfig/config.json',
+    helpTextUrl: 'https://oscartmxpgit.github.io/kosmoconfig/helptext.html',
   };

@@ -41,7 +41,7 @@ export class GsheetsExportService {
         aPostear += element.pesoUnitario * element.cantidad + ",";
         aPostear += element.descripcion + ",";
         aPostear += element.categoria + ",";
-        aPostear += this.jsonConfigData[0].destinatario1 + ",";
+        aPostear += this.jsonConfigData[0]?.destinatario1 + ",";
         aPostear += destinatario2 + ",";
         aPostear += destinatario3 + ",";
         aPostear += element.observaciones + ",";
