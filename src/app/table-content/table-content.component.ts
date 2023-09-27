@@ -19,6 +19,7 @@ import { CajasDataService } from 'app/services/cajas-data.service';
 import { EditLoteInfoDialogComponent } from 'app/dialogs/edit-lote-info-dialog/edit-lote-info-dialog.component';
 import { GsheetsExportService } from 'app/services/gsheets-export.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-table-content',
@@ -267,9 +268,12 @@ export class CajasDataSource extends DataSource<Issue> {
 
   /** Returns a sorted copy of the database data. */
   sortData(data: Issue[]): Issue[] {
-    if (!this._sort.active || this._sort.direction === '') {
+    this._sort.active = "cajaId";
+    this._sort.direction = 'asc';
+    if (!this._sort.active) {
       return data;
     }
+    console.log("estamos ordenando")
 
     return data.sort((a, b) => {
       let propertyA: number | string = '';
@@ -277,6 +281,7 @@ export class CajasDataSource extends DataSource<Issue> {
 
       switch (this._sort.active) {
         case 'loteId': [propertyA, propertyB] = [a.loteId, b.loteId]; break;
+        case 'cajaId': [propertyA, propertyB] = [a.cajaId, b.cajaId]; break;
         case 'descripcion': [propertyA, propertyB] = [a.descripcion, b.descripcion]; break;
         case 'categoria': [propertyA, propertyB] = [a.categoria, b.categoria]; break;
         case 'pesoUnitario': [propertyA, propertyB] = [a.pesoUnitario, b.pesoUnitario]; break;

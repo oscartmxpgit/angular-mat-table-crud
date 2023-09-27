@@ -62,8 +62,18 @@ export class DataService {
   cajasJsonStrToObjArray(): Issue[] {
     const cajData = CajasStorage.getItem();
     var obj = eval(cajData);
+    const sortedData = obj.sort((obj1, obj2) => {
+      // Compare the "b" property of each object
+      if (obj1.cajaId < obj2.cajaId) {
+        return -1; // obj1 should come before obj2
+      } else if (obj1.cajaId > obj2.cajaId) {
+        return 1; // obj1 should come after obj2
+      } else {
+        return 0; // "b" properties are equal, no change in order
+      }
+    });
     var res = [];
-    for (var i in obj)
+    for (var i in sortedData)
       res.push(obj[i]);
     return res;
   }
