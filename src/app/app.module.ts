@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { API_KEY, GoogleSheetsDbService } from 'ng-google-sheets-db';
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -27,7 +26,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ResetDialogComponent } from './dialogs/reset-dialog/reset-dialog.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LotesBoxesComponent } from './lotes-boxes/lotes-boxes.component';
-import { AvisosComponent } from './avisos/avisos.component';
 import { environment } from 'environments/environment';
 import { OnlyNumberDirective } from './directives/only-number.directive';
 import { DatosUsuarioComponent } from './dialogs/datos-usuario/datos-usuario.component';
@@ -51,7 +49,6 @@ import { FormatTimePipe } from './pipes/format-time.pipe';
         TableContentComponent,
         ResetDialogComponent,
         LotesBoxesComponent,
-        AvisosComponent,
         OnlyNumberDirective,
         DatosUsuarioComponent,
         HelpTextsComponent,
@@ -86,12 +83,7 @@ import { FormatTimePipe } from './pipes/format-time.pipe';
         TranslateModule.forRoot(),
     ],
     providers: [
-        DataService,
-        {
-            provide: API_KEY,
-            useValue: environment.googleSheetsApiKey,
-          },
-          GoogleSheetsDbService
+        DataService
     ],
     bootstrap: [AppComponent]
 })
