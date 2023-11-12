@@ -82,6 +82,10 @@ export class CajasDataService {
 var CajasDataStorage = {
 
   getItem: function () {
+    const rst = localStorage.getItem("CajasDataValues");
+    const emptyObj= [];
+    if (!rst)
+    CajasDataStorage.setItem(emptyObj);
     return localStorage.getItem("CajasDataValues");
   },
 

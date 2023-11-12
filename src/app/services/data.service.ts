@@ -297,6 +297,10 @@ export class DataService {
 var CajasStorage = {
 
   getItem: function () {
+    const rst = localStorage.getItem("CajasValues");
+    const emptyObj: any[] = [];
+    if (!rst)
+     CajasStorage.setItem(JSON.stringify(emptyObj));
     return localStorage.getItem("CajasValues");
   },
 
