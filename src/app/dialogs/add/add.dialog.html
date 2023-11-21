@@ -19,7 +19,7 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Descripción" [(ngModel)]="data.descripcion"
+        <input matInput #input class="form-control" placeholder="Descripción" [(ngModel)]="data.descripcion" #descripcion
           name="descripcion" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
@@ -36,13 +36,13 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input onlyNumber matInput placeholder="Peso Unitario (Kgs)" [(ngModel)]="data.pesoUnitario"
+        <input onlyNumber matInput placeholder="Peso Unitario (Kgs)" [(ngModel)]="data.pesoUnitario" #pesoUnitario
           name="pesoUnitario" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
       &nbsp;&nbsp;
       <mat-form-field color="accent">
-        <input onlyNumber matInput placeholder="Cantidad" [(ngModel)]="data.cantidad"
+        <input onlyNumber matInput placeholder="Cantidad" [(ngModel)]="data.cantidad" #cantidad
           name="cantidad" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
@@ -57,9 +57,9 @@
     </div>
 
     <div mat-dialog-actions>
-      <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+      <button style="margin-bottom: 20px;" mat-button [type]="submit" [disabled]="!formControl.valid"
         (click)="confirmAdd()"><mat-icon>save</mat-icon>Guardar</button>
-      <button style="margin-bottom: 20px;" mat-button (click)="onNoClick()" tabindex="-1"><mat-icon>cancel</mat-icon>Cancelar</button>
+      <button style="margin-bottom: 20px;" mat-button (click)="onNoClick()" tabindex="-1"  [mat-dialog-close]="1"><mat-icon>cancel</mat-icon>Cancelar</button>
       <br/>
     </div>
   </form>

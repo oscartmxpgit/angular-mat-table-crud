@@ -135,13 +135,12 @@ export class TableContentComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 1) {
+        console.log("estamos aqui")
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
         this.lotesDatabase.dataChange.value.push(this.dataService.getDialogData());
         this.loadData();
         this.refreshTable();
-      }
     });
   }
 
@@ -273,7 +272,6 @@ export class CajasDataSource extends DataSource<Issue> {
     if (!this._sort.active) {
       return data;
     }
-    console.log("estamos ordenando")
 
     return data.sort((a, b) => {
       let propertyA: number | string = '';
