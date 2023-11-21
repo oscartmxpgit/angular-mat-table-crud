@@ -27,6 +27,8 @@ export class DatosUsuarioComponent implements OnInit {
 
   destinatario2 = "";
   destinatario3 = "";
+  destinatario3Telf = "";
+  destinatario3NombAp = "";
   observaciones = "";
 
   mensajeAclaracionDestinatarios = "Si el  Destinatario3 es un particular mantener como Destinatario2 a: ";
@@ -81,6 +83,7 @@ export class DatosUsuarioComponent implements OnInit {
       cajasLoteUsr.forEach(caja => {
         pesoTotalLote += +caja.peso;
       });
+      this.destinatario3 = this.destinatario3NombAp + " (" + this.destinatario3Telf + ")";
       this.dataService.exportToExcel(this.data.currentLote, +pesoTotalLote, this.destinatario2, this.destinatario3, this.observaciones);
       this.dialogRef.close({ destino: 'Excel' });
     }

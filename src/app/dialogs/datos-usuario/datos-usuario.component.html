@@ -5,7 +5,7 @@
 
         <div class="form">
             <mat-form-field color="accent">
-                <input (focusout)="mostrarMensajeAclaracion()" matInput #input class="form-control" placeholder="Destinatario2: Nombre, apellidos y telef." [(ngModel)]="destinatario2"
+                <input (focusout)="mostrarMensajeAclaracion()" readonly  matInput #input class="form-control" placeholder="Destinatario2: Nombre, apellidos y telef." [(ngModel)]="destinatario2"
                     name="destinatario2" required>
                     <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                 </mat-form-field>
@@ -13,8 +13,16 @@
 
         <div class="form">
             <mat-form-field color="accent">
-                <input matInput #input class="form-control" placeholder="Destinatario3: Nombre, apellidos y telef" [(ngModel)]="destinatario3"
-                    name="destinatario3">
+                <input matInput #input class="form-control" placeholder="Destinatario3: Nombre y apellidos" [(ngModel)]="destinatario3NombAp"
+                    name="destinatario3NombAp">
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Destinatario3: Teléfono" [(ngModel)]="destinatario3Telf"
+                    name="destinatario3Telf">
                 <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>
