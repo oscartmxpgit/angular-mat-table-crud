@@ -44,9 +44,12 @@ export class AddDialogComponent {
 
   public confirmAdd(): void {
     this.dataService.addIssue(this.data);
-    this.cantidadInputRef.nativeElement.value = '';
-    this.pesoUnitarioInputRef.nativeElement.value = '';
-    this.descripcionInputRef.nativeElement.value = '';
+    this.cantidadInputRef.nativeElement.value = null;
+    this.pesoUnitarioInputRef.nativeElement.value = null;
+    this.descripcionInputRef.nativeElement.value = null;
+    this.data.cantidad = undefined;
+    this.data.pesoUnitario = undefined;
+    this.data.descripcion = undefined;
 
   }
 }
