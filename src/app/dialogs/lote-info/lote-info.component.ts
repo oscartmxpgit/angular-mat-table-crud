@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Lote } from 'app/models/issue';
 import { LotesDataService } from 'app/services/lotes-data.service';
 
@@ -11,7 +12,8 @@ import { LotesDataService } from 'app/services/lotes-data.service';
 })
 export class LoteInfoComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<LoteInfoComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public lotesDataService: LotesDataService ) { }
+  constructor(public dialogRef: MatDialogRef<LoteInfoComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public lotesDataService: LotesDataService,
+  private _snackBar: MatSnackBar, ) { }
 
 
 
@@ -42,5 +44,8 @@ export class LoteInfoComponent implements OnInit {
     lote.loteId=this.data.loteId;
     lote.remitente = this.data.remitente;
     this.lotesDataService.addLote(lote);
+    this._snackBar.open('Lote añadido', 'Ok', {
+      duration: 2000,
+    });
   }
 }

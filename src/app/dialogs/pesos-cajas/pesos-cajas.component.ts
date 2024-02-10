@@ -4,6 +4,7 @@ import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core'
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { comboData } from 'app/models/datosComboBoxes';
@@ -25,7 +26,9 @@ export class PesosCajasComponent implements OnInit {
   @ViewChild('filter', { static: true }) filter: ElementRef;
   @ViewChild('TABLE') table: ElementRef;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public httpClient: HttpClient, public cajasDataService: CajasDataService, public dialogRef: MatDialogRef<PesosCajasComponent>,) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public httpClient: HttpClient,
+  private _snackBar: MatSnackBar, public cajasDataService: CajasDataService, public dialogRef: MatDialogRef<PesosCajasComponent>,) { }
+  
   ngOnInit(): void {
     this.loadData();
   }
@@ -96,6 +99,9 @@ formControl = new FormControl('', [
   cerrarGuardar(){
     this.cajasDataService.persistArray(this.cajasDatabase.dataChange.value);
     this.dialogRef.close();
+    this._snackBar.open('Caja guardada', 'Ok', {
+      duration: 2000,
+    });
   }
 }
 

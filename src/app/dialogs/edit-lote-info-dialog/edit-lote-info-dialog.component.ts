@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LotesDataService } from 'app/services/lotes-data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-lote-info-dialog',
@@ -12,6 +13,7 @@ import { LotesDataService } from 'app/services/lotes-data.service';
 export class EditLoteInfoDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<EditLoteInfoDialogComponent>,
+    private _snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any, public lotesDataService: LotesDataService,
     private fb: FormBuilder) {
   }
@@ -40,5 +42,8 @@ export class EditLoteInfoDialogComponent implements OnInit {
 
   stopEdit(): void {
     this.lotesDataService.updateLote(this.data.loteId, this.data.remitente);
+    this._snackBar.open('Lote editado', 'Ok', {
+      duration: 2000,
+    });
   }
 }

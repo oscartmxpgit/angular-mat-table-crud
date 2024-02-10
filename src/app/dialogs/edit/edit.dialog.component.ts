@@ -3,6 +3,7 @@ import {Component, Inject} from '@angular/core';
 import {DataService} from '../../services/data.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { comboData } from '../../models/datosComboBoxes';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-baza.dialog',
@@ -13,6 +14,7 @@ export class EditDialogComponent {
   comboData = comboData;
 
   constructor(public dialogRef: MatDialogRef<EditDialogComponent>,
+              private _snackBar: MatSnackBar,
               @Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService,
               private fb: FormBuilder) {
               }
@@ -38,5 +40,8 @@ export class EditDialogComponent {
 
   stopEdit(): void {
     this.dataService.updateIssue(this.data);
+    this._snackBar.open('Elemento editado', 'Ok', {
+      duration: 2000,
+    });
   }
 }
