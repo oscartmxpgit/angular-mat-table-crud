@@ -24,7 +24,7 @@ export class AddDialogComponent {
     private _snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: Issue,
     public dataService: DataService) { 
-      this.data.descripcion = '(sin descripción)';
+      this.data.descripcion = ' ';
     }
 
   formControl = new FormControl('', [
@@ -47,30 +47,32 @@ export class AddDialogComponent {
   }
 
   public confirmAdd(): void {
-    if (this.data.descripcion == '(sin descripción)'){
+    if (this.data.descripcion == ' '){
       this._snackBar.open('Producto no añadido. Revisa la descripción', 'Ok', {
         duration: 2000,
       });
       return;
     }
+    this.data.descripcion = this.data.descripcion.trim();
     this.dataService.addIssue(this.data);
     this.cantidadInputRef.nativeElement.value = '';
     this.pesoUnitarioInputRef.nativeElement.value = '';
     this.data.cantidad = 0;
     this.data.pesoUnitario = 0;
-    this.data.descripcion = '(sin descripción)';
+    this.data.descripcion = ' ';
     this._snackBar.open('Producto añadido correctamente', 'Ok', {
       duration: 2000,
     });
   }
 
   public confirmAddClose(): void {
-    if (this.data.descripcion == '(sin descripción)'){
+    if (this.data.descripcion == ' '){
       this._snackBar.open('Producto no añadido. Revisa la descripción', 'Ok', {
         duration: 2000,
       });
       return;
     }
+    this.data.descripcion = this.data.descripcion.trim();
     this.dataService.addIssue(this.data);
     this.cantidadInputRef.nativeElement.value = null;
     this.pesoUnitarioInputRef.nativeElement.value = null;
@@ -78,6 +80,9 @@ export class AddDialogComponent {
     this.data.cantidad = undefined;
     this.data.pesoUnitario = undefined;
     this.data.descripcion = undefined;
+    this._snackBar.open('Producto añadido correctamente', 'Ok', {
+      duration: 2000,
+    });
     this.dialogRef.close();
   }
 }
