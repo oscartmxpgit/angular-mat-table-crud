@@ -24,7 +24,7 @@ export class AddDialogComponent {
     private _snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: Issue,
     public dataService: DataService) { 
-      this.data.descripcion = ' ';
+      this.data.descripcion = '';
     }
 
   formControl = new FormControl('', [
@@ -47,7 +47,7 @@ export class AddDialogComponent {
   }
 
   public confirmAdd(): void {
-    if (this.data.descripcion == ' '){
+    if (this.data.descripcion == ''){
       this._snackBar.open('Producto no añadido. Revisa la descripción', 'Ok', {
         duration: 2000,
       });
@@ -59,14 +59,14 @@ export class AddDialogComponent {
     this.pesoUnitarioInputRef.nativeElement.value = '';
     this.data.cantidad = 0;
     this.data.pesoUnitario = 0;
-    this.data.descripcion = ' ';
+    this.data.descripcion = '';
     this._snackBar.open('Producto añadido correctamente', 'Ok', {
       duration: 2000,
     });
   }
 
   public confirmAddClose(): void {
-    if (this.data.descripcion == ' '){
+    if (this.data.descripcion == ''){
       this._snackBar.open('Producto no añadido. Revisa la descripción', 'Ok', {
         duration: 2000,
       });

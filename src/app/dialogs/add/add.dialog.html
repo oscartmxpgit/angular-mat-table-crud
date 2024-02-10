@@ -20,7 +20,7 @@
     <div class="form">
       <mat-form-field color="accent">
         <input matInput #input class="form-control" placeholder="Descripción" [(ngModel)]="data.descripcion" #descripcion
-          name="descripcion" required>
+          name="descripcion">
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
